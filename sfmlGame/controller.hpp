@@ -1,31 +1,33 @@
 #include <SFML/Graphics.hpp>
 
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
+
 class Controller
 {
-private:
+public:
+
 	struct KeyboardEvents{
-		bool mouseLeftButtonPressed{};
-		bool mouseLeftButtonOnHold{};
-		bool mouseLeftButtonReleased{};
-
-		bool mouseRightButtonPressed{};
-		bool mouseRightButtonOnHold{};
-		bool mouseRightButtonReleased{};
-
-		bool w_keyPressed{};
-		bool w_keyOnHold{};
-		bool w_keyReleased{};
+		struct KeyStates{
+			bool pressed{};
+			bool onHold{};
+			bool released{};
+		};
+		KeyStates mouseLeft;
+		KeyStates mouseRight;
+		KeyStates w_key;
 	};
-
 public:
 	Controller();
 	~Controller();
 
-
+	KeyboardEvents getKeyEvents() const { return keyboardEvents;} ;
     void clearPressedEvents();
+    void clearReleasedEvents();
     void handleEvents(sf::Event& event, sf::RenderWindow& window);
 	void initKeys();
-	KeyboardEvents keyboardEvents;
 private:
-
+	KeyboardEvents keyboardEvents;
 };
+
+#endif //CONTROLLER_HPP

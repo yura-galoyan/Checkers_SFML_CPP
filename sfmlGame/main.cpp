@@ -1,46 +1,75 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "controller.hpp"
-void test(sf::RenderWindow& window);
+#include "stats.hpp"
 
-void handleEvents(sf::Event& event, sf::RenderWindow& window);
+sf::Vector2<float> start{};
+sf::Vector2<float> end{};
 
+sf::Vertex lineCached[2];
+sf::Vertex line[2];
+
+
+void drawLine(bool enabled);
+void calculateDistance(Controller::KeyboardEvents keyEvents, bool&, sf::RenderWindow&);
+float distance;
 int main(){
-    std::string fontPath = "../Font/";
     sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML works!");
+    window.setKeyRepeatEnabled(false);
     sf::CircleShape shape(100.f);
-    sf::Font font; 
-    if (!font.loadFromFile(fontPath + "Mythical_Prince.ttf")) {
-        if (!font.loadFromFile("../" + fontPath + "Mythical_Prince.ttf")) {
-            std::cout << "could not load mythical prince font file" << std::endl;
-        }
-    }
-    sf::Text text("hello",font);
-    text.setOutlineThickness(2);
-    text.setOutlineColor(sf::Color::Red);
-    shape.setFillColor(sf::Color::Green);
-
-
     sf::Event event;
     Controller controller;
+    bool enabl{};
+    bool keepDrawing{};
     controller.initKeys();
-    while (window.isOpen())
-    {
+    Stats stats(window,"Mythical_Prince.ttf");
+    while (window.isOpen()){
         controller.handleEvents(event,window);
+        calculateDistance(controller.getKeyEvents(),enabl,window);
+
         window.clear();
 
-        test(window);
-        window.draw(text);
-        window.display();
-    }
+        if(distance){
+            std::cout<<"distance = "<<distance<<std::endl;
+        }
+        
+        if(enabl){
+            keepDrawing = true;
+            lineCached[0] = line[0];
+            lineCached[1] = line[1];
+        }
 
+        if(enabl || keepDrawing){
+            window.draw(lineCached,2,sf::Lines);
+            enabl = false;
+        }
+        stats.showAllStats(controller.getKeyEvents());
+        window.display();
+
+
+        distance = 0;
+    }
     return 0;
 }
+void drawLine(bool enabled){
+    if(enabled){
+        line[0] = start;
+        enabled = false;
+    }
+}
 
+void calculateDistance(Controller::KeyboardEvents keyEvents, bool& enabled, sf::RenderWindow& window){
 
-void handleEvents(sf::Event& event, sf::RenderWindow& window) {
-};
-
-void test(sf::RenderWindow& window) {
-    
+    if(keyEvents.mouseLeft.pressed){
+        
+        start.x = sf::Mouse::getPosition(window).x;
+        start.y = sf::Mouse::getPosition(window).y;
+        line[0] = start;
+    }
+    if(keyEvents.mouseLeft.released){
+        end.x = sf::Mouse::getPosition(window).x;
+        end.y = sf::Mouse::getPosition(window).y;
+        line[1] = end;
+        enabled = true;
+    } 
 };
