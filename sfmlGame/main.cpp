@@ -1,18 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <array>
+#include <vector>
 #include "controller.hpp"
 #include "stats.hpp"
 
 sf::Vector2<float> start{};
 sf::Vector2<float> end{};
+using Line  = std::array<sf::Vertex,2>;
+using LinesVec = std::vector<Line>;
 
-sf::Vertex lineCached[2];
-sf::Vertex line[2];
 
-
-void drawLine(bool enabled);
-void calculateDistance(Controller::KeyboardEvents keyEvents, bool&, sf::RenderWindow&);
-float distance;
+void calculateDistance(Controller::KeyboardEvents keyEvents, bool&, sf::RenderWindow&, LinesVec&);
 int main(){
     sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML works!");
     window.setKeyRepeatEnabled(false);
@@ -23,45 +22,37 @@ int main(){
     bool keepDrawing{};
     controller.initKeys();
     Stats stats(window,"Mythical_Prince.ttf");
+
+    LinesVec lines;
+
     while (window.isOpen()){
         controller.handleEvents(event,window);
-        calculateDistance(controller.getKeyEvents(),enabl,window);
+        calculateDistance(controller.getKeyEvents(),enabl,window, lines);
 
         window.clear();
-
-        if(distance){
-            std::cout<<"distance = "<<distance<<std::endl;
-        }
         
         if(enabl){
             keepDrawing = true;
-            lineCached[0] = line[0];
-            lineCached[1] = line[1];
         }
 
         if(enabl || keepDrawing){
-            window.draw(lineCached,2,sf::Lines);
+            for(auto line :lines){
+                window.draw(line.data(),2,sf::Lines);
+            }
             enabl = false;
         }
         stats.showAllStats(controller.getKeyEvents());
         window.display();
 
-
-        distance = 0;
     }
+
     return 0;
 }
-void drawLine(bool enabled){
-    if(enabled){
-        line[0] = start;
-        enabled = false;
-    }
-}
 
-void calculateDistance(Controller::KeyboardEvents keyEvents, bool& enabled, sf::RenderWindow& window){
+void calculateDistance(Controller::KeyboardEvents keyEvents, bool& enabled, sf::RenderWindow& window, LinesVec& vec){
+    static Line line;
 
     if(keyEvents.mouseLeft.pressed){
-        
         start.x = sf::Mouse::getPosition(window).x;
         start.y = sf::Mouse::getPosition(window).y;
         line[0] = start;
@@ -71,5 +62,12 @@ void calculateDistance(Controller::KeyboardEvents keyEvents, bool& enabled, sf::
         end.y = sf::Mouse::getPosition(window).y;
         line[1] = end;
         enabled = true;
-    } 
+        vec.push_back(line);
+    }
+    if(keyEvents.mouseRight.pressed){
+        if(!vec.empty()){
+            vec.pop_back();
+        }
+    }
+
 };
