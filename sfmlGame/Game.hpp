@@ -5,14 +5,16 @@
 #include "Factories/ChessAbstractFactory.hpp"
 #include "AbstractBoardModel.hpp"
 #include "AbstractBoardView.hpp"
+#include "Controller.hpp"
 #include "BackGround.hpp"
-#include "Event.hpp"
+#include "Window.hpp"
 
 #include <memory>
 
 class Game
 {
 public:
+    Game() = default;
     void start();
     void handleEvents();
 
@@ -25,6 +27,8 @@ public:
 private:
     AbstractBoardView* boardView;
     BackGround backGround;
+    Controller controller;
+    Window window;
     Event event;
 };
 

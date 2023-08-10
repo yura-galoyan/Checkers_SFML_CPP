@@ -11,7 +11,7 @@ public:
     RegularBoardView(AbstractBoardModel* model);
 
 public:
-    void draw();
+    void draw(Window& window) override ;
 };
 
 

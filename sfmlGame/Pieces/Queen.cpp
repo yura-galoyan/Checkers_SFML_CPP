@@ -9,6 +9,6 @@ void Queen::move(Coords xy)
 {
 }
 
-void Queen::draw() const
+void Queen::draw(Window& window)
 {
 }

@@ -4,6 +4,8 @@
 #include "Pieces/Piece.hpp"
 
 
+#include <vector>
+
 
 class AbstractBoardModel
 {
@@ -16,7 +18,20 @@ public:
    virtual ~AbstractBoardModel() = default;
 
 public:
-   virtual void addPiece(PiecePtr<> piece) = 0; 
+   void addPiece(PiecePtr<> piece) ;
+
+public:
+   auto begin() { return pieces.begin();  }
+   auto begin() const  { return pieces.begin();  }
+   auto cbegin() const { return pieces.cbegin(); }
+   auto end() { return pieces.end();  }
+   auto end() const { return pieces.end();  }
+   auto cend() const { return pieces.cend(); }
+
+
+private:
+    std::vector<std::unique_ptr<Piece>> pieces;
+
 };
 
 

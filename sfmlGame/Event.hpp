@@ -6,8 +6,7 @@
 class Event
 {
 public:
-    void handleEvents();
-    //event variable getEvent();
+    sf::Event& event() { return currEvent; }
 private:
     sf::Event currEvent;
 };

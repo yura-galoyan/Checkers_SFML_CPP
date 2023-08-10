@@ -9,6 +9,6 @@ void Bishop::move(Coords xy)
 {
 }
 
-void Bishop::draw() const
+void Bishop::draw(Window &window)
 {
 }

@@ -7,8 +7,8 @@ class Pawn : public Piece
 {
 public:
     virtual std::unique_ptr<Piece> clone() const override;
-    virtual void move(Coords xy) ;
-    virtual void draw() const ;
+    virtual void move(Coords xy) override ;
+    virtual void draw(Window& window) override ;
 private:
 };
 

@@ -9,6 +9,6 @@ void King::move(Coords xy)
 {
 }
 
-void King::draw() const
+void King::draw(Window& window) 
 {
 }

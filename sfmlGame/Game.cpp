@@ -3,14 +3,17 @@
 void Game::start()
 {
     //Gameloop starts here...
+    while(window.isOpen()){
+        controller.queryEvents(event);
 
 
-    event.handleEvents();
-    //Gameloop ends here...
-}
+        window.clear();
 
-void Game::handleEvents()
-{
+        backGround.draw();
+        boardView->draw(window);
+
+        window.display();
+    }
 }
 
 std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstractFactory> factory)
@@ -44,6 +47,6 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
 
 void Game::setView(AbstractBoardView* boardView_)
 {
-    this->boardView = boardView;
+    this->boardView = boardView_;
 }
 

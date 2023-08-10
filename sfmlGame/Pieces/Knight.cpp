@@ -9,6 +9,6 @@ void Knight::move(Coords xy)
 {
 }
 
-void Knight::draw() const
+void Knight::draw(Window& window) 
 {
 }

@@ -9,6 +9,6 @@ void Rook::move(Coords xy)
 {
 }
 
-void Rook::draw() const
+void Rook::draw(Window &window)
 {
 }

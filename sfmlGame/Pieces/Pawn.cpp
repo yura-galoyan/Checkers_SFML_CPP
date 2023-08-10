@@ -9,6 +9,6 @@ void Pawn::move(Coords xy)
 {
 }
 
-void Pawn::draw() const
+void Pawn::draw(Window &window)
 {
 }

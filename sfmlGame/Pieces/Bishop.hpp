@@ -6,9 +6,9 @@
 class Bishop : public Piece
 {
     
-    virtual std::unique_ptr<Piece> clone() const ;
-    virtual void move(Coords xy) ;
-    virtual void draw() const ;
+    virtual std::unique_ptr<Piece> clone() const override ;
+    virtual void move(Coords xy) override ;
+    virtual void draw(Window& window) override ;
 }; 
 
 #endif //BISHOP_HPP
