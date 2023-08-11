@@ -30,3 +30,4 @@ private:
 };
 
 #endif //WINDOW_HPP
+

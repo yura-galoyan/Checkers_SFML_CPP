@@ -20,7 +20,7 @@ public:
 public:
     std::unique_ptr<AbstractBoardModel> createBoard(std::unique_ptr<ChessAbstractFactory> factory);
     void setView(AbstractBoardView* boardView);
-
+    void setController(Controller* controller);
 
 
 private:

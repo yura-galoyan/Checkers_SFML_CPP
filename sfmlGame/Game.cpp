@@ -45,8 +45,10 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
     return board;
 }
 
-void Game::setView(AbstractBoardView* boardView_)
-{
+void Game::setView(AbstractBoardView* boardView_){
     this->boardView = boardView_;
 }
 
+void Game::setController(Controller *controller_){
+    this->controller = controller_;
+}
