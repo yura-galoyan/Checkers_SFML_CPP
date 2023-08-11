@@ -16,7 +16,6 @@ class Game
 public:
     Game() = default;
     void start();
-    void handleEvents();
 
 public:
     std::unique_ptr<AbstractBoardModel> createBoard(std::unique_ptr<ChessAbstractFactory> factory);
@@ -26,8 +25,8 @@ public:
 
 private:
     AbstractBoardView* boardView;
+    Controller* controller;
     BackGround backGround;
-    Controller controller;
     Window window;
     Event event;
 };

@@ -4,7 +4,7 @@ void Game::start()
 {
     //Gameloop starts here...
     while(window.isOpen()){
-        controller.queryEvents(event);
+        controller->queryEvents(window,event);
 
 
         window.clear();

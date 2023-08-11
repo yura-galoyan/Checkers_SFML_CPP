@@ -3,3 +3,6 @@
 .vscode/
 *.sln
 x64
+sfmlGame/sfmlGame.vcxproj
+sfmlGame/sfmlGame.vcxproj.filters
+sfmlGame/sfmlGame.vcxproj.user

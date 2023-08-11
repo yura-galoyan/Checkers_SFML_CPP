@@ -5,22 +5,32 @@
 #include <unordered_map>
 #include <string>
 
-#include "Event.hpp"
+#include "Window.hpp"
 
 class Controller
 {
-public:
+private:
     struct Key{
+        Key() = default;
         bool notTouched{false};
         bool pressedOnce{false};
         bool onHold{false};
         bool released{true};    
     };
-    void queryEvents(Event& event);
 
-private:
-    std::unordered_map<char, Key> keyboard;
-    std::unordered_map<std::string, Key> mouse;
+public:
+    template<typename MouseButton>
+    struct ButtonPair{
+        MouseButton button;
+        Key state;
+    };
+
+public:
+    virtual void queryEvents(Window& window, Event& event) = 0;
+
+protected:
+    virtual void initMouseButtons() = 0;
+
 };
 
 
