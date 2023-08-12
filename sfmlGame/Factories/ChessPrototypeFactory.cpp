@@ -66,7 +66,6 @@ auto ChessPrototypeFactory::makebishop() -> PiecePtr<>
     PiecePtr<Piece> bishop = bishopPrototype->clone();
     static int twice{};
     if(twice++ < 2){
-        std::cout<<"twice: " <<std::endl;
         bishop->setPosition(2);
     }
     else{

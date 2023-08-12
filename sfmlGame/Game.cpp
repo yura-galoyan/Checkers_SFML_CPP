@@ -23,19 +23,10 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
 
     std::unique_ptr<AbstractBoardModel> board = factory->makeBoard();
 
-    for(int i = 0; i < 16; ++i){
-        board->addPiece(factory->makePawn());
-    }
+    // for(int i = 0; i < 16; ++i){
+        // board->addPiece(factory->makePawn());
+    // }
 
-    for(auto& p: *board){
-        std::cout << "x: " << p->getXY().first << "\n";
-        std::cout << "y: " << p->getXY().second << "\n";
-        std::cout << std::string(100,'-') << std::endl;
-    }
-    
-    std::cout << std::string(100,'-') << std::endl;
-    std::cout << std::string(100,'-') << std::endl;
-    
     
     board->addPiece(factory->makebishop());
     board->addPiece(factory->makebishop());
@@ -67,12 +58,6 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
     board->addPiece(factory->makeRook());
     board->addPiece(factory->makeRook());
     board->addPiece(factory->makeRook());
-
-    for(auto& p: *board){
-        std::cout << "x: " << p->getXY().first << "\n";
-        std::cout << "y: " << p->getXY().second << "\n";
-        std::cout << std::string(100,'-') << std::endl;
-    }
 
 
     return board;
