@@ -2,13 +2,13 @@
 
 std::unique_ptr<Piece> Queen::clone() const
 {
-    return std::unique_ptr<Piece>();
+    return std::make_unique<Queen>(*this);
 }
 
-void Queen::move(Coords xy)
-{
+void Queen::move(Coords xy){
+    
 }
 
-void Queen::draw(Window& window)
-{
+void Queen::draw(Window& window){
+    
 }

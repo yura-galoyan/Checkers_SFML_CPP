@@ -2,7 +2,7 @@
 
 std::unique_ptr<Piece> Pawn::clone() const
 {
-    return std::make_unique<Pawn>();
+    return std::make_unique<Pawn>(*this);
 }
 
 void Pawn::move(Coords xy)

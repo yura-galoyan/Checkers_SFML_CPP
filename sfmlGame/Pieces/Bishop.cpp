@@ -2,7 +2,7 @@
 
 std::unique_ptr<Piece> Bishop::clone() const
 {
-    return std::unique_ptr<Piece>();
+    return std::make_unique<Bishop>(*this);
 }
 
 void Bishop::move(Coords xy)

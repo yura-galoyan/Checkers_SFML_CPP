@@ -2,13 +2,13 @@
 
 std::unique_ptr<Piece> Rook::clone() const
 {
-    return std::unique_ptr<Piece>();
+    return std::make_unique<Rook>(*this);
 }
 
-void Rook::move(Coords xy)
-{
+void Rook::move(Coords xy){
+    
 }
 
-void Rook::draw(Window &window)
-{
+void Rook::draw(Window &window){
+    
 }

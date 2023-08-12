@@ -6,9 +6,16 @@
 class Queen : public Piece
 {
 
+public:
+    Queen() = default;
+    Queen(const Queen& q){}
+
+public:
     virtual std::unique_ptr<Piece> clone() const override ;
     virtual void move(Coords xy) override ;
     virtual void draw(Window& window) override ;
+
+
 };
 
 #endif //QUENN_HPP

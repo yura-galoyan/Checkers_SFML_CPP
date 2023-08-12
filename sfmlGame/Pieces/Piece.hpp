@@ -13,8 +13,11 @@ public:
 
 public:
     virtual std::unique_ptr<Piece> clone() const = 0;
-    virtual ~Piece() = default;
 
+    virtual ~Piece() = default;
+    Piece() = default;
+
+public:
     void setPosition(std::size_t x);
 
     void setXY(Coords xy_){ xy = xy_; }

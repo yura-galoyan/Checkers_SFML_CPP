@@ -5,7 +5,8 @@
 
 class Bishop : public Piece
 {
-    
+public:
+    Bishop(const Bishop& k){}
     virtual std::unique_ptr<Piece> clone() const override ;
     virtual void move(Coords xy) override ;
     virtual void draw(Window& window) override ;

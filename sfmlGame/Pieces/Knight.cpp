@@ -2,13 +2,13 @@
 
 std::unique_ptr<Piece> Knight::clone() const
 {
-    return std::unique_ptr<Piece>();
+    return std::make_unique<Knight>(*this);
 }
 
-void Knight::move(Coords xy)
-{
+void Knight::move(Coords xy){
+    
 }
 
-void Knight::draw(Window& window) 
-{
+void Knight::draw(Window& window){
+
 }

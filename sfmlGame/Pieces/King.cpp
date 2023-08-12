@@ -2,7 +2,7 @@
 
 std::unique_ptr<Piece> King::clone() const
 {
-    return std::unique_ptr<Piece>();
+    return std::make_unique<King>(*this);
 }
 
 void King::move(Coords xy)
