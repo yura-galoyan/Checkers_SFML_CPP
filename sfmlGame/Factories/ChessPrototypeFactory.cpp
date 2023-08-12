@@ -46,6 +46,7 @@ auto ChessPrototypeFactory::makeKing() -> PiecePtr<>
     king->setPosition(4);
     return king;
 }
+#include <iostream>
 
 auto ChessPrototypeFactory::makeKnight() -> PiecePtr<>
 {
@@ -65,6 +66,7 @@ auto ChessPrototypeFactory::makebishop() -> PiecePtr<>
     PiecePtr<Piece> bishop = bishopPrototype->clone();
     static int twice{};
     if(twice++ < 2){
+        std::cout<<"twice: " <<std::endl;
         bishop->setPosition(2);
     }
     else{
