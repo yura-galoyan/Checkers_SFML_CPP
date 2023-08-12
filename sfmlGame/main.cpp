@@ -7,9 +7,10 @@
 
 int main(){
 
-    Game game;
+    Game game(1600, 900, "Chess Game");
 
     
+// Change this somehow
     auto model = game.createBoard( std::make_unique<ChessPrototypeFactory>( 
         std::make_unique<Pawn>(),std::make_unique<Queen>(), std::make_unique<Rook>(),
         std::make_unique<Knight>(), std::make_unique<Bishop>(),std::make_unique<King>(),
@@ -25,6 +26,6 @@ int main(){
     game.setView(view.get());
     game.setController(controller.get());
 
-
+    game.start();
 
 }

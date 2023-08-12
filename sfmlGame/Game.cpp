@@ -2,8 +2,13 @@
 
 #include <iostream>
 
-void Game::start()
-{
+Game::Game(unsigned height, unsigned width, std::string title) 
+    : window(height, width, title) {
+
+}
+
+void Game::start(){
+
     //Gameloop starts here...
     while(window.isOpen()){
         controller->queryEvents(window,event);
@@ -18,9 +23,7 @@ void Game::start()
     }
 }
 
-std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstractFactory> factory)
-{
-
+std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstractFactory> factory){
     std::unique_ptr<AbstractBoardModel> board = factory->makeBoard();
 
     for(int i = 0; i < 16; ++i){

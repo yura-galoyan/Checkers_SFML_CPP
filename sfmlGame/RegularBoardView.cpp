@@ -6,6 +6,7 @@ RegularBoardView::RegularBoardView(AbstractBoardModel* model){
 }
 
 void RegularBoardView::draw(Window& window){
+    
     for(auto &object : *model){
         object->draw(window);
     }

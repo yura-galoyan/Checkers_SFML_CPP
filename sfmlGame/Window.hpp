@@ -18,10 +18,11 @@ public:
     void close();
     void clear();
     void display();
-
+    void create(unsigned height, unsigned width, std::string title);
 
     int gerWidth() { return width; }
     int gerheight() { return height; }
+
 
 private:
     sf::RenderWindow window;

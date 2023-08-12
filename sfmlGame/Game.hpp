@@ -15,6 +15,8 @@ class Game
 {
 public:
     Game() = default;
+    Game(unsigned height, unsigned width, std::string title);
+    
     void start();
 
 public:
