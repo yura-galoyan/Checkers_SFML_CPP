@@ -22,8 +22,8 @@ int main(){
 
     view->setModel(model.get());
 
-
     game.setView(view.get());
+
 
 
 }

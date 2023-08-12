@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <iostream>
+
 void Game::start()
 {
     //Gameloop starts here...
@@ -41,6 +43,12 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
     board->addPiece(factory->makeRook());
     board->addPiece(factory->makeRook());
     board->addPiece(factory->makeRook());
+
+    for(auto& p: *board){
+        std::cout << "x: " << p->getXY().first << "n";
+        std::cout << "y: " << p->getXY().second << std::endl;
+    }
+
 
     return board;
 }
