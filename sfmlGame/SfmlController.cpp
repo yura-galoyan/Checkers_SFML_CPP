@@ -2,6 +2,7 @@
 
 void SfmlController::queryEvents(Window& window, Event &event){
 
+    clearEvents();
     while(window.pollEvent(event)){
         switch (event.event().type)
         {
@@ -12,13 +13,12 @@ void SfmlController::queryEvents(Window& window, Event &event){
             case sf::Event::MouseButtonReleased:
                 checkMouseButtonReleased(mouseButtons['l'], event);
                 checkMouseButtonReleased(mouseButtons['r'], event);
+            case sf::Event::MouseMoved:
+                break;
         default:
             break;
         }
     }
-
-    mouseButtons.at('a');
-
 }
 
 void SfmlController::initMouseButtons(){
@@ -46,4 +46,8 @@ void SfmlController::clearEvents(){
     for(auto& pair : mouseButtons ){
         pair.second.state.pressedOnce = false;
     }
+}
+
+auto SfmlController::atMouseButton(char button) -> ButtonPair<sf::Mouse::Button> {
+    return mouseButtons[button];
 }

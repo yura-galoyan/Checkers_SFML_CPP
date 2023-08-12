@@ -3,7 +3,7 @@
 
 #include "Pieces/Piece.hpp"
 
-
+#include <memory>
 #include <vector>
 
 
@@ -15,6 +15,9 @@ public:
    
 public:
    virtual std::unique_ptr<AbstractBoardModel> clone() const = 0;
+   
+   AbstractBoardModel( ) { };
+   AbstractBoardModel(const AbstractBoardModel& ) { };
    virtual ~AbstractBoardModel() = default;
 
 public:

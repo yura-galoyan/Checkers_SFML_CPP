@@ -13,6 +13,7 @@ private:
     void checkMouseButtonPressed(ButtonPair<sf::Mouse::Button>& buttonPair, Event& event);
     void checkMouseButtonReleased(ButtonPair<sf::Mouse::Button>& buttonPair, Event& event);
     void clearEvents();
+    ButtonPair<sf::Mouse::Button> atMouseButton(char button);
 private:
     // std::unordered_map<char, Key> keyboard;
     std::unordered_map<char, ButtonPair<sf::Mouse::Button> > mouseButtons;

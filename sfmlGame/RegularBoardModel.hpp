@@ -8,6 +8,8 @@
 class RegularBoardModel : public AbstractBoardModel
 {
 public:
+   RegularBoardModel() = default;
+   RegularBoardModel(const RegularBoardModel&) = default;
    virtual std::unique_ptr<AbstractBoardModel> clone() const override;
 
 };

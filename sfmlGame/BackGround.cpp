@@ -1,5 +1,5 @@
 #include "BackGround.hpp"
 
-void BackGround::draw()
-{
+void BackGround::draw(){
+    
 }
