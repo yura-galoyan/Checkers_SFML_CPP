@@ -23,6 +23,7 @@ int main(){
     view->setModel(model.get());
 
     game.setView(view.get());
+    game.setController(controller.get());
 
 
 
