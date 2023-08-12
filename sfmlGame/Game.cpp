@@ -45,8 +45,9 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
     board->addPiece(factory->makeRook());
 
     for(auto& p: *board){
-        std::cout << "x: " << p->getXY().first << "n";
-        std::cout << "y: " << p->getXY().second << std::endl;
+        std::cout << "x: " << p->getXY().first << "\n";
+        std::cout << "y: " << p->getXY().second << "\n";
+        std::cout << std::string(100,'-') << std::endl;
     }
 
 
