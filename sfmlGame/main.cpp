@@ -16,8 +16,8 @@ int main(){
         std::make_unique<RegularBoardModel>() ));
 
 // Make this Factory
-    std::unique_ptr<RegularBoardView> view;
-    std::unique_ptr<SfmlController> controller;
+    std::unique_ptr<AbstractBoardView> view = std::make_unique<RegularBoardView>();
+    std::unique_ptr<Controller> controller = std::make_unique<SfmlController>();
 
 
     view->setModel(model.get());
