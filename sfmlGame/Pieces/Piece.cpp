@@ -9,7 +9,7 @@ void Piece::setPosition(std::size_t x)
         setColor(Piece::Color::Black);
         b = !b;
     }
-    if(!b){
+    else if(!b){
         setXY({x,7});
         setColor(Piece::Color::White);
     }
