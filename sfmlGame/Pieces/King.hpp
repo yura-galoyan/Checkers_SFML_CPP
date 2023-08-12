@@ -6,6 +6,7 @@
 class King : public Piece
 {
 public:
+    King() = default;
     King(const King& k){}
     virtual std::unique_ptr<Piece> clone() const override ;
     virtual void move(Coords xy) override ;
