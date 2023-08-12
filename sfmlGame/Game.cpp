@@ -23,56 +23,36 @@ std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstr
 
     std::unique_ptr<AbstractBoardModel> board = factory->makeBoard();
 
-    // for(int i = 0; i < 16; ++i){
-        // board->addPiece(factory->makePawn());
-    // }
+    for(int i = 0; i < 16; ++i){
+        board->addPiece(factory->makePawn());
+    }
 
-    auto b1 = factory->makebishop();
-    std::cout<< "x:" << b1->getXY().first << "\n";
-    std::cout<< "y:" << b1->getXY().second << "\n";
+    board->addPiece(factory->makebishop());
+    board->addPiece(factory->makebishop());
+    board->addPiece(factory->makebishop());
+    board->addPiece(factory->makebishop());
 
-    auto b2 = factory->makebishop();
-    std::cout<< "x:" << b2->getXY().first << "\n";
-    std::cout<< "y:" << b2->getXY().second << "\n";
-
-    auto b3 = factory->makebishop();
-    std::cout<< "x:" << b3->getXY().first << "\n";
-    std::cout<< "y:" << b3->getXY().second << "\n";
-
-    auto b4 = factory->makebishop();
-    std::cout<< "x:" << b4->getXY().first << "\n";
-    std::cout<< "y:" << b4->getXY().second << std::endl;
+    board->addPiece(factory->makeKnight());
+    board->addPiece(factory->makeKnight());
+    board->addPiece(factory->makeKnight());
+    board->addPiece(factory->makeKnight());
     
-    board->addPiece(std::move(b1));
-    board->addPiece(std::move(b2));
-    board->addPiece(std::move(b3));
-    board->addPiece(std::move(b4));
+    board->addPiece(factory->makeQueen());
+    board->addPiece(factory->makeQueen());
+    
+    board->addPiece(factory->makeKing());
+    board->addPiece(factory->makeKing());
+    
+    board->addPiece(factory->makeRook());
+    board->addPiece(factory->makeRook());
+    board->addPiece(factory->makeRook());
+    board->addPiece(factory->makeRook());
 
-    std::cout << std::string(100,'-') << std::endl;
-    std::cout << std::string(100,'-') << std::endl;
-   
     for(auto& p: *board){
         std::cout << "x: " << p->getXY().first << "\n";
         std::cout << "y: " << p->getXY().second << "\n";
         std::cout << std::string(100,'-') << std::endl;
     }
-
-
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    
-    board->addPiece(factory->makeQueen());
-    board->addPiece(factory->makeQueen());
-    
-    board->addPiece(factory->makeKing());
-    board->addPiece(factory->makeKing());
-    
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
 
 
     return board;
