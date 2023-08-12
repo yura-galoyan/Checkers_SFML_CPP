@@ -12,5 +12,6 @@ void Piece::setPosition(std::size_t x)
     else if(!b){
         setXY({x,7});
         setColor(Piece::Color::White);
+        b = !b;
     }
 }
