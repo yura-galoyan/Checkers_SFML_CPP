@@ -15,8 +15,12 @@ void SfmlController::queryEvents(Window& window, Event &event){
                 checkMouseButtonReleased(mouseButtons['r'], event);
             case sf::Event::MouseMoved:
                 break;
-        default:
-            break;
+
+            case sf::Event::Closed:
+                window.close();
+                break;
+            default:
+                break;
         }
     }
 }

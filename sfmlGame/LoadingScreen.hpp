@@ -3,7 +3,7 @@
 
 class LoadingScreen
 {
-
+    
 };
 
 #endif //LOADING_SCREEN_HPP

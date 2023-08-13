@@ -4,6 +4,23 @@
 #include "SfmlController.hpp"
 #include "Game.hpp"
 
+#include <SFML/Graphics.hpp>
+
+#include <iostream>
+#include <thread>
+
+
+sf::Texture loadTexture(){
+    sf::Texture texture;
+    if(!texture.loadFromFile("assets/chessBoard.png")){
+        std::cout << "failed to load chessBoard.png" << std::endl;
+    }
+
+
+    std::cout << " texture laoded" << std::endl;
+    return texture;    
+
+}
 
 int main(){
 
@@ -26,6 +43,12 @@ int main(){
     game.setView(view.get());
     game.setController(controller.get());
 
-    game.start();
+    std::thread t1(loadTexture);
+    for(int i = 0; i < 100000; ++i){
+        std::cout<<"loading..." << "\n";
+    }
+    std::cout.flush();
+    t1.join();
+
 
 }
