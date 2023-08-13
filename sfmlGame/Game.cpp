@@ -1,15 +1,20 @@
 #include "Game.hpp"
 
-#include <iostream>
 
 Game::Game(unsigned height, unsigned width, std::string title) 
     : window(height, width, title) {
 
 }
 
-void Game::start(){
+void Game::loadTextures(){
+    
+}
 
-    //Gameloop starts here...
+void Game::start(){
+    
+    loadTextures();
+    loadingScreen.start(*controller,window,event);
+
     while(window.isOpen()){
         controller->queryEvents(window,event);
 

@@ -10,17 +10,17 @@
 #include <thread>
 
 
-sf::Texture loadTexture(){
-    sf::Texture texture;
-    if(!texture.loadFromFile("assets/chessBoard.png")){
-        std::cout << "failed to load chessBoard.png" << std::endl;
-    }
+// sf::Texture loadTexture(){
+//     sf::Texture texture;
+//     if(!texture.loadFromFile("assets/chessBoard.png")){
+//         std::cout << "failed to load chessBoard.png" << std::endl;
+//     }
 
 
-    std::cout << " texture laoded" << std::endl;
-    return texture;    
+//     std::cout << " texture laoded" << std::endl;
+//     return texture;    
 
-}
+// }
 
 int main(){
 
@@ -43,12 +43,6 @@ int main(){
     game.setView(view.get());
     game.setController(controller.get());
 
-    std::thread t1(loadTexture);
-    for(int i = 0; i < 100000; ++i){
-        std::cout<<"loading..." << "\n";
-    }
-    std::cout.flush();
-    t1.join();
 
 
 }
