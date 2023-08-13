@@ -26,8 +26,8 @@ public:
 
 private:
     sf::RenderWindow window;
-    int width;
-    int height;
+    unsigned width;
+    unsigned height;
 };
 
 #endif //WINDOW_HPP

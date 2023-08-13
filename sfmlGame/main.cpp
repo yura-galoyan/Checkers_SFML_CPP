@@ -24,7 +24,7 @@ sf::Texture loadTexture(){
 
 int main(){
 
-    Game game(1600, 900, "Chess Game");
+    Game game(900, 1600, "Chess Game");
 
     
 // Change this somehow
