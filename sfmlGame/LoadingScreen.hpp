@@ -2,7 +2,8 @@
 #define LOADING_SCREEN_HPP
 
 #include "Controller.hpp"
-#include "Texture.hpp"
+#include "TextureManager.hpp"
+
 #include "Window.hpp"
 #include "Event.hpp"
 
@@ -11,11 +12,11 @@ class LoadingScreen
 {
 public:
     void start(Controller& , Window& , Event& );
-    void loadTextures();
     std::atomic<bool>& isDone() { return done; }
     void finish( ) { done = false; }
-
-private:    
+    void draw();
+private:
+    TextureManager texManager;    
     std::atomic<bool> done{false};
 };
 

@@ -9,6 +9,6 @@ void King::move(Coords xy)
 {
 }
 
-void King::draw(Window& window) 
-{
+void King::draw(Window& window, Texture& texture){
+    
 }

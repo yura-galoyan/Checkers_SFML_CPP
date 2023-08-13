@@ -8,9 +8,10 @@ class Rook : public Piece
 public:
     Rook() = default;
     Rook(const Rook& q){}
-    virtual std::unique_ptr<Piece> clone() const override ;
-    virtual void move(Coords xy) override ;
-    virtual void draw(Window& window) override ;
+    std::unique_ptr<Piece> clone() const override ;
+    void move(Coords xy) override ;
+    void draw(Window& window, Texture& texture) override ;
+    
 };
 
 

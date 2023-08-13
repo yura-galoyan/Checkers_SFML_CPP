@@ -3,6 +3,8 @@
 
 #include <memory>
 
+#include "../Texture.hpp"
+
 #include "../Window.hpp"
 
 class Piece
@@ -27,7 +29,7 @@ public:
     Color getColor() const { return color; }
 
     virtual void move(Coords xy) = 0;
-    virtual void draw(Window& window) = 0;
+    virtual void draw(Window& window, Texture& texture ) = 0;
 
 protected:
     Coords xy;

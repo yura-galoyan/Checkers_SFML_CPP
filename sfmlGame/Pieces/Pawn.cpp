@@ -9,6 +9,6 @@ void Pawn::move(Coords xy)
 {
 }
 
-void Pawn::draw(Window &window)
-{
+void Pawn::draw(Window &window, Texture& texture){
+    
 }

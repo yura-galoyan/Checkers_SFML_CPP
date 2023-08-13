@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.15)
+project(chessGame)
+set(SFML_DIR "SFML-2.5.1/build")
+find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
+set(src sfmlGame)
+include_directories("SFML-2.5.1/include")
+
+set(SOURCES
+${src}/main.cpp
+${src}/AbstractBoardModel.cpp
+${src}/AbstractBoardView.cpp
+${src}/BackGround.cpp
+${src}/Event.cpp
+${src}/Game.cpp
+${src}/LoadingScreen.cpp
+${src}/RegularBoardModel.cpp
+${src}/RegularBoardView.cpp
+${src}/SfmlController.cpp
+${src}/Texture.cpp
+${src}/Window.cpp
+${src}/Pieces/Bishop.cpp
+${src}/Pieces/King.cpp
+${src}/Pieces/Knight.cpp
+${src}/Pieces/Pawn.cpp
+${src}/Pieces/Piece.cpp
+${src}/Pieces/Queen.cpp
+${src}/Pieces/Rook.cpp
+${src}/Factories/ChessPrototypeFactory.cpp
+)
+
+# Create the executable
+add_executable(chessGame ${SOURCES})
+
+# Link SFML to your project
+target_link_libraries(chessGame sfml-graphics sfml-window sfml-system)

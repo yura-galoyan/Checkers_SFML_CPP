@@ -6,13 +6,11 @@ Game::Game(unsigned height, unsigned width, std::string title)
 
 }
 
-void Game::loadTextures(){
-    
+void Game::loadTextures(){  
 }
 
 void Game::start(){
     
-    loadTextures();
     loadingScreen.start(*controller,window,event);
 
     while(window.isOpen()){
