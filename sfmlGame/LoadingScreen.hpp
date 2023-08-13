@@ -14,9 +14,12 @@ public:
     void start(Controller& , Window& , Event& );
     std::atomic<bool>& isDone() { return done; }
     void finish( ) { done = false; }
-    void draw();
+    void draw(Window& window);
+    void initSprite();
+
 private:
-    TextureManager texManager;    
+    TextureManager texManager;
+    Sprite sprite;    
     std::atomic<bool> done{false};
 };
 

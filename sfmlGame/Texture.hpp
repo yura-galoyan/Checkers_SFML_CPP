@@ -10,7 +10,7 @@ class Texture
 public:
     void loadFromFile(std::string path);
 
-    sf::Texture getTexture();
+    sf::Texture& getTexture();
 
 private:
     sf::Texture tex;

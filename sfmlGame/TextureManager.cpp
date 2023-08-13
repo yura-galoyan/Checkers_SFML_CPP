@@ -2,8 +2,8 @@
 
 void TextureManager::initPieces(){
     Texture tex;
-    textures["pieces"] = tex;   
-    textures["pieces"].loadFromFile("../assets/chessBoard.png");
+    textures["board"] = tex;   
+    textures["board"].loadFromFile("../assets/chessBoard.png");
 }
 
 void TextureManager::initMenu(){
@@ -13,7 +13,7 @@ void TextureManager::initMenu(){
 void TextureManager::initLoadingScreen(){
     Texture tex;
     textures["loading_screen"] = tex;   
-    textures["loading_screen"].loadFromFile("../assets/loadingScreen.png");
+    textures["loading_screen"].loadFromFile("../assets/loading.png");
 }
 
 void TextureManager::initGame(){
