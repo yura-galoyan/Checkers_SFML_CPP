@@ -1,7 +1,6 @@
 #ifndef PAWN_HPP
 #define PAWN_HPP
 
-#include "../Sprite.hpp"
 #include "Piece.hpp"
 
 class Pawn : public Piece 

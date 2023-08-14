@@ -1,12 +1,12 @@
 #ifndef LOADING_SCREEN_HPP
 #define LOADING_SCREEN_HPP
 
-#include "Controller.hpp"
-#include "TextureManager.hpp"
+#include "System/Controller.hpp"
+#include "System/TextureManager.hpp"
+#include "System/Window.hpp"
+#include "System/Event.hpp"
+#include "System/Sprite.hpp"
 
-#include "Window.hpp"
-#include "Event.hpp"
-#include "Sprite.hpp"
 
 
 #include <atomic>

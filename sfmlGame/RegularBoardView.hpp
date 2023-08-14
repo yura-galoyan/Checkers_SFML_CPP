@@ -10,7 +10,7 @@ class RegularBoardView : public AbstractBoardView
 {
 public:
     RegularBoardView() = default;
-    RegularBoardView(AbstractBoardModel* model);
+    RegularBoardView(std::unique_ptr<AbstractBoardModel> model);
 
 public:
     void draw(Window& window, Texture& texture) override ;

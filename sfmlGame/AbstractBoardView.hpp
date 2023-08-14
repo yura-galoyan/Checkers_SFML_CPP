@@ -1,19 +1,20 @@
 #ifndef ABSTRACT_BOARD_VIEW_HPP
 #define ABSTRACT_BOARD_VIEW_HPP
 
-#include "Window.hpp"
+#include "System/Window.hpp"
+#include "System/Texture.hpp"
 
-#include "Texture.hpp"
+#include <memory>
 
 class AbstractBoardModel;
 class AbstractBoardView
 {
 public:
-    void setModel(AbstractBoardModel* model);
+    void setModel(std::unique_ptr<AbstractBoardModel> model);
     virtual void draw(Window& window, Texture& texture) = 0;
 
 protected:
-    AbstractBoardModel* model;
+    std::unique_ptr<AbstractBoardModel> model;
 
 };
 

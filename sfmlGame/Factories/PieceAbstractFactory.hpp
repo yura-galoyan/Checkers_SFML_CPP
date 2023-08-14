@@ -2,18 +2,17 @@
 #define CHESS_ABSTRACT_FACTORY_HPP
 
 
-#include "../AbstractBoardModel.hpp"
 
 #include <memory>
 
-class ChessAbstractFactory
+class PieceAbstractFactory
 {
 public:
     template<typename T = Piece>
     using PiecePtr = std::unique_ptr<T>;
 
 public:
-    virtual ~ChessAbstractFactory() { }
+    virtual ~PieceAbstractFactory() { }
 
     virtual PiecePtr<> makePawn() = 0;
     virtual PiecePtr<> makeQueen() = 0;
@@ -21,7 +20,6 @@ public:
     virtual PiecePtr<> makeKnight() = 0;
     virtual PiecePtr<> makebishop() = 0;
     virtual PiecePtr<> makeRook() = 0;
-    virtual std::unique_ptr<AbstractBoardModel> makeBoard() = 0;
 };
 
 #endif //CHESS_ABSTRACT_FACTORY_HPP

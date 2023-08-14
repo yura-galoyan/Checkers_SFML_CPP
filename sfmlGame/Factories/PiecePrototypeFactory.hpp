@@ -11,16 +11,15 @@
 #include "../Pieces/Bishop.hpp"
 
 
-#include "ChessAbstractFactory.hpp"
+#include "PieceAbstractFactory.hpp"
 
 
-class ChessPrototypeFactory : public ChessAbstractFactory
+class PiecePrototypeFactory : public PieceAbstractFactory
 {
 public:
-    ChessPrototypeFactory() = default;
-    ChessPrototypeFactory(PiecePtr<Pawn> pawn, PiecePtr<Queen> queen, PiecePtr<Rook> rook,
-                          PiecePtr<Knight> knight, PiecePtr<Bishop> bishop, PiecePtr<King> king,
-                          std::unique_ptr<AbstractBoardModel> board );
+    PiecePrototypeFactory() = default;
+    PiecePrototypeFactory(PiecePtr<Pawn> pawn, PiecePtr<Queen> queen, PiecePtr<Rook> rook,
+                          PiecePtr<Knight> knight, PiecePtr<Bishop> bishop, PiecePtr<King> king );
 
 
     virtual PiecePtr<> makePawn() override;
@@ -29,7 +28,6 @@ public:
     virtual PiecePtr<> makeKnight() override;
     virtual PiecePtr<> makebishop() override;
     virtual PiecePtr<> makeRook() override;
-    virtual std::unique_ptr<AbstractBoardModel> makeBoard() override;
     
 private:
     PiecePtr<> pawnPrototype;
@@ -38,7 +36,6 @@ private:
     PiecePtr<> rookPrototype;
     PiecePtr<> knightPrototype;
     PiecePtr<> bishopPrototype;
-    std::unique_ptr<AbstractBoardModel> boardPrototype;
 };
 
 #endif //PIECE_PROTOTYPE_FACTORY_HPP

@@ -1,20 +1,18 @@
-#include "ChessPrototypeFactory.hpp"
+#include "PiecePrototypeFactory.hpp"
 
-ChessPrototypeFactory::ChessPrototypeFactory(PiecePtr<Pawn> pawn, PiecePtr<Queen> queen, PiecePtr<Rook> rook,
-                                             PiecePtr<Knight> knight, PiecePtr<Bishop> bishop, PiecePtr<King> king,
-                                             std::unique_ptr<AbstractBoardModel> board )
+PiecePrototypeFactory::PiecePrototypeFactory(PiecePtr<Pawn> pawn, PiecePtr<Queen> queen, PiecePtr<Rook> rook,
+                                             PiecePtr<Knight> knight, PiecePtr<Bishop> bishop, PiecePtr<King> king )
    :pawnPrototype(std::move(pawn)),
     queenPrototype(std::move(queen)),
     kingPrototype(std::move(king)),
     rookPrototype(std::move(rook)),
     knightPrototype(std::move(knight)),
-    bishopPrototype(std::move(bishop)),
-    boardPrototype(std::move(board))
+    bishopPrototype(std::move(bishop))
 {
 
 }
 
-auto ChessPrototypeFactory::makePawn() -> PiecePtr<> {
+auto PiecePrototypeFactory::makePawn() -> PiecePtr<> {
     static std::size_t x{0};
 
     PiecePtr<Piece> pawn = pawnPrototype->clone();
@@ -33,7 +31,7 @@ auto ChessPrototypeFactory::makePawn() -> PiecePtr<> {
     return pawn;
 }
 
-auto ChessPrototypeFactory::makeQueen() -> PiecePtr<> {
+auto PiecePrototypeFactory::makeQueen() -> PiecePtr<> {
 
     PiecePtr<Piece> queen = queenPrototype->clone();
     queen->setSprite({ {256,0}, {64,131}});
@@ -41,7 +39,7 @@ auto ChessPrototypeFactory::makeQueen() -> PiecePtr<> {
     return queen;
 }
 
-auto ChessPrototypeFactory::makeKing() -> PiecePtr<> {
+auto PiecePrototypeFactory::makeKing() -> PiecePtr<> {
     PiecePtr<Piece> king = kingPrototype->clone();
     king->setSprite({{320,0}, {64,131}});
     king->setPosition(4);
@@ -49,7 +47,7 @@ auto ChessPrototypeFactory::makeKing() -> PiecePtr<> {
 }
 #include <iostream>
 
-auto ChessPrototypeFactory::makeKnight() -> PiecePtr<> {
+auto PiecePrototypeFactory::makeKnight() -> PiecePtr<> {
     PiecePtr<Piece> knight = knightPrototype->clone();
     static int twice{};
     knight->setSprite({{64,0}, {64,131}});
@@ -62,7 +60,7 @@ auto ChessPrototypeFactory::makeKnight() -> PiecePtr<> {
     return knight;
 }
 
-auto ChessPrototypeFactory::makebishop() -> PiecePtr<> {
+auto PiecePrototypeFactory::makebishop() -> PiecePtr<> {
     PiecePtr<Piece> bishop = bishopPrototype->clone();
     static int twice{};
     bishop->setSprite({{192,0}, {64,131}});
@@ -75,7 +73,7 @@ auto ChessPrototypeFactory::makebishop() -> PiecePtr<> {
     return bishop;
 }
 
-auto ChessPrototypeFactory::makeRook() -> PiecePtr<> {
+auto PiecePrototypeFactory::makeRook() -> PiecePtr<> {
     PiecePtr<Piece> rook = rookPrototype->clone();
     static int twice{};
     rook->setSprite({{128,0}, {64,131}});
@@ -86,8 +84,4 @@ auto ChessPrototypeFactory::makeRook() -> PiecePtr<> {
         rook->setPosition(7);
     }
     return rook;
-}
-
-auto ChessPrototypeFactory::makeBoard() -> std::unique_ptr<AbstractBoardModel>{
-    return boardPrototype->clone();
 }

@@ -27,7 +27,7 @@ ${src}/Pieces/Pawn.cpp
 ${src}/Pieces/Piece.cpp
 ${src}/Pieces/Queen.cpp
 ${src}/Pieces/Rook.cpp
-${src}/Factories/ChessPrototypeFactory.cpp
+${src}/Factories/PiecePrototypeFactory.cpp
 )
 
 # Create the executable

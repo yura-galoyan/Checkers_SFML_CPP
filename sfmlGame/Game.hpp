@@ -2,13 +2,15 @@
 #define GAME_HPP
 
 
-#include "Factories/ChessAbstractFactory.hpp"
+
+#include "Factories/AbstractSystemFactory.hpp"
+#include "Factories/PieceAbstractFactory.hpp"
 #include "AbstractBoardModel.hpp"
 #include "AbstractBoardView.hpp"
 #include "LoadingScreen.hpp"
-#include "Controller.hpp"
+#include "System/Controller.hpp"
+#include "System/Window.hpp"
 #include "BackGround.hpp"
-#include "Window.hpp"
 
 #include <memory>
 
@@ -21,15 +23,14 @@ public:
     void start();
 
 public:
-    std::unique_ptr<AbstractBoardModel> createBoard(std::unique_ptr<ChessAbstractFactory> factory);
-    void setView(AbstractBoardView* boardView);
-    void setController(Controller* controller);
+    void createBoard(std::unique_ptr<PieceAbstractFactory> factory, std::unique_ptr<AbstractSystemFactory> systemFactory);
+    void setView(AbstractBoardView boardView);
+    void setController(Controller controller);
 
-    void loadTextures();
 
 private:
-    AbstractBoardView* boardView;
-    Controller* controller;
+    std::unique_ptr<AbstractBoardView> boardView;
+    std::unique_ptr<Controller> controller;
     LoadingScreen loadingScreen;
     BackGround backGround;
     Window window;

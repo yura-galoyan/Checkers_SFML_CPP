@@ -6,10 +6,7 @@ Game::Game(unsigned height, unsigned width, std::string title)
 
 }
 
-void Game::loadTextures(){  
-}
 
-    #include <iostream>
 void Game::start(){
     
     
@@ -17,7 +14,6 @@ void Game::start(){
 
     while(window.isOpen()){
         controller->queryEvents(window,event);
-
 
         window.clear();
 
@@ -28,41 +24,46 @@ void Game::start(){
     }
 }
 
-std::unique_ptr<AbstractBoardModel> Game::createBoard(std::unique_ptr<ChessAbstractFactory> factory){
-    std::unique_ptr<AbstractBoardModel> board = factory->makeBoard();
+void Game::createBoard(std::unique_ptr<PieceAbstractFactory> pieceFactory, std::unique_ptr<AbstractSystemFactory> systemFactory){
+
+
+    std::unique_ptr<AbstractBoardModel> boardModel= systemFactory->createBoardModel();
+    boardView = systemFactory->createBoardView();
+    controller = systemFactory->createController();
 
     for(int i = 0; i < 16; ++i){
-        board->addPiece(factory->makePawn());
+        boardModel->addPiece(pieceFactory->makePawn());
     }
 
-    board->addPiece(factory->makebishop());
-    board->addPiece(factory->makebishop());
-    board->addPiece(factory->makebishop());
-    board->addPiece(factory->makebishop());
+    boardModel->addPiece(pieceFactory->makebishop());
+    boardModel->addPiece(pieceFactory->makebishop());
+    boardModel->addPiece(pieceFactory->makebishop());
+    boardModel->addPiece(pieceFactory->makebishop());
+    
+    boardModel->addPiece(pieceFactory->makeKnight());
+    boardModel->addPiece(pieceFactory->makeKnight());
+    boardModel->addPiece(pieceFactory->makeKnight());
+    boardModel->addPiece(pieceFactory->makeKnight());
+    
+    boardModel->addPiece(pieceFactory->makeQueen());
+    boardModel->addPiece(pieceFactory->makeQueen());
+    
+    boardModel->addPiece(pieceFactory->makeKing());
+    boardModel->addPiece(pieceFactory->makeKing());
+    
+    boardModel->addPiece(pieceFactory->makeRook());
+    boardModel->addPiece(pieceFactory->makeRook());
+    boardModel->addPiece(pieceFactory->makeRook());
+    boardModel->addPiece(pieceFactory->makeRook());
 
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    board->addPiece(factory->makeKnight());
-    
-    board->addPiece(factory->makeQueen());
-    board->addPiece(factory->makeQueen());
-    
-    board->addPiece(factory->makeKing());
-    board->addPiece(factory->makeKing());
-    
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
-    board->addPiece(factory->makeRook());
-
-    return board;
+    boardView->setModel(std::move(boardModel));
 }
 
-void Game::setView(AbstractBoardView* boardView_){
-    this->boardView = boardView_;
-}
 
-void Game::setController(Controller *controller_){
-    this->controller = controller_;
-}
+// void Game::setView(AbstractBoardView* boardView_){
+//     this->boardView = boardView_;
+// }
+
+// void Game::setController(Controller *controller_){
+//     this->controller = controller_;
+// }

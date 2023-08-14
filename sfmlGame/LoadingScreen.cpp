@@ -1,11 +1,10 @@
 #include "LoadingScreen.hpp"
 
-#include "Sprite.hpp"
+
 
 #include <SFML/Graphics.hpp>
 
 #include <thread>
-
 #include <iostream>
 
 void LoadingScreen::start(Controller& controller,Window& window,Event& event){

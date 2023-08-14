@@ -1,6 +1,7 @@
 #include "AbstractBoardView.hpp"
 
-void AbstractBoardView::setModel(AbstractBoardModel *model_)
-{
-    this->model = model_;
+#include "AbstractBoardModel.hpp"
+
+void AbstractBoardView::setModel(std::unique_ptr<AbstractBoardModel> model_){
+    this->model = std::move(model_);
 }

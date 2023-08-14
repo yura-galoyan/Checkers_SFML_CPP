@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "../Sprite.hpp"
-#include "../Window.hpp"
+#include "../System/Sprite.hpp"
+#include "../System/Window.hpp"
 
 class Piece
 {
