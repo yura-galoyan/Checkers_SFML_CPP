@@ -5,7 +5,6 @@
 #include "Factories/ChessAbstractFactory.hpp"
 #include "AbstractBoardModel.hpp"
 #include "AbstractBoardView.hpp"
-#include "TextureManager.hpp"
 #include "LoadingScreen.hpp"
 #include "Controller.hpp"
 #include "BackGround.hpp"

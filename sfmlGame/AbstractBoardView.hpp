@@ -3,12 +3,14 @@
 
 #include "Window.hpp"
 
+#include "Texture.hpp"
+
 class AbstractBoardModel;
 class AbstractBoardView
 {
 public:
     void setModel(AbstractBoardModel* model);
-    virtual void draw(Window& window) = 0;
+    virtual void draw(Window& window, Texture& texture) = 0;
 
 protected:
     AbstractBoardModel* model;

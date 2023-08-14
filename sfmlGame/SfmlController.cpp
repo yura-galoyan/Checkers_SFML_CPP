@@ -1,5 +1,7 @@
 #include "SfmlController.hpp"
 
+#include <iostream>
+
 void SfmlController::queryEvents(Window& window, Event &event){
 
     clearEvents();

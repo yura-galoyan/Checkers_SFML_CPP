@@ -3,8 +3,7 @@
 
 #include <memory>
 
-#include "../Texture.hpp"
-
+#include "../Sprite.hpp"
 #include "../Window.hpp"
 
 class Piece
@@ -14,10 +13,10 @@ public:
     enum class Color{ White, Black};
 
 public:
-    virtual std::unique_ptr<Piece> clone() const = 0;
-
-    virtual ~Piece() = default;
     Piece() = default;
+    virtual ~Piece() = default;
+
+    virtual std::unique_ptr<Piece> clone() const = 0;
 
 public:
     void setPosition(std::size_t x);
@@ -25,16 +24,20 @@ public:
     void setXY(Coords xy_){ xy = xy_; }
     Coords getXY() const { return xy; }
 
+    void setSprite(const Sprite& sprite);
+
     void setColor(Color c_){ color = c_; }
     Color getColor() const { return color; }
 
-    virtual void move(Coords xy) = 0;
-    virtual void draw(Window& window, Texture& texture ) = 0;
+    virtual void moveTo(Coords xy) = 0;
+    virtual void draw(Window& window, Texture& texture) = 0;
 
 protected:
     Coords xy;
     Color color;
-
+    Sprite sprite;
+    
+    
 
 };
 

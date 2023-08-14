@@ -4,6 +4,8 @@
 #include "AbstractBoardView.hpp"
 #include "AbstractBoardModel.hpp"
 
+
+
 class RegularBoardView : public AbstractBoardView
 {
 public:
@@ -11,7 +13,7 @@ public:
     RegularBoardView(AbstractBoardModel* model);
 
 public:
-    void draw(Window& window) override ;
+    void draw(Window& window, Texture& texture) override ;
 };
 
 

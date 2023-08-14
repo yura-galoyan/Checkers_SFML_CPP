@@ -10,19 +10,32 @@
 
 class Sprite
 {
-    using Vector2 = std::pair<unsigned,unsigned>;
+public:
+    using Vector2i = sf::Vector2i;
+    using Vector2f = sf::Vector2f;
 
-public:   
-    Sprite(Texture* texture, sf::Vector2i position, sf::Vector2i size);
+public:
+    Sprite() = default;
+    Sprite(Vector2i position, Vector2i size);
+    Sprite(const Sprite& sprite) = default;
+    Sprite& operator=(const Sprite&) = default;
+    
     void setTexture(Texture* texture);
     void draw(Window& window);
-    void setRect(sf::Vector2i pos, sf::Vector2i size);
+    void setRect(Vector2i pos, Vector2i size);
+    void setRectPosY(int y);
+    void setPosition(float x, float y);
+
+    Vector2f getPosition() const { return sprite.getPosition(); }
+    Vector2i getRectPos() const { return position; };
 
 private:
-    sf::Vector2i position;
-    sf::Vector2i size;
-    sf::Sprite sprite;
+    Vector2i position;
+    Vector2i size;
     Texture* texture;
+
+private:
+    sf::Sprite sprite;
 };
 
 

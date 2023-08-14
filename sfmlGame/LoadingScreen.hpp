@@ -6,6 +6,8 @@
 
 #include "Window.hpp"
 #include "Event.hpp"
+#include "Sprite.hpp"
+
 
 #include <atomic>
 class LoadingScreen
@@ -13,9 +15,11 @@ class LoadingScreen
 public:
     void start(Controller& , Window& , Event& );
     std::atomic<bool>& isDone() { return done; }
-    void finish( ) { done = false; }
+    void finish( ) { done = true; }
     void draw(Window& window);
     void initSprite();
+
+    Texture& operator[](std::string key){ return texManager[key]; }
 
 private:
     TextureManager texManager;

@@ -14,12 +14,13 @@ ChessPrototypeFactory::ChessPrototypeFactory(PiecePtr<Pawn> pawn, PiecePtr<Queen
 
 }
 
-auto ChessPrototypeFactory::makePawn() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makePawn() -> PiecePtr<> {
     static std::size_t x{0};
 
     PiecePtr<Piece> pawn = pawnPrototype->clone();
 
+    pawn->setSprite(Sprite{ {0,0}, {64,131}});
+    
     if( x < 8){
         pawn->setXY({x++,1});
         pawn->setColor(Piece::Color::Black);
@@ -32,26 +33,26 @@ auto ChessPrototypeFactory::makePawn() -> PiecePtr<>
     return pawn;
 }
 
-auto ChessPrototypeFactory::makeQueen() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makeQueen() -> PiecePtr<> {
 
     PiecePtr<Piece> queen = queenPrototype->clone();
+    queen->setSprite({ {256,0}, {64,131}});
     queen->setPosition(3);
     return queen;
 }
 
-auto ChessPrototypeFactory::makeKing() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makeKing() -> PiecePtr<> {
     PiecePtr<Piece> king = kingPrototype->clone();
+    king->setSprite({{320,0}, {64,131}});
     king->setPosition(4);
     return king;
 }
 #include <iostream>
 
-auto ChessPrototypeFactory::makeKnight() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makeKnight() -> PiecePtr<> {
     PiecePtr<Piece> knight = knightPrototype->clone();
     static int twice{};
+    knight->setSprite({{64,0}, {64,131}});
     if(twice++ < 2){
         knight->setPosition(1);
     }
@@ -61,10 +62,10 @@ auto ChessPrototypeFactory::makeKnight() -> PiecePtr<>
     return knight;
 }
 
-auto ChessPrototypeFactory::makebishop() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makebishop() -> PiecePtr<> {
     PiecePtr<Piece> bishop = bishopPrototype->clone();
     static int twice{};
+    bishop->setSprite({{192,0}, {64,131}});
     if(twice++ < 2){
         bishop->setPosition(2);
     }
@@ -74,10 +75,10 @@ auto ChessPrototypeFactory::makebishop() -> PiecePtr<>
     return bishop;
 }
 
-auto ChessPrototypeFactory::makeRook() -> PiecePtr<>
-{
+auto ChessPrototypeFactory::makeRook() -> PiecePtr<> {
     PiecePtr<Piece> rook = rookPrototype->clone();
     static int twice{};
+    rook->setSprite({{128,0}, {64,131}});
     if(twice++ < 2){
         rook->setPosition(0);
     }
@@ -87,7 +88,6 @@ auto ChessPrototypeFactory::makeRook() -> PiecePtr<>
     return rook;
 }
 
-auto ChessPrototypeFactory::makeBoard() -> std::unique_ptr<AbstractBoardModel>
-{
+auto ChessPrototypeFactory::makeBoard() -> std::unique_ptr<AbstractBoardModel>{
     return boardPrototype->clone();
 }

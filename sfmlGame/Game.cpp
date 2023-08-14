@@ -9,7 +9,9 @@ Game::Game(unsigned height, unsigned width, std::string title)
 void Game::loadTextures(){  
 }
 
+    #include <iostream>
 void Game::start(){
+    
     
     loadingScreen.start(*controller,window,event);
 
@@ -20,7 +22,7 @@ void Game::start(){
         window.clear();
 
         backGround.draw();
-        boardView->draw(window);
+        boardView->draw(window, loadingScreen["board"]);
 
         window.display();
     }

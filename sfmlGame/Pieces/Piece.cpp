@@ -1,7 +1,6 @@
 #include "Piece.hpp"
 
-void Piece::setPosition(std::size_t x)
-{
+void Piece::setPosition(std::size_t x){
     static bool b{true};
 
     if(b){
@@ -13,5 +12,10 @@ void Piece::setPosition(std::size_t x)
         setXY({x,7});
         setColor(Piece::Color::White);
         b = !b;
+        sprite.setRectPosY(sprite.getRectPos().y + 131);
     }
+}
+
+void Piece::setSprite(const Sprite &sprite_){
+    sprite = sprite_;
 }

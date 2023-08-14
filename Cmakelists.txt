@@ -17,6 +17,7 @@ ${src}/LoadingScreen.cpp
 ${src}/RegularBoardModel.cpp
 ${src}/RegularBoardView.cpp
 ${src}/SfmlController.cpp
+${src}/Sprite.cpp
 ${src}/Texture.cpp
 ${src}/Window.cpp
 ${src}/Pieces/Bishop.cpp

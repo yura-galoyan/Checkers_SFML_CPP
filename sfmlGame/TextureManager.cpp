@@ -21,6 +21,6 @@ void TextureManager::initGame(){
     initMenu();
 }
 
-Texture &TextureManager::operator[](std::string key){
+Texture& TextureManager::operator[](std::string key){
     return textures[key];
 }

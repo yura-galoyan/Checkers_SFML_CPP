@@ -5,9 +5,9 @@ RegularBoardView::RegularBoardView(AbstractBoardModel* model){
     setModel(model);
 }
 
-void RegularBoardView::draw(Window& window){
+void RegularBoardView::draw(Window& window, Texture& texture){
     
     for(auto &object : *model){
-        object->draw(window);
+        object->draw(window, texture);
     }
 }
