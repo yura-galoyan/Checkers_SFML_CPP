@@ -1,18 +1,22 @@
 #include "LoadingScreen.hpp"
 
-
-
 #include <SFML/Graphics.hpp>
 
 #include <thread>
 #include <iostream>
 
-void LoadingScreen::start(Controller& controller,Window& window,Event& event){
-    
-    using namespace std::chrono_literals;
-
+LoadingScreen::LoadingScreen(){
     texManager.initLoadingScreen();
     initSprite();
+    animation = std::make_unique<AnimationHandler>(&texManager["loading_screen"],60,60);
+    animation->setDesiredFps(30);
+    animation->setFrameCount(6);
+
+}
+
+void LoadingScreen::start(Controller &controller, Window &window, Event &event){
+
+    using namespace std::chrono_literals;
 
     std::thread tMan([this]{ 
         texManager.initGame();
@@ -27,7 +31,7 @@ void LoadingScreen::start(Controller& controller,Window& window,Event& event){
         
         sf::RectangleShape sh{{1600,900}};
         sh.setPosition({0,0});
-        window.draw(sh);
+        animation->playAnimation(AnimationHandler::Mode::REPEAT);
         
         draw(window);
 
@@ -42,7 +46,7 @@ void LoadingScreen::draw(Window& window){
 }
 
 void LoadingScreen::initSprite(){
-    std::cout<<"sprite inited" <<std::endl;
+    std::cout<<"Sprite initialized" <<std::endl;
     sprite.setRect({0,0},{60,60});
     sprite.setTexture(&texManager["loading_screen"]);
     sprite.setPosition(0,0);
