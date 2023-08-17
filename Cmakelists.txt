@@ -11,15 +11,15 @@ ${src}/main.cpp
 ${src}/AbstractBoardModel.cpp
 ${src}/AbstractBoardView.cpp
 ${src}/BackGround.cpp
-${src}/Event.cpp
 ${src}/Game.cpp
 ${src}/LoadingScreen.cpp
 ${src}/RegularBoardModel.cpp
 ${src}/RegularBoardView.cpp
-${src}/SfmlController.cpp
-${src}/Sprite.cpp
-${src}/Texture.cpp
-${src}/Window.cpp
+${src}/System/Sprite.cpp
+${src}/System/Texture.cpp
+${src}/System/Window.cpp
+${src}/System/SfmlController.cpp
+${src}/System/TextureManager.cpp
 ${src}/Pieces/Bishop.cpp
 ${src}/Pieces/King.cpp
 ${src}/Pieces/Knight.cpp
@@ -28,6 +28,11 @@ ${src}/Pieces/Piece.cpp
 ${src}/Pieces/Queen.cpp
 ${src}/Pieces/Rook.cpp
 ${src}/Factories/PiecePrototypeFactory.cpp
+${src}/Factories/SfmlSystemFactory.cpp
+${src}/
+${src}/
+${src}/
+${src}/
 )
 
 # Create the executable

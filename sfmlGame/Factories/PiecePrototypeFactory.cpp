@@ -45,7 +45,6 @@ auto PiecePrototypeFactory::makeKing() -> PiecePtr<> {
     king->setPosition(4);
     return king;
 }
-#include <iostream>
 
 auto PiecePrototypeFactory::makeKnight() -> PiecePtr<> {
     PiecePtr<Piece> knight = knightPrototype->clone();

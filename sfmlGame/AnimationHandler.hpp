@@ -1,7 +1,10 @@
 #ifndef ANIMATION_HANDLER_HPP
 #define ANIMATION_HANDLER_HPP
 
-#include "System/Texture.hpp"
+
+#include "System/Sprite.hpp"
+#include "System/Clock.hpp"
+
 
 class AnimationHandler
 {
@@ -9,13 +12,13 @@ public:
     enum class Mode{ REPEAT, SINGLE };
 
 public:
-    AnimationHandler( Texture* texture, unsigned height, unsigned width  );
+    AnimationHandler( Sprite* sprite, unsigned height, unsigned width  );
     void setFrameCount(unsigned count);
     void setBlockingAnimation(bool state);
     void setAnimationDuration(float duration);
     void setDelayBetweenFrames(float delay);
     void setDesiredFps(unsigned fps_);
-    void setTexture(Texture* tex);
+    void setSprite(Sprite* spr);
     void playAnimation(Mode);
 
 
@@ -23,24 +26,25 @@ private:
     void playAnimationOnce();
     void playAnimationRepeat();
 
-    float elapsed();
-    bool isStart;
+    bool isStarted;
 
 
 private:
-    Texture* texture;
+    Sprite* sprite;
+
+private:
     unsigned fps;
     unsigned frameCount;
     float delayBetweenFrames;
     float animationDuration;
     bool blockingAnimation;
 
-    
+private:
+    unsigned currFrame{};
 
 private:
-    std::chrono::time_point<float> start;
-    std::chrono::time_point<float> end;
-
+    Clock<float> clock;
+    float time{};
 
 };
 

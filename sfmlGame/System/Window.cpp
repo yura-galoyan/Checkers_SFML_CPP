@@ -6,10 +6,8 @@ Window::Window(unsigned height_, unsigned width_, std::string title)
 {
 }
 
-#include <iostream>
 
 void Window::draw(const sf::Drawable& drawable){
-    std::cout<<"drawing..."<<std::endl;
     window.draw(drawable);
 }
 

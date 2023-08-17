@@ -22,17 +22,28 @@ public:
     
     void setTexture(Texture* texture);
     void draw(Window& window);
-    void setRect(Vector2i pos, Vector2i size);
-    void setRectPosY(int y);
+    void setStartingRect(Vector2i pos, Vector2i size);
+    void setCurrRectPosY(int y);
+    void setCurrRectPosX(int x);
     void setPosition(float x, float y);
+    void setDistanceX(unsigned x);
 
+    void setPosition(Vector2f pos) { return sprite.setPosition(pos); }
+    unsigned getDistanceX() const { return distanceX; }
+    Vector2i getSize() const { return size; }
     Vector2f getPosition() const { return sprite.getPosition(); }
-    Vector2i getRectPos() const { return position; };
+    Vector2i getCurrRectPos() const { return currRectPosition; };
+    Vector2i getStartingRectPos() const { return startingRectPos; }
+
 
 private:
-    Vector2i position;
     Vector2i size;
     Texture* texture;
+
+private:
+    Vector2i startingRectPos;
+    Vector2i currRectPosition;
+    unsigned distanceX;
 
 private:
     sf::Sprite sprite;
