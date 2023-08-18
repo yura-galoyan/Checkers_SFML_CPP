@@ -10,6 +10,8 @@
 #include "AnimationHandler.hpp"
 
 #include <atomic>
+#include <memory>
+
 class LoadingScreen
 {
 public:
