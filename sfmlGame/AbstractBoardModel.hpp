@@ -14,8 +14,6 @@ public:
    using PiecePtr = std::unique_ptr<T>;
    
 public:
-   AbstractBoardModel( ) { };
-   AbstractBoardModel(const AbstractBoardModel& ) { };
    virtual ~AbstractBoardModel() = default;
 
 public:

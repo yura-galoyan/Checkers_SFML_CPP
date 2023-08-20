@@ -25,9 +25,7 @@ public:
 private:
     void playAnimationOnce();
     void playAnimationRepeat();
-
     bool isStarted;
-
 
 private:
     Sprite* sprite;

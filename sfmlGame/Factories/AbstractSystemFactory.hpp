@@ -15,7 +15,4 @@ public:
     virtual std::unique_ptr<AbstractBoardView> createBoardView() = 0 ;
 };
 
-
-
-
 #endif //ABSTACT_SYSTEM_FACTORY_HPP

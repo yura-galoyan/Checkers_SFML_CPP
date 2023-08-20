@@ -16,8 +16,7 @@ public:
     Precision elapsed();
 
 private:
-    Clk::time_point t1;
-    Clk::time_point t2;
+    Clk::time_point time;
 
     constexpr static auto NANO = 10e8;
 };

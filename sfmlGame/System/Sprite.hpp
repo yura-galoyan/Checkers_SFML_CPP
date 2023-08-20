@@ -28,7 +28,8 @@ public:
     void setPosition(float x, float y);
     void setDistanceX(unsigned x);
 
-    void setPosition(Vector2f pos) { return sprite.setPosition(pos); }
+    auto getPosition() { return sprite.getPosition(); }
+
     unsigned getDistanceX() const { return distanceX; }
     Vector2i getSize() const { return size; }
     Vector2f getPosition() const { return sprite.getPosition(); }
@@ -51,3 +52,4 @@ private:
 
 
 #endif //SPRITE_HPP
+

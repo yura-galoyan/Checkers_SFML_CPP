@@ -7,7 +7,6 @@
 
 class RegularBoardModel : public AbstractBoardModel
 {
-public:
 };
 
 #endif //REGULAR_BOARD_MODEL_HPP
