@@ -1,7 +1,7 @@
 #include "Sprite.hpp"
 
-Sprite::Sprite(Vector2i position, Vector2i size){
-    setStartingRect(position, size);
+Sprite::Sprite(Vector2i rectPosition, Vector2i size){
+    setStartingRect(rectPosition, size);
     setDistanceX(size.x + 2);
 }
 

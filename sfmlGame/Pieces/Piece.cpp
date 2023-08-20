@@ -12,7 +12,7 @@ void Piece::setPosition(std::size_t x){
         setXY({x,7});
         setColor(Piece::Color::White);
         b = !b;
-        sprite.setPosition( sprite.getPosition().x , sprite.getPosition().y + 131);
+        sprite.setPosition( sprite.getPosition().x , sprite.getPosition().y + 6 * 110);
     }
 }
 

@@ -21,11 +21,11 @@ void LoadingScreen::start(Controller &controller, Window &window, Event &event){
 
     std::thread tMan([this]{ 
         texManager.initGame();
-        std::this_thread::sleep_for(4s);
+        std::this_thread::sleep_for(1s);
         finish();
     });
 
-    while(!isDone()){
+    while(!isDone() && window.isOpen()){
         controller.queryEvents(window, event);
         
         window.clear();

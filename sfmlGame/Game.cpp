@@ -3,13 +3,11 @@
 
 Game::Game(unsigned height, unsigned width, std::string title) 
     : window(height, width, title) {
-
+    backGround.initSprites(0, loadingScreen.getTexture("board"));
 }
 
-
+// could use state pattern here
 void Game::start(){
-    
-    
     loadingScreen.start(*controller,window,event);
 
     while(window.isOpen()){
@@ -17,8 +15,8 @@ void Game::start(){
 
         window.clear();
 
-        backGround.draw();
-        boardView->draw(window, loadingScreen["board"]);
+        backGround.draw(window);
+        boardView->draw(window, loadingScreen.getTexture("board"));
 
         window.display();
     }

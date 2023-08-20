@@ -22,7 +22,7 @@ public:
     void draw(Window& window);
     void initSprite();
 
-    Texture& operator[](std::string key){ return texManager[key]; }
+    Texture& getTexture(std::string key){ return texManager[key]; }
 
 private:
     std::unique_ptr<AnimationHandler> animation;

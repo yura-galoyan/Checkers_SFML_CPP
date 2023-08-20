@@ -3,7 +3,7 @@
 void TextureManager::initPieces(){
     Texture tex;
     textures["board"] = tex;   
-    textures["board"].loadFromFile("../assets/chessBoard.png");
+    textures["board"].loadFromFile("../assets/board58x110.png");
 }
 
 void TextureManager::initMenu(){

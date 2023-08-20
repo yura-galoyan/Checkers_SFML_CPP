@@ -36,7 +36,15 @@ protected:
     Coords xy;
     Color color;
     Sprite sprite;
-    
+    int offsetX{20};
+    int offsetY{0};
+
+protected:
+    bool isStarted() { return startedDrawing; }
+    void setStarted(bool state) { startedDrawing = state; }
+
+private:
+    bool startedDrawing{false};
     
 
 };

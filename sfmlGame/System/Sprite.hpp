@@ -16,7 +16,7 @@ public:
 
 public:
     Sprite() = default;
-    Sprite(Vector2i position, Vector2i size);
+    Sprite(Vector2i rectPosition, Vector2i size);
     Sprite(const Sprite& sprite) = default;
     Sprite& operator=(const Sprite&) = default;
     

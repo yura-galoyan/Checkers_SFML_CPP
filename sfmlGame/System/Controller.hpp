@@ -26,10 +26,16 @@ public:
     };
 
 public:
-    virtual void queryEvents(Window& window, Event& event) = 0;
+    //template method
+    void queryEvents(Window& window, Event& event);
+
 
 protected:
+    virtual void setFlags(Window& window, Event& event) = 0;
     virtual void initMouseButtons() = 0;
+
+protected:
+    std::unordered_map<char, ButtonPair<char> > mouseButtons;
 
 };
 
