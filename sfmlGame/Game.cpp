@@ -1,26 +1,25 @@
 #include "Game.hpp"
 
-
-Game::Game(unsigned height, unsigned width, std::string title) 
-    : window(height, width, title) {
+Game::Game(std::unique_ptr<Window> window_)
+    : window(std::move(window_))
+{
 
 }
 
-
 void Game::start(){
-    
-    
-    loadingScreen.start(*controller,window,event);
 
-    while(window.isOpen()){
-        controller->queryEvents(window,event);
+    loadingScreen.start(*controller,*window,event);
 
-        window.clear();
+    while(window->isOpen()){
+        controller->queryEvents(*window, event);
+
+        window->clear();
 
         backGround.draw();
-        boardView->draw(window, loadingScreen["board"]);
+        
+        boardView->draw(*window, loadingScreen["board"]);
 
-        window.display();
+        window->display();
     }
 }
 
@@ -59,6 +58,9 @@ void Game::createBoard(std::unique_ptr<PieceAbstractFactory> pieceFactory, std::
     boardView->setModel(std::move(boardModel));
 }
 
+void Game::setWindow(std::unique_ptr<Window> window){
+    this->window = std::move(window);
+}
 
 // void Game::setView(AbstractBoardView* boardView_){
 //     this->boardView = boardView_;

@@ -2,7 +2,7 @@
 
 Window::Window(unsigned height_, unsigned width_, std::string title)
     :window{sf::VideoMode{width_, height_}, title},
-     width{width_}, height{height_}
+     width{width_}, height{height_}, title{title}
 {
 }
 

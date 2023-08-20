@@ -26,6 +26,7 @@ public:
 
 private:
     sf::RenderWindow window;
+    std::string title;
     unsigned width;
     unsigned height;
 };

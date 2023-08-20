@@ -12,7 +12,6 @@ LoadingScreen::LoadingScreen(){
     animation->setDesiredFps(30);
     animation->setFrameCount(6);
     animation->setDelayBetweenFrames(0.1f);
-
 }
 
 void LoadingScreen::start(Controller &controller, Window &window, Event &event){

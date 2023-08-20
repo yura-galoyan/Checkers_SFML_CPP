@@ -18,12 +18,13 @@ class Game
 {
 public:
     Game() = default;
-    Game(unsigned height, unsigned width, std::string title);
+    Game(std::unique_ptr<Window> window);
     
     void start();
 
 public:
     void createBoard(std::unique_ptr<PieceAbstractFactory> factory, std::unique_ptr<AbstractSystemFactory> systemFactory);
+    void setWindow(std::unique_ptr<Window> window);
     void setView(AbstractBoardView boardView);
     void setController(Controller controller);
 
@@ -31,9 +32,9 @@ public:
 private:
     std::unique_ptr<AbstractBoardView> boardView;
     std::unique_ptr<Controller> controller;
+    std::unique_ptr<Window> window;
     LoadingScreen loadingScreen;
     BackGround backGround;
-    Window window;
     Event event;
 };
 

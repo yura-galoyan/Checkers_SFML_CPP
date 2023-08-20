@@ -8,15 +8,17 @@
 #include "System/Event.hpp"
 
 #include "AnimationHandler.hpp"
+#include "GameState.hpp"
 
 #include <atomic>
 #include <memory>
 
-class LoadingScreen
+
+class LoadingScreen : public GameState
 {
 public:
     LoadingScreen();
-    void start(Controller& , Window& , Event& );
+    void start(Controller& , Window& , Event& ) override ;
     std::atomic<bool>& isDone() { return done; }
     void finish( ) { done = true; }
     void draw(Window& window);
@@ -32,5 +34,3 @@ private:
 };
 
 #endif //LOADING_SCREEN_HPP
-
-
