@@ -8,18 +8,21 @@ include_directories("SFML-2.5.1/include")
 
 set(SOURCES
 ${src}/main.cpp
-${src}/AbstractBoardModel.cpp
-${src}/AbstractBoardView.cpp
-${src}/BackGround.cpp
 ${src}/Game.cpp
+${src}/AnimationHandler.cpp
 ${src}/LoadingScreen.cpp
+${src}/AbstractBoardModel.cpp
 ${src}/RegularBoardModel.cpp
+${src}/AbstractBoardView.cpp
 ${src}/RegularBoardView.cpp
+${src}/BackGround.cpp
+
 ${src}/System/Sprite.cpp
 ${src}/System/Texture.cpp
 ${src}/System/Window.cpp
 ${src}/System/SfmlController.cpp
 ${src}/System/TextureManager.cpp
+
 ${src}/Pieces/Bishop.cpp
 ${src}/Pieces/King.cpp
 ${src}/Pieces/Knight.cpp
@@ -27,12 +30,9 @@ ${src}/Pieces/Pawn.cpp
 ${src}/Pieces/Piece.cpp
 ${src}/Pieces/Queen.cpp
 ${src}/Pieces/Rook.cpp
+
 ${src}/Factories/PiecePrototypeFactory.cpp
 ${src}/Factories/SfmlSystemFactory.cpp
-${src}/
-${src}/
-${src}/
-${src}/
 )
 
 # Create the executable
