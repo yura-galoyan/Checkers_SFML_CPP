@@ -9,7 +9,7 @@ void Knight::moveTo(Coords xy){
     
 }
 
-void Knight::draw(Window & window, Texture& texture ){
+void Knight::draw(Window& window ){
 
     sprite.draw(window);   
 

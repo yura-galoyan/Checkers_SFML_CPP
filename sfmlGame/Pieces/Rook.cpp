@@ -9,6 +9,6 @@ void Rook::moveTo(Coords xy){
     
 }
 
-void Rook::draw(Window& window, Texture& texture){
+void Rook::draw(Window& window){
     sprite.draw(window);   
 }

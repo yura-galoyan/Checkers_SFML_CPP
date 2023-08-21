@@ -9,7 +9,7 @@ void Bishop::moveTo(Coords xy)
 {
 }
 
-void Bishop::draw(Window& window, Texture& texture){
+void Bishop::draw(Window& window){
     
     sprite.draw(window);   
 

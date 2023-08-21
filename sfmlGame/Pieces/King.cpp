@@ -9,8 +9,6 @@ void King::moveTo(Coords xy)
 {
 }
 
-void King::draw(Window& window, Texture& texture){
-
+void King::draw(Window& window){
     sprite.draw(window);   
-
 }

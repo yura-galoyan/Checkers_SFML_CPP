@@ -9,6 +9,6 @@ void Queen::moveTo(Coords xy){
     
 }
 
-void Queen::draw(Window& window, Texture& texture){
+void Queen::draw(Window& window){
     sprite.draw(window);   
 }

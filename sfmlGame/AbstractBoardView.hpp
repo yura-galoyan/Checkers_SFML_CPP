@@ -11,7 +11,7 @@ class AbstractBoardView
 {
 public:
     void setModel(std::unique_ptr<AbstractBoardModel> model);
-    virtual void draw(Window& window, Texture& texture) = 0;
+    virtual void draw(Window& window) = 0;
 
 protected:
     std::unique_ptr<AbstractBoardModel> model;

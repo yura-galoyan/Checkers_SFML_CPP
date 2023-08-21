@@ -13,7 +13,7 @@ public:
     RegularBoardView(std::unique_ptr<AbstractBoardModel> model);
 
 public:
-    void draw(Window& window, Texture& texture) override ;
+    void draw(Window& window) override ;
 };
 
 

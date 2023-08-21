@@ -16,7 +16,7 @@ void Game::start(){
         window.clear();
 
         backGround.draw(window);
-        boardView->draw(window, loadingScreen.getTexture("board"));
+        boardView->draw(window);
 
         window.display();
     }
