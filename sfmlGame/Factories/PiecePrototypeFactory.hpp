@@ -26,7 +26,7 @@ public:
     virtual PiecePtr<> makeQueen() override;
     virtual PiecePtr<> makeKing() override;
     virtual PiecePtr<> makeKnight() override;
-    virtual PiecePtr<> makebishop() override;
+    virtual PiecePtr<> makeBishop() override;
     virtual PiecePtr<> makeRook() override;
     
 private:

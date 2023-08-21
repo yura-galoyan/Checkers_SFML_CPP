@@ -18,7 +18,7 @@ public:
     virtual PiecePtr<> makeQueen() = 0;
     virtual PiecePtr<> makeKing() = 0;
     virtual PiecePtr<> makeKnight() = 0;
-    virtual PiecePtr<> makebishop() = 0;
+    virtual PiecePtr<> makeBishop() = 0;
     virtual PiecePtr<> makeRook() = 0;
 };
 

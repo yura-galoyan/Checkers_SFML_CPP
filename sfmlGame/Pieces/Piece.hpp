@@ -25,7 +25,7 @@ public:
     Coords getXY() const { return xy; }
 
     void setSprite(const Sprite& sprite);
-
+    Sprite& getSprite() { return sprite; }
     void setColor(Color c_){ color = c_; }
     Color getColor() const { return color; }
 

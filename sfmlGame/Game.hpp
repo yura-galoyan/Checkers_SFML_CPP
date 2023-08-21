@@ -24,9 +24,10 @@ public:
 
 public:
     void createBoard(std::unique_ptr<PieceAbstractFactory> factory, std::unique_ptr<AbstractSystemFactory> systemFactory);
-    void setView(AbstractBoardView boardView);
-    void setController(Controller controller);
 
+private:
+    void createPieces(AbstractBoardModel* model, std::unique_ptr<PieceAbstractFactory> factory);
+    void initPiece(Piece* piece, int x, int sizeX = 58, int sizeY = 110 );
 
 private:
     std::unique_ptr<AbstractBoardView> boardView;

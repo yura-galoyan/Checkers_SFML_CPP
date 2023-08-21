@@ -70,7 +70,7 @@ auto PiecePrototypeFactory::makeKnight() -> PiecePtr<> {
     return knight;
 }
 
-auto PiecePrototypeFactory::makebishop() -> PiecePtr<> {
+auto PiecePrototypeFactory::makeBishop() -> PiecePtr<> {
     PiecePtr<Piece> bishop = bishopPrototype->clone();
     static int twice{};
 
