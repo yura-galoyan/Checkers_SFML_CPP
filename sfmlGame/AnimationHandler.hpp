@@ -19,8 +19,8 @@ public:
     void setDelayBetweenFrames(float delay);
     void setDesiredFps(unsigned fps_);
     void setSprite(Sprite* spr);
-    void playAnimation(Mode);
 
+    void playAnimation(Mode);
 
 private:
     void playAnimationOnce();
@@ -49,3 +49,7 @@ private:
 
 
 #endif //ANIMATION_HANDLER_HPP
+
+
+
+

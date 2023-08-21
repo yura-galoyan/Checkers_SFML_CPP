@@ -30,7 +30,6 @@ void SfmlController::setFlags(Window &window, Event &event)
 }
 
 void SfmlController::initMouseButtons(){
-
     mouseButtons['l'] = ButtonPair<char>{sf::Mouse::Button::Left,{}};
     mouseButtons['r'] = ButtonPair<char>{sf::Mouse::Button::Right,{}};
 }
@@ -52,8 +51,9 @@ void SfmlController::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Even
 }
 
 void SfmlController::clearEvents(){
-    for(auto& pair : mouseButtons ){
-        pair.second.state.pressedOnce = false;
+    for(auto& [key, mapped] : mouseButtons ){
+        mapped.state.pressedOnce = false;
+        mapped.state.released = false;
     }
 }
 
