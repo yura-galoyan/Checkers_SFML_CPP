@@ -3,6 +3,8 @@
 
 #include "Controller.hpp"
 
+#include "Clock.hpp"
+
 class SfmlController : public Controller
 {
 public:
@@ -15,9 +17,10 @@ private:
     void checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event& event);
     void clearEvents();
     ButtonPair<char> atMouseButton(char button);
+
 private:
-    // std::unordered_map<char, Key> keyboard;
-    // std::unordered_map<char, ButtonPair<sf::Mouse::Button> > mouseButtons;
+    float longReleasedTime;
+    Clock<float> clockReleased;
 };
 
 

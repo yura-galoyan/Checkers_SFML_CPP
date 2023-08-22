@@ -2,6 +2,7 @@
 
 SfmlController::SfmlController(){
     initMouseButtons();
+    longReleasedTime = 0.05f;
 }
 
 void SfmlController::setFlags(Window &window, Event &event)
@@ -36,7 +37,8 @@ void SfmlController::initMouseButtons(){
 
 void SfmlController::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &event){
     if(event.event().key.code == buttonPair.button){
-        buttonPair.state.pressedOnce = true;
+        clockReleased.restart();
+        buttonPair.state.clicked = true;
         buttonPair.state.onHold = true;
     }
 
@@ -44,7 +46,12 @@ void SfmlController::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event
 
 void SfmlController::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &event){
     if(event.event().key.code == buttonPair.button){
-        buttonPair.state.released = true;
+        if(clockReleased.elapsed() > longReleasedTime){
+            buttonPair.state.longReleased = true;    
+        }
+        else{
+            buttonPair.state.shortReleased = true;
+        }
         buttonPair.state.onHold = false;
     }
 
@@ -52,8 +59,9 @@ void SfmlController::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Even
 
 void SfmlController::clearEvents(){
     for(auto& [key, mapped] : mouseButtons ){
-        mapped.state.pressedOnce = false;
-        mapped.state.released = false;
+        mapped.state.clicked = false;
+        mapped.state.shortReleased = false;
+        mapped.state.longReleased = false;
     }
 }
 

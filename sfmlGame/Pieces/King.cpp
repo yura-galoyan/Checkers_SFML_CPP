@@ -5,8 +5,8 @@ std::unique_ptr<Piece> King::clone() const
     return std::make_unique<King>(*this);
 }
 
-void King::moveTo(Coords xy)
-{
+bool King::isValid(Coords from, Coords to) const {
+    return true;
 }
 
 void King::draw(Window& window){

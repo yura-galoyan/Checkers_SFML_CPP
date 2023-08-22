@@ -9,7 +9,7 @@ public:
     Bishop() = default;
     Bishop(const Bishop& k){}
     std::unique_ptr<Piece> clone() const override ;
-    void moveTo(Coords xy) override ;
+    bool isValid(Coords from, Coords to) const override;
     void draw(Window& window) override ;
 
 private:

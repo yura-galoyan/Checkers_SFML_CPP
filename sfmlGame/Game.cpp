@@ -31,11 +31,12 @@ void Game::createBoard(std::unique_ptr<PieceAbstractFactory> pieceFactory, std::
 
     createPieces(boardModel.get(), std::move(pieceFactory));
 
+    controller->setModel(boardModel.get());
     boardView->setModel(std::move(boardModel));
 }
 
-void Game::createPieces(AbstractBoardModel* boardModel, std::unique_ptr<PieceAbstractFactory> pieceFactory)
-{
+void Game::createPieces(AbstractBoardModel* boardModel, std::unique_ptr<PieceAbstractFactory> pieceFactory){
+    
     for(int i = 0; i < 16; ++i){
         
         auto pawn = pieceFactory->makePawn();
@@ -62,24 +63,25 @@ void Game::createPieces(AbstractBoardModel* boardModel, std::unique_ptr<PieceAbs
     }
     for(int i = 0; i < 2; ++i){
         auto king = pieceFactory->makeKing();
-        initPiece(king.get(),61);
+        initPiece(king.get(),301);
         boardModel->addPiece(std::move(king));
     }
     
     for(int i = 0; i < 2; ++i){
         auto queen = pieceFactory->makeQueen();
-        initPiece(queen.get(),61);
+        initPiece(queen.get(),241);
         boardModel->addPiece(std::move(queen));
     }
 }
 
 void Game::initPiece(Piece *piece, int rectXpos, int sizeX, int sizeY){
     auto& s = piece->getSprite();
+    int distanceY = 111;
     s.setTexture(&loadingScreen.getTexture("board")); 
     if(piece->getColor() == Piece::Color::Black){
-        s.setStartingRect({rectXpos,112}, {sizeX, sizeY});
+        s.setStartingRect({rectXpos,1}, {sizeX, sizeY});
     }
     else{
-        s.setStartingRect({rectXpos,1},{sizeX, sizeY});
+        s.setStartingRect({rectXpos,1 + distanceY},{sizeX, sizeY});
     }
 }

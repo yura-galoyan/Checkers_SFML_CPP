@@ -29,7 +29,8 @@ public:
     void setColor(Color c_){ color = c_; }
     Color getColor() const { return color; }
 
-    virtual void moveTo(Coords xy) = 0;
+    void moveTo(Coords xy);
+    virtual bool isValid(Coords from, Coords to) const = 0;
     virtual void draw(Window& window) = 0;
 
 protected:

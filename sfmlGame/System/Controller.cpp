@@ -1,21 +1,43 @@
 #include "Controller.hpp"
-
+#include "../AbstractBoardModel.hpp"
 #include <iostream>
 
+#include "Mouse.hpp"
 
 void Controller::queryEvents(Window &window, Event &event){
     setFlags(window, event);
 
-    if(mouseButtons['l'].state.pressedOnce){
-        std::cout<<"pressed once left mouse button" << std::endl;
-    }
-    if(mouseButtons['l'].state.onHold){
-        std::cout<<"holding right mouse button" << std::endl;
-    }
-    if(mouseButtons['l'].state.released){
-        std::cout << "left mouse button released "  <<std::endl;
+    
+    static int x{};
+    static int y{};
+    static bool move{ false };
+    static bool secondClick{ false };
+    static bool firstClick{ true };
+
+    static int count = 1;
+    
+    if(mouseButtons['l'].state.clicked){
+        
+        if(count == 1  ){
+            x = Mouse::getPosition(window).x/110;
+            y = Mouse::getPosition(window).y/110;
+            
+            if (model->isValidCoordinate(x,y)){
+                --count;
+            }
+            
+        }
+        else if(count == 0){
+            model->movePiece(x, y, Mouse::getPosition(window).x / 110, Mouse::getPosition(window).y / 110 );
+            count = 1;
+        }
+        
     }
 
+}
+
+void Controller::setModel(AbstractBoardModel *model_){
+    model = model_;
 }
 
 void Controller::setFlags(Window &window, Event &event) { }

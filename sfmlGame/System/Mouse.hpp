@@ -3,10 +3,12 @@
 
 #include <SFML/Window/Mouse.hpp>
 
+#include "Window.hpp"
+
 struct Mouse
 {
-    static auto getPosition(){
-        return sf::Mouse::getPosition();
+    static auto getPosition(Window& window){
+        return sf::Mouse::getPosition(window);
     }
 };
 

@@ -7,7 +7,11 @@ RegularBoardView::RegularBoardView(std::unique_ptr<AbstractBoardModel> model){
 
 void RegularBoardView::draw(Window& window){
     
-    for(auto &object : *model){
-        object->draw(window);
+    for(auto& objects : *model){
+        for(auto& object : objects ){
+            if(object){
+                object->draw(window);
+            }     
+        }
     }
 }

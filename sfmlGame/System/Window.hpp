@@ -23,6 +23,7 @@ public:
     int gerWidth() { return width; }
     int gerheight() { return height; }
 
+    operator sf::RenderWindow&() { return window;}
 
 private:
     sf::RenderWindow window;

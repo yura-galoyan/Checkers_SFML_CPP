@@ -7,15 +7,18 @@
 
 #include "Window.hpp"
 
+class AbstractBoardModel;
+
 class Controller
 {
 private:
     struct Key{
         Key() = default;
         bool notTouched{false};
-        bool pressedOnce{false};
+        bool clicked{false};
         bool onHold{false};
-        bool released{true};    
+        bool shortReleased{true};    
+        bool longReleased{true};    
     };
 
 public:
@@ -28,13 +31,14 @@ public:
 public:
     //template method
     void queryEvents(Window& window, Event& event);
-
+    void setModel(AbstractBoardModel* model);
 
 protected:
     virtual void setFlags(Window& window, Event& event) = 0;
     virtual void initMouseButtons() = 0;
 
 protected:
+    AbstractBoardModel* model;
     std::unordered_map<char, ButtonPair<char> > mouseButtons;
 
 };

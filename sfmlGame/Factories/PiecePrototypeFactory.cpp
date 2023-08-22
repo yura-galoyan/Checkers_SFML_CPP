@@ -19,13 +19,15 @@ auto PiecePrototypeFactory::makePawn() -> PiecePtr<> {
 
     Sprite sprite;
     if( x < 8){
-        pawn->setXY({x,1});
-        sprite.setPosition(x++ * 111 + 20, 1 * 110  );
+        int place = 1;
+        pawn->setXY({x,place});
+        sprite.setPosition(x++ * 111 + 20, place * 110  );
         pawn->setColor(Piece::Color::Black);
     }
     else{
-        pawn->setXY({(x)%8,6});
-        sprite.setPosition((x++%8) * 111 + 20,7 * 110 );
+        int place = 6;
+        pawn->setXY({(x)%8,place});
+        sprite.setPosition((x++%8) * 111 + 20,place * 110 );
         pawn->setColor(Piece::Color::White);
     }
 
