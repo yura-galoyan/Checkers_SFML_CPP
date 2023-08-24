@@ -20,9 +20,16 @@ public:
 public:
    void addPiece(PiecePtr<> piece) ;
    void movePiece(int oldX, int oldY, int newX, int newY);
+   
+public:
    bool isValidMove(std::pair<int,int> from, std::pair<int, int> to);
    bool isValidCoordinate(int x, int y);
-
+   bool isColor(Piece::Color color, int x, int y   );
+   
+   
+   void setCurrPiece(int x, int y);
+   void setCurrPiece(Piece*);
+   Piece* getCurrPiece() { return currPiece; }
 public:
    auto begin() { return piecePtrVec.begin();  }
    auto begin() const  { return piecePtrVec.begin();  }
@@ -34,9 +41,8 @@ public:
 
 
 private:
-    std::vector<std::unique_ptr<Piece>> pieces;
-    std::vector<std::vector<PiecePtr<>>> piecePtrVec;
-
+   std::vector<std::vector<PiecePtr<>>> piecePtrVec;
+   Piece* currPiece;
 };
 
 

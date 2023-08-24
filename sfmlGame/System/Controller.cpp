@@ -10,30 +10,25 @@ void Controller::queryEvents(Window &window, Event &event){
     
     static int x{};
     static int y{};
-    static bool move{ false };
-    static bool secondClick{ false };
-    static bool firstClick{ true };
-
     static int count = 1;
-    
+
     if(mouseButtons['l'].state.clicked){
-        
         if(count == 1  ){
             x = Mouse::getPosition(window).x/110;
             y = Mouse::getPosition(window).y/110;
-            
             if (model->isValidCoordinate(x,y)){
                 --count;
+                model->setCurrPiece(x,y);
             }
-            
+            else {
+                model->setCurrPiece(nullptr);
+            }
         }
         else if(count == 0){
             model->movePiece(x, y, Mouse::getPosition(window).x / 110, Mouse::getPosition(window).y / 110 );
             count = 1;
         }
-        
     }
-
 }
 
 void Controller::setModel(AbstractBoardModel *model_){

@@ -4,16 +4,22 @@
 #include "AbstractBoardView.hpp"
 #include "AbstractBoardModel.hpp"
 
-
+#include <SFML/Graphics/RectangleShape.hpp>
 
 class RegularBoardView : public AbstractBoardView
 {
 public:
-    RegularBoardView() = default;
+    RegularBoardView();
     RegularBoardView(std::unique_ptr<AbstractBoardModel> model);
 
 public:
     void draw(Window& window) override ;
+
+private:
+    void highlightCurrPiece(Window& window) override;
+
+private:
+    sf::RectangleShape highlighter;
 };
 
 
