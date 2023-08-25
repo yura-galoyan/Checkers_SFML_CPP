@@ -2,9 +2,11 @@
 #define CONTROLLER_HPP
 
 
+
 #include <unordered_map>
 #include <string>
 
+#include "../ChessJudge.hpp"
 #include "Window.hpp"
 
 class AbstractBoardModel;
@@ -36,11 +38,13 @@ public:
 protected:
     virtual void setFlags(Window& window, Event& event) = 0;
     virtual void initMouseButtons() = 0;
-
+    
 protected:
-    AbstractBoardModel* model;
     std::unordered_map<char, ButtonPair<char> > mouseButtons;
 
+private:
+    ChessJudge judge;
+    AbstractBoardModel* model;
 };
 
 

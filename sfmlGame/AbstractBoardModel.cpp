@@ -22,7 +22,18 @@ void AbstractBoardModel::addPiece(PiecePtr<> piece){
 }
 
 bool AbstractBoardModel::isValidMove(std::pair<int,int> from, std::pair<int, int> to){
-    return piecePtrVec[from.first][from.second]->isValid(from, to);
+
+    volatile static int a = 0;
+    ++a;
+
+
+    if(!piecePtrVec[to.first][to.second] && piecePtrVec[from.first][from.second]) {
+        return piecePtrVec[from.first][from.second]->isValid(from,to);
+    }
+    else{
+        return (piecePtrVec[from.first][from.second]->getColor() != piecePtrVec[to.first][to.second]->getColor() )
+                      && piecePtrVec[from.first][from.second]->isValid(from, to) ;
+    }
 }
 
 
@@ -43,6 +54,21 @@ bool AbstractBoardModel::isColor(Piece::Color color, int x, int y)
         }
     }
     return false;
+}
+
+bool AbstractBoardModel::isTurnOf(Piece::Color color){
+    
+    return color == turn;
+}
+
+void AbstractBoardModel::changeTurn()
+{
+    if(turn == Piece::Color::White){
+        turn = Piece::Color::Black;
+    }
+    else{
+        turn = Piece::Color::White;
+    }
 }
 
 void AbstractBoardModel::setCurrPiece(int x, int y){

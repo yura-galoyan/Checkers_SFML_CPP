@@ -25,6 +25,12 @@ public:
    bool isValidMove(std::pair<int,int> from, std::pair<int, int> to);
    bool isValidCoordinate(int x, int y);
    bool isColor(Piece::Color color, int x, int y   );
+
+   bool isTurnOf(Piece::Color color);
+   void changeTurn();
+
+   Piece::Color getColor(int x, int y) { if(piecePtrVec[x][y]) return piecePtrVec[x][y]->getColor(); };   
+   Piece::Color getTurn() { return turn; }
    
    
    void setCurrPiece(int x, int y);
@@ -43,6 +49,7 @@ public:
 private:
    std::vector<std::vector<PiecePtr<>>> piecePtrVec;
    Piece* currPiece;
+   Piece::Color turn{Piece::Color::White};
 };
 
 
