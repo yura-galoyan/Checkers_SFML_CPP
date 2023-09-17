@@ -12,7 +12,7 @@ public:
     bool isValid(std::pair<int, int> from, std::pair<int, int> to);
 
 private:
-    enum c_Piece {w_Pawn , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  White,
+    enum c_Piece {w_Pawn = 1, w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  White,
                    Black,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
     };
 
