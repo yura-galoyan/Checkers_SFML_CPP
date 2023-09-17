@@ -1,4 +1,6 @@
 #include "ChessJudge.hpp"
+#include <iostream>
+#include <iomanip>
 
 ChessJudge::ChessJudge(){
     std::vector<c_Piece> vec0;
@@ -50,12 +52,23 @@ ChessJudge::ChessJudge(){
 
 }
 
-#include <iostream>
+template<typename Container2d>
+[[deprecated]] void printBoard(const Container2d& board){
+    for(auto& line : board){
+        for(auto& p : line){
+            std::cout << std::setw(2) << p << " " ;
+        }
+        std::cout<<std::endl;
+    }
+}
 
 bool ChessJudge::isValid(std::pair<int, int> from, std::pair<int, int> to){
     volatile bool valid{false};
 
-    
+    // i = first
+    // j = second    
+
+
 
     switch (board[from.second][from.first])
     {
@@ -80,8 +93,10 @@ bool ChessJudge::isValid(std::pair<int, int> from, std::pair<int, int> to){
         std::cout<<"is valid " << std::endl;
         board[to.second][to.first] = board[from.second][from.first];
         board[from.second][from.first] = static_cast<c_Piece>(0);
+        printBoard(board);
         return true;
     }
+    printBoard(board);
     return false;
     
 }
