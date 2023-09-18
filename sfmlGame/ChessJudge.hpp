@@ -8,7 +8,6 @@
 class ChessJudge
 {
 public:
-    struct Diagonals;
     using ValidMovesVector = std::vector<std::pair<int,int>>;
 public:
     ChessJudge();
@@ -21,19 +20,18 @@ private:
                    border = 150,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
     };
 
-    struct Diagonals{
-        int topLeft : 4;
-        int topRight : 4;
-        int bottomLeft : 4;
-        int bottomRight : 4;
-    };
-
 private:
     ValidMovesVector computeRookMoves(int, int);
+    void computeRookMovesHorizontal(int i, int j, int directionSign,ValidMovesVector& validMoves);
     void computeRookMovesVertical(int i, int j, int directionSign,ValidMovesVector& validMoves);
 
+private:
+    ValidMovesVector computeKnightMoves(int, int);
+    bool isValidKnightMove( int sefl_i, int sefl_j, int i, int j);
 
-    ValidMovesVector computePawnMoves(int, int, int verticalDirectionValue);
+private:
+    ValidMovesVector computePawnMoves(int, int);
+    void computePawnMovesHelper(int, int, int verticalDirectionValue, ValidMovesVector& validMoves);
 
 protected:
     std::vector<std::vector<c_Piece> > board;

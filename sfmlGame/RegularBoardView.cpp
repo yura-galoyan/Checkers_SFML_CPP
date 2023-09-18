@@ -2,7 +2,7 @@
 
 RegularBoardView::RegularBoardView(){
     highlighter.setOutlineColor(sf::Color::Red);
-    highlighter.setOutlineThickness(2);
+    highlighter.setOutlineThickness(4);
     highlighter.setFillColor(sf::Color::Transparent);
     highlighter.setSize({110,110});
 }
