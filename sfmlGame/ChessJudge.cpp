@@ -84,10 +84,49 @@ ChessJudge::ValidMovesVector ChessJudge::getValidMoves(int i,int j) {
     case b_Knight:
         return computeKnightMoves(i,j);
         break;
+    case w_Bishop:
+    case b_Bishop:
+        return computeBishopMoves(i,j);
+        break;
+    case w_Queen:
+    case b_Queen:
+        return computeQueenMoves(i,j);
     default:
         break;
     }
     return validMoves;
+}
+
+ChessJudge::ValidMovesVector ChessJudge::computeQueenMoves(int i, int j){
+    ValidMovesVector validMoves1 = computeRookMoves(i,j);
+    ValidMovesVector validMoves2 = computeBishopMoves(i,j);
+    validMoves1.insert(validMoves1.end(), validMoves2.begin(), validMoves2.end());
+    
+    return validMoves1;
+}
+
+ChessJudge::ValidMovesVector ChessJudge::computeBishopMoves(int i, int j){
+    ValidMovesVector validMoves;
+    computeBishopMovesHelper(i,j,-1,-1,validMoves); 
+    computeBishopMovesHelper(i,j,-1,1,validMoves); 
+    computeBishopMovesHelper(i,j,1,-1,validMoves); 
+    computeBishopMovesHelper(i,j,1,1,validMoves);     
+    return validMoves;
+}
+
+void ChessJudge::computeBishopMovesHelper(int i, int j, int directionSign1, int directionSigh2, ValidMovesVector& validMoves){
+    for(int k = i + directionSign1, p = j + directionSigh2;-1 < k && k < 8 && -1 < p && p < 8; k = k + directionSign1, p = p + directionSigh2 ){
+        if(board[k][p] == empty){
+            validMoves.push_back({k,p});
+        } 
+        else{
+            if(std::abs(board[i][j] - board[k][p]) >= difference){
+               validMoves.push_back({k,p});
+            }
+            break; 
+        }
+    }
+    
 }
 
 ChessJudge::ValidMovesVector ChessJudge::computeKnightMoves(int i, int j){
@@ -127,8 +166,8 @@ void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,Vali
         if( board[i][k] == empty){
             validMoves.push_back({i,k});
         }
-        else {
-                if(std::abs(board[i][j] - board[i][k]) >= difference){
+        else{
+            if(std::abs(board[i][j] - board[i][k]) >= difference){
                 validMoves.push_back({i,k});
             }
             break;
@@ -143,7 +182,7 @@ void ChessJudge::computeRookMovesVertical(int i, int j, int directionSign, Chess
         }
         else{ 
             if(std::abs(board[i][j] - board[k][j]) >= difference){
-                    validMoves.push_back({k,j});
+                validMoves.push_back({k,j});
             }
             break;
         }

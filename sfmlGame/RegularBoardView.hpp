@@ -21,6 +21,7 @@ private:
 
 private:
     sf::RectangleShape highlighter;
+    sf::RectangleShape movesHighlighter;
 };
 
 

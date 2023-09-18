@@ -2,9 +2,12 @@
 
 RegularBoardView::RegularBoardView(){
     highlighter.setOutlineColor(sf::Color::Red);
-    highlighter.setOutlineThickness(4);
+    highlighter.setOutlineThickness(2);
     highlighter.setFillColor(sf::Color::Transparent);
     highlighter.setSize({110,110});
+    
+    movesHighlighter.setFillColor(sf::Color(255,255,0,64)); 
+    movesHighlighter.setSize({110,110});
 }
 
 RegularBoardView::RegularBoardView(std::unique_ptr<AbstractBoardModel> model){
@@ -12,6 +15,9 @@ RegularBoardView::RegularBoardView(std::unique_ptr<AbstractBoardModel> model){
 }
 
 void RegularBoardView::draw(Window& window){
+    for(auto& move : model->getValidMoves()){
+        highlightValidMoves(move.first, move.second,window);
+    }
     
     for(auto& objects : *model){
         for(auto& object : objects ){
@@ -21,9 +27,7 @@ void RegularBoardView::draw(Window& window){
         }
     }
     highlightCurrPiece(window);
-    for(auto& move : model->getValidMoves()){
-        highlightValidMoves(move.first, move.second,window);
-    }
+    
 }
 
 void RegularBoardView::highlightCurrPiece(Window& window){
@@ -34,7 +38,6 @@ void RegularBoardView::highlightCurrPiece(Window& window){
 }
 
 void RegularBoardView::highlightValidMoves(int i, int j, Window &window){
-    auto movableCell = highlighter;
-    movableCell.setPosition(j * 110, i * 110  );
-    window.draw(movableCell);
+    movesHighlighter.setPosition(j * 110, i * 110  );
+    window.draw(movesHighlighter);
 }

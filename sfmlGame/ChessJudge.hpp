@@ -30,8 +30,15 @@ private:
     bool isValidKnightMove( int sefl_i, int sefl_j, int i, int j);
 
 private:
+    ValidMovesVector computeBishopMoves(int, int);
+    void computeBishopMovesHelper(int,int, int directionSign1, int directionSigh2, ValidMovesVector& validMoves);
+
+private:
     ValidMovesVector computePawnMoves(int, int);
     void computePawnMovesHelper(int, int, int verticalDirectionValue, ValidMovesVector& validMoves);
+
+private:
+    ValidMovesVector computeQueenMoves(int,int);
 
 protected:
     std::vector<std::vector<c_Piece> > board;
