@@ -13,6 +13,7 @@ public:
     void setModel(std::unique_ptr<AbstractBoardModel> model);
     virtual void draw(Window& window) = 0;
     virtual void highlightCurrPiece(Window& window) = 0;
+    virtual void highlightValidMoves(int i, int j, Window& window) = 0;
 
 protected:
     std::unique_ptr<AbstractBoardModel> model;

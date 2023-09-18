@@ -36,6 +36,11 @@ public:
    void setCurrPiece(int x, int y);
    void setCurrPiece(Piece*);
    Piece* getCurrPiece() { return currPiece; }
+   std::vector<std::pair<int,int>> getValidMoves() { return validMoves; }
+   void clearValidMoves() { validMoves.clear(); }
+   void setValidMoves(std::vector<std::pair<int,int>>&& moves);
+   void setValidMoves(std::vector<std::pair<int,int>>& moves);
+
 public:
    auto begin() { return piecePtrVec.begin();  }
    auto begin() const  { return piecePtrVec.begin();  }
@@ -44,10 +49,11 @@ public:
    auto end() const { return piecePtrVec.end();  }
    auto cend() const { return piecePtrVec.cend(); }
 
-
+   
 
 private:
    std::vector<std::vector<PiecePtr<>>> piecePtrVec;
+   std::vector<std::pair<int,int>> validMoves;
    Piece* currPiece;
    Piece::Color turn{Piece::Color::White};
 };

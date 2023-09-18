@@ -23,10 +23,6 @@ void AbstractBoardModel::addPiece(PiecePtr<> piece){
 
 bool AbstractBoardModel::isValidMove(std::pair<int,int> from, std::pair<int, int> to){
 
-    volatile static int a = 0;
-    ++a;
-
-
     if(!piecePtrVec[to.first][to.second] && piecePtrVec[from.first][from.second]) {
         return piecePtrVec[from.first][from.second]->isValid(from,to);
     }
@@ -77,4 +73,12 @@ void AbstractBoardModel::setCurrPiece(int x, int y){
 
 void AbstractBoardModel::setCurrPiece(Piece *ptr){
     currPiece = ptr;
+}
+
+void AbstractBoardModel::setValidMoves(std::vector<std::pair<int, int>> &&moves){
+    validMoves = std::move(moves);
+}
+
+void AbstractBoardModel::setValidMoves(std::vector<std::pair<int, int>> &moves){
+    validMoves = moves;
 }

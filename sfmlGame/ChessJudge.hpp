@@ -8,13 +8,32 @@
 class ChessJudge
 {
 public:
+    struct Diagonals;
+    using ValidMovesVector = std::vector<std::pair<int,int>>;
+public:
     ChessJudge();
     bool isValid(std::pair<int, int> from, std::pair<int, int> to);
+    ValidMovesVector getValidMoves(int, int );
+    void movePiece(std::pair<int, int> from, std::pair<int, int> to);
+    
+private:
+    enum c_Piece { empty, w_Pawn , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  difference = 50,
+                   border = 150,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
+    };
+
+    struct Diagonals{
+        int topLeft : 4;
+        int topRight : 4;
+        int bottomLeft : 4;
+        int bottomRight : 4;
+    };
 
 private:
-    enum c_Piece {w_Pawn = 1, w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  White,
-                   Black,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
-    };
+    ValidMovesVector computeRookMoves(int, int);
+    void computeRookMovesVertical(int i, int j, int directionSign,ValidMovesVector& validMoves);
+
+
+    ValidMovesVector computePawnMoves(int, int, int verticalDirectionValue);
 
 protected:
     std::vector<std::vector<c_Piece> > board;
