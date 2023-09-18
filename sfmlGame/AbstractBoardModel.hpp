@@ -25,6 +25,8 @@ public:
    bool isValidMove(std::pair<int,int> from, std::pair<int, int> to);
    bool isValidCoordinate(int x, int y);
    bool isColor(Piece::Color color, int x, int y   );
+   bool isSameColor(std::pair<int,int> from, std::pair<int, int> to);
+
 
    bool isTurnOf(Piece::Color color);
    void changeTurn();
@@ -36,7 +38,7 @@ public:
    void setCurrPiece(int x, int y);
    void setCurrPiece(Piece*);
    Piece* getCurrPiece() { return currPiece; }
-   std::vector<std::pair<int,int>> getValidMoves() { return validMoves; }
+   std::vector<std::pair<int,int>>& getValidMoves() { return validMoves; }
    void clearValidMoves() { validMoves.clear(); }
    void setValidMoves(std::vector<std::pair<int,int>>&& moves);
    void setValidMoves(std::vector<std::pair<int,int>>& moves);

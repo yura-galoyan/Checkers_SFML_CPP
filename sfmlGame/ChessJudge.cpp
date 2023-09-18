@@ -62,7 +62,7 @@ template<typename Container2d>
 }
 
 bool ChessJudge::isValid(std::pair<int, int> from, std::pair<int, int> to){
-    volatile bool valid{false};
+    
 
     return true;
     
@@ -91,6 +91,11 @@ ChessJudge::ValidMovesVector ChessJudge::getValidMoves(int i,int j) {
     case w_Queen:
     case b_Queen:
         return computeQueenMoves(i,j);
+        break;
+    case w_King:
+    case b_King:
+        return computeKingMoves(i,j);
+        break;
     default:
         break;
     }
@@ -101,8 +106,21 @@ ChessJudge::ValidMovesVector ChessJudge::computeQueenMoves(int i, int j){
     ValidMovesVector validMoves1 = computeRookMoves(i,j);
     ValidMovesVector validMoves2 = computeBishopMoves(i,j);
     validMoves1.insert(validMoves1.end(), validMoves2.begin(), validMoves2.end());
-    
     return validMoves1;
+}
+
+ChessJudge::ValidMovesVector ChessJudge::computeKingMoves(int i, int j){
+    ValidMovesVector validMoves;
+    for(int k = i - 1; k < 2 + i ; ++k){
+        for(int p = j - 1; p < 2 + j; ++p){
+            if( -1 < k && k < 8 && -1 < p && p < 8){
+                if(board[k][p] == empty || std::abs(board[k][p] - board[i][j]) >= difference){
+                    validMoves.push_back({k,p});
+                }
+            }
+        }
+    }
+    return validMoves;
 }
 
 ChessJudge::ValidMovesVector ChessJudge::computeBishopMoves(int i, int j){
@@ -219,10 +237,10 @@ void ChessJudge::computePawnMovesHelper(int i, int j, int dir, ValidMovesVector&
                 }
             }
         }
-        if(right < 8  && std::abs(board[next][right] - board[i][j]) == difference){
+        if(right < 8  && std::abs(board[next][right] - board[i][j]) >= difference){
             validMoves.push_back({next,right});
         }
-        if(left > -1 && std::abs(board[next][left] - board[i][j]) == difference){
+        if(left > -1 && std::abs(board[next][left] - board[i][j]) >= difference){
             validMoves.push_back({next,left});
         }
     }

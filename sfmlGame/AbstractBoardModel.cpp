@@ -32,6 +32,13 @@ bool AbstractBoardModel::isValidMove(std::pair<int,int> from, std::pair<int, int
     }
 }
 
+bool AbstractBoardModel::isSameColor(std::pair<int, int> from, std::pair<int, int> to){
+    if( piecePtrVec[from.first][from.second]->getColor() != piecePtrVec[to.first][to.second]->getColor()){
+        return false;
+    }
+    return true;
+
+}
 
 bool AbstractBoardModel::isValidCoordinate(int x, int y) { 
    if( x > 7 || y > 7){

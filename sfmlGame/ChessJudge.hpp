@@ -16,7 +16,7 @@ public:
     void movePiece(std::pair<int, int> from, std::pair<int, int> to);
     
 private:
-    enum c_Piece { empty, w_Pawn , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  difference = 50,
+    enum c_Piece { empty = 75, w_Pawn = 1 , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  difference = 100,
                    border = 150,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
     };
 
@@ -39,6 +39,9 @@ private:
 
 private:
     ValidMovesVector computeQueenMoves(int,int);
+
+private:
+    ValidMovesVector computeKingMoves(int, int);
 
 protected:
     std::vector<std::vector<c_Piece> > board;
