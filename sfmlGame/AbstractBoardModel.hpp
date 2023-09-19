@@ -37,7 +37,12 @@ public:
    
    void setCurrPiece(int x, int y);
    void setCurrPiece(Piece*);
+
+   void setCheckedPiece(int x, int y);
+   void resetChecking();
+
    Piece* getCurrPiece() { return currPiece; }
+   Piece* getCheckedPiece() { return checkedPiece; }
    std::vector<std::pair<int,int>>& getValidMoves() { return validMoves; }
    void clearValidMoves() { validMoves.clear(); }
    void setValidMoves(std::vector<std::pair<int,int>>&& moves);
@@ -57,6 +62,7 @@ private:
    std::vector<std::vector<PiecePtr<>>> piecePtrVec;
    std::vector<std::pair<int,int>> validMoves;
    Piece* currPiece;
+   Piece* checkedPiece;
    Piece::Color turn{Piece::Color::White};
 };
 

@@ -82,6 +82,14 @@ void AbstractBoardModel::setCurrPiece(Piece *ptr){
     currPiece = ptr;
 }
 
+void AbstractBoardModel::setCheckedPiece(int x, int y){
+    checkedPiece = piecePtrVec[x][y].get();
+}
+
+void AbstractBoardModel::resetChecking(){
+    checkedPiece = nullptr;
+}
+
 void AbstractBoardModel::setValidMoves(std::vector<std::pair<int, int>> &&moves){
     validMoves = std::move(moves);
 }

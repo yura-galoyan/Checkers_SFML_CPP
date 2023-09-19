@@ -18,10 +18,12 @@ public:
 private:
     void highlightCurrPiece(Window& window) override;
     void highlightValidMoves(int i, int j, Window& window) override;
+    void highlightCheckedPiece(Window& window) override;
 
 private:
     sf::RectangleShape highlighter;
     sf::RectangleShape movesHighlighter;
+    sf::RectangleShape checkHighlighter;
 };
 
 

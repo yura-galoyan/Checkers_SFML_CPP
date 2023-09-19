@@ -21,7 +21,6 @@ void Controller::queryEvents(Window &window, Event &event){
                     --count;
                     model->setCurrPiece(x,y);
                     model->setValidMoves(judge.getValidMoves(y,x));
-                    
                 }
             }
             else if(count == 0){
@@ -31,10 +30,17 @@ void Controller::queryEvents(Window &window, Event &event){
                     if(std::find(model->getValidMoves().begin(), model->getValidMoves().end(), std::pair{newY, newX}) != model->getValidMoves().end() ){
                         model->movePiece(x, y, newX , newY );
                         judge.movePiece({y,x}, {newY,newX});
-                        count = 1;
                         model->setCurrPiece(nullptr);
-                        model->changeTurn();
                         model->clearValidMoves();
+                        model->resetChecking();
+                        if(judge.isCheck()){
+                            std::cout << "Coord i: " << judge.getCheckedKing().first << std::endl;
+                            std::cout << "Coord j: " << judge.getCheckedKing().second << std::endl;
+
+                            model->setCheckedPiece(judge.getCheckedKing().second,judge.getCheckedKing().first);
+                        };
+                        model->changeTurn();
+                        count = 1;
                     }
                 }
                 else if(model->isSameColor({x,y},{newX,newY})){
