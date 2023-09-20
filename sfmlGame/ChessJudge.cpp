@@ -63,18 +63,8 @@ bool ChessJudge::isValid(std::pair<int, int> from, std::pair<int, int> to){
     return true;
 }
 
-bool ChessJudge::isCheck(){
-    isChecked = false;
-    for(int i = 0; i < 8; ++i){
-        for(int j = 0; j < 8; ++j){
-            getValidMoves(i,j);
-        }
-    }
 
-    return isChecked;
-}
-
-ChessJudge::ValidMovesVector ChessJudge::getValidMoves(int i,int j) {
+ChessJudge::ValidMovesVector ChessJudge::getPossibleMoves(int i,int j) {
     ValidMovesVector validMoves;
     switch (board[i][j])
     {
@@ -129,7 +119,7 @@ ChessJudge::ValidMovesVector ChessJudge::computeKingMoves(int i, int j){
             if( -1 < k && k < 8 && -1 < p && p < 8){
                 if(board[k][p] == empty || std::abs(board[k][p] - board[i][j]) >= difference){
                     checkMove(i,j,k,p);
-                    addMove({k,p}, validMoves);
+                    addMove({i,j},{k,p}, validMoves);
                 }
             }
         }
@@ -153,12 +143,12 @@ void ChessJudge::computeBishopMovesHelper(int i, int j, int directionSign1, int 
     for(int k = i + directionSign1, p = j + directionSigh2;-1 < k && k < 8 && -1 < p && p < 8; k = k + directionSign1, p = p + directionSigh2 ){
         if(board[k][p] == empty){
             isCheck(k,p);
-            addMove({k,p}, validMoves);
+            addMove({i,j},{k,p}, validMoves);
         } 
         else{
             if(std::abs(board[i][j] - board[k][p]) >= difference){
                 isCheck(k,p);
-                addMove({k,p}, validMoves);
+                addMove({i,j},{k,p}, validMoves);
             }
             break; 
         }
@@ -173,7 +163,7 @@ ChessJudge::ValidMovesVector ChessJudge::computeKnightMoves(int i, int j){
             if(p != k && p != -k && p != 0 && k != 0){
                 if(isValidKnightMove(i,j,i + k, j + p)){
                     isCheck(i + k,j + p);
-                    addMove({i + k, j + p},validMoves);
+                    addMove({i,j},{i + k, j + p},validMoves);
                 }
             }
         }
@@ -202,12 +192,12 @@ ChessJudge::ValidMovesVector ChessJudge::computeRookMoves(int i, int j){
 void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,ValidMovesVector& validMoves){
     for(int k = j + directionSign; k != static_cast<int>( 3.5 + directionSign * 4.5 ); k = k + directionSign){
         if( board[i][k] == empty){
-            addMove({i,k},validMoves);
+            addMove({i,j},{i,k},validMoves);
         }
         else{
             if(std::abs(board[i][j] - board[i][k]) >= difference){
                 isCheck(i,k);
-                addMove({i,k},validMoves);
+                addMove({i,j},{i,k},validMoves);
             }
             break;
         }
@@ -217,12 +207,12 @@ void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,Vali
 void ChessJudge::computeRookMovesVertical(int i, int j, int directionSign, ChessJudge::ValidMovesVector& validMoves){
     for(int k = i + directionSign; k != static_cast<int>(3.5 + directionSign*4.5); k = k + directionSign){
         if( board[k][j] == empty){
-            addMove({k,j},validMoves);
+            addMove({i,j},{k,j},validMoves);
         }
         else{ 
             if(std::abs(board[i][j] - board[k][j]) >= difference){
                 isCheck(k,j);
-                addMove({k,j},validMoves);
+                addMove({i,j},{k,j},validMoves);
             }
             break;
         }
@@ -252,18 +242,18 @@ void ChessJudge::computePawnMovesHelper(int i, int j, int dir, ValidMovesVector&
     auto next = i + dir;
     if(next < 8){
         if( board[next][j] == empty){
-            addMove({next,j},validMoves);
+            addMove({i,j},{next,j},validMoves);
             if( std::abs(i - 3.5 + 2.5*dir) < std::numeric_limits<double>::epsilon()){
                 if(board[i + dir*2][j] == empty){
-                    addMove({i + dir * 2,j},validMoves);
+                    addMove({i,j},{i + dir * 2,j},validMoves);
                 }
             }
         }
         if(right < 8  && std::abs(board[next][right] - board[i][j]) >= difference){
-            addMove({next,right},validMoves);
+            addMove({i,j},{next,right},validMoves);
         }
         if(left > -1 && std::abs(board[next][left] - board[i][j]) >= difference){
-            addMove({next,left},validMoves);
+            addMove({i,j},{next,left},validMoves);
         }
     }
 }
@@ -275,8 +265,17 @@ void ChessJudge::movePiece(std::pair<int, int> from, std::pair<int, int> to){
 }
 
 
-void ChessJudge::addMove(std::pair<int,int> ij, ValidMovesVector& validMoves){
+void ChessJudge::addMove(std::pair<int,int> ij, std::pair<int,int> kp, ValidMovesVector& validMoves){
+    
+    if(isChecked){
+        auto oldBoard = board;
+        movePiece(ij,kp);
+        if(isCheck()){
+
+        }
+        
+    }
     if(1){
-        validMoves.push_back({ij});
+        validMoves.push_back({kp});
     }
 }

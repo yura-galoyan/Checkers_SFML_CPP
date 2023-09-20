@@ -12,9 +12,10 @@ public:
 public:
     ChessJudge();
     bool isValid(std::pair<int, int> from, std::pair<int, int> to);
-    ValidMovesVector getValidMoves(int, int );
+    ValidMovesVector getPossibleMoves(int, int );
+    ValidMovesVector 
     void movePiece(std::pair<int, int> from, std::pair<int, int> to);
-    void addMove(std::pair<int,int>, ValidMovesVector& validMoves);
+    void addMove(std::pair<int,int> ij, std::pair<int,int>, ValidMovesVector& validMoves);
     void isCheck(int i, int j); 
     bool isCheck();
     bool checkMove(int i, int j, int p, int k);
