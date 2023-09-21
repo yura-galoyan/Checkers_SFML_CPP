@@ -60,7 +60,6 @@ bool AbstractBoardModel::isColor(Piece::Color color, int x, int y)
 }
 
 bool AbstractBoardModel::isTurnOf(Piece::Color color){
-    
     return color == turn;
 }
 

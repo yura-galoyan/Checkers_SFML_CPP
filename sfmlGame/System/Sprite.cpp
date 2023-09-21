@@ -16,6 +16,10 @@ void Sprite::draw(Window &window){
     window.draw(sprite);
 }
 
+void Sprite::setScale(std::pair<float, float> scale){
+    sprite.setScale(scale.first, scale.second);
+}
+
 void Sprite::setStartingRect(Vector2i position, Vector2i size_){
     startingRectPos = {position.x, position.y};
     size = {size_.x, size_.y};

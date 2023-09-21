@@ -24,6 +24,9 @@ void SfmlController::setFlags(Window &window, Event &event)
                 case sf::Event::Closed:
                     window.close();
                     break;
+                case sf::Event::Resized:
+                    window.setSize({window.getSize().first, window.getSize().first});
+                    break;
                 default:
                     break;
             }

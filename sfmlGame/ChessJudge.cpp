@@ -53,9 +53,9 @@ template<typename Container2d>
 [[deprecated]] void printBoard(const Container2d& board){
     for(auto& line : board){
         for(auto& p : line){
-            std::cout << std::setw(2) << p << " " ;
+            std::cout << std::setw(4) << p << " " ;
         }
-        std::cout<<std::endl;
+        std::cout<<"\n" << std::endl;
     }
 }
 
@@ -98,12 +98,96 @@ ChessJudge::ValidMovesVector ChessJudge::getPossibleMoves(int i,int j) {
     return validMoves;
 }
 
-void ChessJudge::isCheck(int k, int p){
+ChessJudge::ValidMovesVector ChessJudge::getValidMoves(int it, int jt){
+    
+    volatile int i = it;
+    volatile int j = jt;
+
+    ValidMovesVector tmpVM = getPossibleMoves(i,j);
+    std::cout << "number of moves: " << tmpVM.size() << std::endl;
+    decltype(tmpVM) realVM;
+    auto oldBoard = board;
+
+    bool checked{false};
+
+    
+
+    for( auto move : tmpVM){
+        movePiece({i,j},move);
+        changeTurn();
+        checkForCheckedking(checked);
+        board = oldBoard;
+    
+        if(!checked){
+            realVM.push_back(move);
+        }
+        checked = false;
+    }
+
+    return realVM;
+
+}
+
+void ChessJudge::checkForCheckedking(bool& checked){
+    for(int m = 0; m < 8; ++m){
+        for( int n = 0; n < 8; ++n){
+            if(isTurnOf(board[m][n])){
+                std::cout << board[m][n] << std::endl;
+                if (turn == Piece::Color::White) {
+                    std::cout << "it is Whites turn" << std::endl;
+                }
+                if (turn == Piece::Color::Black) {
+                    std::cout << "it is Blackes turn" << std::endl;
+                }
+
+                auto moves = getPossibleMoves(m,n);
+                for(auto move : moves){
+                    if(turn == Piece::Color::White){
+                        if(board[move.first][move.second] == b_King){
+                            checked = true;
+                            changeTurn();
+                            return;
+                        }
+                    }
+                    if(turn == Piece::Color::Black){
+                        if(board[move.first][move.second] == w_King){
+                            checked = true;
+                            changeTurn();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    changeTurn();
+}
+
+
+void ChessJudge::checkForChecks(){
+
+    for(int x = 0; x < 8; ++x){
+        for(int y = 0; y < 8; ++y){
+            getPossibleMoves(x,y);
+        }
+    }
+}
+
+
+
+void ChessJudge::addMove(std::pair<int,int> ij, std::pair<int,int> kp, ValidMovesVector& validMoves){
+    validMoves.push_back({kp});
+}
+
+bool ChessJudge::isCheck(int k, int p){
     if((turn == Piece::Color::White && board[k][p] == b_King)|| (turn == Piece::Color::Black && board[k][p] == w_King)){
         checkedKing = {k,p};
-        isChecked = true;
+        return true;
     } 
+    return false;
 }
+
+
 
 ChessJudge::ValidMovesVector ChessJudge::computeQueenMoves(int i, int j){
     ValidMovesVector validMoves1 = computeRookMoves(i,j);
@@ -111,14 +195,12 @@ ChessJudge::ValidMovesVector ChessJudge::computeQueenMoves(int i, int j){
     validMoves1.insert(validMoves1.end(), validMoves2.begin(), validMoves2.end());
     return validMoves1;
 }
-
 ChessJudge::ValidMovesVector ChessJudge::computeKingMoves(int i, int j){
     ValidMovesVector validMoves;
     for(int k = i - 1; k < 2 + i ; ++k){
         for(int p = j - 1; p < 2 + j; ++p){
             if( -1 < k && k < 8 && -1 < p && p < 8){
                 if(board[k][p] == empty || std::abs(board[k][p] - board[i][j]) >= difference){
-                    checkMove(i,j,k,p);
                     addMove({i,j},{k,p}, validMoves);
                 }
             }
@@ -126,10 +208,6 @@ ChessJudge::ValidMovesVector ChessJudge::computeKingMoves(int i, int j){
     }
     return validMoves;
 }
-bool ChessJudge::checkMove(int i, int j, int p, int k){
-    
-}
-
 ChessJudge::ValidMovesVector ChessJudge::computeBishopMoves(int i, int j){
     ValidMovesVector validMoves;
     computeBishopMovesHelper(i,j,-1,-1,validMoves); 
@@ -138,16 +216,13 @@ ChessJudge::ValidMovesVector ChessJudge::computeBishopMoves(int i, int j){
     computeBishopMovesHelper(i,j,1,1,validMoves);     
     return validMoves;
 }
-
 void ChessJudge::computeBishopMovesHelper(int i, int j, int directionSign1, int directionSigh2, ValidMovesVector& validMoves){
     for(int k = i + directionSign1, p = j + directionSigh2;-1 < k && k < 8 && -1 < p && p < 8; k = k + directionSign1, p = p + directionSigh2 ){
         if(board[k][p] == empty){
-            isCheck(k,p);
             addMove({i,j},{k,p}, validMoves);
         } 
         else{
             if(std::abs(board[i][j] - board[k][p]) >= difference){
-                isCheck(k,p);
                 addMove({i,j},{k,p}, validMoves);
             }
             break; 
@@ -155,14 +230,12 @@ void ChessJudge::computeBishopMovesHelper(int i, int j, int directionSign1, int 
     }
     
 }
-
 ChessJudge::ValidMovesVector ChessJudge::computeKnightMoves(int i, int j){
     ValidMovesVector validMoves;
     for(int k = -2; k < 3; ++k){
         for(int p = -2; p < 3; ++p){
             if(p != k && p != -k && p != 0 && k != 0){
                 if(isValidKnightMove(i,j,i + k, j + p)){
-                    isCheck(i + k,j + p);
                     addMove({i,j},{i + k, j + p},validMoves);
                 }
             }
@@ -178,8 +251,6 @@ bool ChessJudge::isValidKnightMove(int self_i, int self_j, int i, int j){
     };
     return false; 
 }
-
-
 ChessJudge::ValidMovesVector ChessJudge::computeRookMoves(int i, int j){
     ValidMovesVector validMoves;
     computeRookMovesVertical(i,j,+1,validMoves);
@@ -188,7 +259,6 @@ ChessJudge::ValidMovesVector ChessJudge::computeRookMoves(int i, int j){
     computeRookMovesHorizontal(i,j,-1,validMoves); 
     return validMoves;
 }
-
 void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,ValidMovesVector& validMoves){
     for(int k = j + directionSign; k != static_cast<int>( 3.5 + directionSign * 4.5 ); k = k + directionSign){
         if( board[i][k] == empty){
@@ -196,7 +266,6 @@ void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,Vali
         }
         else{
             if(std::abs(board[i][j] - board[i][k]) >= difference){
-                isCheck(i,k);
                 addMove({i,j},{i,k},validMoves);
             }
             break;
@@ -204,21 +273,19 @@ void ChessJudge::computeRookMovesHorizontal(int i, int j, int directionSign,Vali
     
     }     
 }
-void ChessJudge::computeRookMovesVertical(int i, int j, int directionSign, ChessJudge::ValidMovesVector& validMoves){
+void ChessJudge::computeRookMovesVertical(int i, int j, int directionSign, ValidMovesVector& validMoves){
     for(int k = i + directionSign; k != static_cast<int>(3.5 + directionSign*4.5); k = k + directionSign){
         if( board[k][j] == empty){
             addMove({i,j},{k,j},validMoves);
         }
         else{ 
             if(std::abs(board[i][j] - board[k][j]) >= difference){
-                isCheck(k,j);
                 addMove({i,j},{k,j},validMoves);
             }
             break;
         }
     }      
 }
-
 ChessJudge::ValidMovesVector ChessJudge::computePawnMoves(int i, int j){
     ValidMovesVector validMoves;
     switch (board[i][j])
@@ -235,7 +302,6 @@ ChessJudge::ValidMovesVector ChessJudge::computePawnMoves(int i, int j){
 
     return validMoves;
 }
-
 void ChessJudge::computePawnMovesHelper(int i, int j, int dir, ValidMovesVector& validMoves){
     auto right = j + 1;
     auto left =  j - 1;
@@ -257,25 +323,37 @@ void ChessJudge::computePawnMovesHelper(int i, int j, int dir, ValidMovesVector&
         }
     }
 }
-
 void ChessJudge::movePiece(std::pair<int, int> from, std::pair<int, int> to){
     board[to.first][to.second] = board[from.first][from.second];
     board[from.first][from.second] = empty;
-    printBoard(board);
+}
+void ChessJudge::changeTurn()
+{
+    if(turn == Piece::Color::White){
+        turn = Piece::Color::Black;
+    }
+    else{
+        turn = Piece::Color::White;
+    }
 }
 
+bool ChessJudge::isTurnOf(c_Piece p){
 
-void ChessJudge::addMove(std::pair<int,int> ij, std::pair<int,int> kp, ValidMovesVector& validMoves){
-    
-    if(isChecked){
-        auto oldBoard = board;
-        movePiece(ij,kp);
-        if(isCheck()){
+    if (p == empty) {
+        return false;
+    }
 
+    if( p > difference){
+        if(turn == Piece::Color::Black){
+            return true;
         }
-        
     }
-    if(1){
-        validMoves.push_back({kp});
-    }
+    if( p < difference){
+        if(turn == Piece::Color::White){
+            return true;
+        }
+    }    
+    return false;
+
+    
 }

@@ -32,14 +32,8 @@ void Controller::queryEvents(Window &window, Event &event){
                         judge.movePiece({y,x}, {newY,newX});
                         model->setCurrPiece(nullptr);
                         model->clearValidMoves();
-                        model->resetChecking();
-                        if(judge.isCheck()){
-                            std::cout << "Coord i: " << judge.getCheckedKing().first << std::endl;
-                            std::cout << "Coord j: " << judge.getCheckedKing().second << std::endl;
-
-                            model->setCheckedPiece(judge.getCheckedKing().second,judge.getCheckedKing().first);
-                        };
                         model->changeTurn();
+                        judge.changeTurn();
                         count = 1;
                     }
                 }

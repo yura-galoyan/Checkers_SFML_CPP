@@ -42,6 +42,7 @@ void RegularBoardView::highlightCurrPiece(Window& window){
 }
 
 void RegularBoardView::highlightValidMoves(int i, int j, Window &window){
+
     movesHighlighter.setPosition(j * 110, i * 110  );
     window.draw(movesHighlighter);
 }

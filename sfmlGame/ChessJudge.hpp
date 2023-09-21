@@ -7,25 +7,28 @@
 
 class ChessJudge
 {
+private:
+    enum c_Piece { empty = 75, w_Pawn = 1 , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  difference = 100,
+                   border = 150,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
+    };
+
+
 public:
     using ValidMovesVector = std::vector<std::pair<int,int>>;
 public:
     ChessJudge();
     bool isValid(std::pair<int, int> from, std::pair<int, int> to);
     ValidMovesVector getPossibleMoves(int, int );
-    ValidMovesVector 
+    ValidMovesVector getValidMoves(int, int);
     void movePiece(std::pair<int, int> from, std::pair<int, int> to);
     void addMove(std::pair<int,int> ij, std::pair<int,int>, ValidMovesVector& validMoves);
-    void isCheck(int i, int j); 
-    bool isCheck();
+    bool isCheck(int i, int j); 
+    void checkForChecks();
+    void changeTurn();
+    void checkForCheckedking(bool& checked);
+    bool isTurnOf(c_Piece p);
     bool checkMove(int i, int j, int p, int k);
     std::pair<int,int> getCheckedKing(){ return checkedKing; }
-
-
-private:
-    enum c_Piece { empty = 75, w_Pawn = 1 , w_Rook, w_Knight,w_Bishop, w_Queen, w_King,  difference = 100,
-                   border = 150,  b_Pawn, b_Rook,  b_Knight, b_Bishop,b_Queen, b_King
-    };
 
 private:
     ValidMovesVector computeRookMoves(int, int);

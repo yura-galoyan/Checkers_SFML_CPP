@@ -4,14 +4,17 @@
 #include "RegularBoardView.hpp"
 #include "Game.hpp"
 
-#include <SFML/Graphics.hpp>
-
-#include <thread>
+#include <iostream>
 
 int main(){
 
-    Game game(900, 1600, "Chess Game");
+    Game game(900, 900, "Chess Game");
 
+    
+
+
+    std::cout << sf::VideoMode::getDesktopMode().width << std::endl;
+    std::cout << sf::VideoMode::getDesktopMode().height << std::endl;
 
     std::unique_ptr<PiecePrototypeFactory> pieceFactory = std::make_unique<PiecePrototypeFactory>(
         std::make_unique<Pawn>(),std::make_unique<Queen>(), std::make_unique<Rook>(),

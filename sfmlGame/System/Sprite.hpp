@@ -22,6 +22,7 @@ public:
     
     void setTexture(Texture* texture);
     void draw(Window& window);
+    void setScale(std::pair<float,float> scale);
     void setStartingRect(Vector2i pos, Vector2i size);
     void setCurrRectPosY(int y);
     void setCurrRectPosX(int x);
@@ -35,7 +36,8 @@ public:
     Vector2f getPosition() const { return sprite.getPosition(); }
     Vector2i getCurrRectPos() const { return currRectPosition; };
     Vector2i getStartingRectPos() const { return startingRectPos; }
-
+    std::pair<int,int> getRectSize() const { return {sprite.getTextureRect().height, sprite.getTextureRect().width}; }
+    std::pair<int,int> getScale() const { return {  };  }
 
 private:
     Vector2i size;

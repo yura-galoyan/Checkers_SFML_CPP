@@ -19,9 +19,12 @@ public:
     void clear();
     void display();
     void create(unsigned height, unsigned width, std::string title);
+    void setView(const sf::View& view);
+    void setSize(std::pair<unsigned int,unsigned int>);
+    std::pair<unsigned int,unsigned int> getSize() { return {window.getSize().x,window.getSize().y}; }
 
-    int gerWidth() { return width; }
-    int gerheight() { return height; }
+    int getStartWidth() { return width; }
+    int gerStartheight() { return height; }
 
     operator sf::RenderWindow&() { return window;}
 
