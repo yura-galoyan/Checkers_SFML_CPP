@@ -1,9 +1,22 @@
 #include "Game.hpp"
 
 
+#include <fstream>
+#include "CellSizeController.hpp"
+
+#include <iostream>
+
 Game::Game(unsigned height, unsigned width, std::string title) 
-    : window(height, width, title) {
+{
+    auto size = sf::VideoMode().getDesktopMode().height;
+    size -= 150;
+    size /= 8;
+    size *= 8;
+
+    auto cellRealSize = 110;
+    window.create(110 * 8,110 * 8, "MyChess");
     backGround.initSprites(0, loadingScreen.getTexture("board"));
+    CellSizeController::changeCellSizeTo(size / 8);
 }
 
 // could use state pattern here
@@ -76,7 +89,7 @@ void Game::createPieces(AbstractBoardModel* boardModel, std::unique_ptr<PieceAbs
 
 void Game::initPiece(Piece *piece, int rectXpos, int sizeX, int sizeY){
     auto& s = piece->getSprite();
-    int distanceY = 111;
+    int distanceY = CellSizeController::getCellSize() + 1;
     s.setTexture(&loadingScreen.getTexture("board")); 
     if(piece->getColor() == Piece::Color::Black){
         s.setStartingRect({rectXpos,1}, {sizeX, sizeY});

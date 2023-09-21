@@ -1,4 +1,5 @@
 #include "BackGround.hpp"
+#include "CellSizeController.hpp"
 
 void BackGround::draw(Window& window){
     for(auto sprite : sprites){
@@ -8,6 +9,7 @@ void BackGround::draw(Window& window){
 }
 
 void BackGround::initSprites(float offsetX, Texture& texture){
+    
     for(int i = 0; i < 8; ++i){
         for(int j = 0; j < 8; ++j){
             Sprite sprite;

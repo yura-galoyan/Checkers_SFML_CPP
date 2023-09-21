@@ -30,6 +30,9 @@ private:
     void initPiece(Piece* piece, int x, int sizeX = 58, int sizeY = 110 );
 
 private:
+    int size;
+
+private:
     std::unique_ptr<AbstractBoardView> boardView;
     std::unique_ptr<Controller> controller;
     LoadingScreen loadingScreen;

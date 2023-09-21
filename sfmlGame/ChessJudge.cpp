@@ -104,7 +104,6 @@ ChessJudge::ValidMovesVector ChessJudge::getValidMoves(int it, int jt){
     volatile int j = jt;
 
     ValidMovesVector tmpVM = getPossibleMoves(i,j);
-    std::cout << "number of moves: " << tmpVM.size() << std::endl;
     decltype(tmpVM) realVM;
     auto oldBoard = board;
 
@@ -132,14 +131,6 @@ void ChessJudge::checkForCheckedking(bool& checked){
     for(int m = 0; m < 8; ++m){
         for( int n = 0; n < 8; ++n){
             if(isTurnOf(board[m][n])){
-                std::cout << board[m][n] << std::endl;
-                if (turn == Piece::Color::White) {
-                    std::cout << "it is Whites turn" << std::endl;
-                }
-                if (turn == Piece::Color::Black) {
-                    std::cout << "it is Blackes turn" << std::endl;
-                }
-
                 auto moves = getPossibleMoves(m,n);
                 for(auto move : moves){
                     if(turn == Piece::Color::White){

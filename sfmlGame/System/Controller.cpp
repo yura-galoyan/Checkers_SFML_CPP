@@ -3,10 +3,12 @@
 #include <iostream>
 
 #include "Mouse.hpp"
+#include "../CellSizeController.hpp"
 
 void Controller::queryEvents(Window &window, Event &event){
     setFlags(window, event);
 
+    auto size = CellSizeController::getCellSize();
     
     static int x{};
     static int y{};
@@ -15,8 +17,8 @@ void Controller::queryEvents(Window &window, Event &event){
         if(mouseButtons['l'].state.clicked){
         
             if(count == 1  ){
-                x = Mouse::getPosition(window).x/110;
-                y = Mouse::getPosition(window).y/110;
+                x = Mouse::getPosition(window).x/ size;
+                y = Mouse::getPosition(window).y/ size;
                 if(model->isValidCoordinate(x,y) && model->isTurnOf( model->getColor(x,y))){
                     --count;
                     model->setCurrPiece(x,y);
@@ -24,8 +26,8 @@ void Controller::queryEvents(Window &window, Event &event){
                 }
             }
             else if(count == 0){
-                auto newX = Mouse::getPosition(window).x / 110;
-                auto newY = Mouse::getPosition(window).y / 110;
+                auto newX = Mouse::getPosition(window).x / size;
+                auto newY = Mouse::getPosition(window).y / size;
                 if( model->isValidMove({x, y}, { newX , newY}) ){
                     if(std::find(model->getValidMoves().begin(), model->getValidMoves().end(), std::pair{newY, newX}) != model->getValidMoves().end() ){
                         model->movePiece(x, y, newX , newY );
@@ -45,7 +47,6 @@ void Controller::queryEvents(Window &window, Event &event){
                     model->setValidMoves( judge.getValidMoves(y,x));
                 }
             }
-            std::cout<<"count: " << count << std::endl;
         }
     }
     catch(const std::exception& exception){

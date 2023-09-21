@@ -1,9 +1,15 @@
 #include "SfmlController.hpp"
 
+#include "../CellSizeController.hpp"
+
 SfmlController::SfmlController(){
     initMouseButtons();
     longReleasedTime = 0.05f;
 }
+
+#include <iostream>
+
+
 
 void SfmlController::setFlags(Window &window, Event &event)
 {
@@ -25,6 +31,7 @@ void SfmlController::setFlags(Window &window, Event &event)
                     window.close();
                     break;
                 case sf::Event::Resized:
+                    CellSizeController::changeCellSizeTo(window.getSize().first / 8);
                     window.setSize({window.getSize().first, window.getSize().first});
                     break;
                 default:
