@@ -5,10 +5,9 @@
 #include "Mouse.hpp"
 #include "../CellSizeController.hpp"
 
-void Controller::queryEvents(Window &window, Event &event){
-    setFlags(window, event);
+bool Controller::queryEvents(Window &window, Event &event){
+    auto thereIsEvent = setFlags(window, event);
 
-    auto size = CellSizeController::getCellSize();
     
     static int x{};
     static int y{};
@@ -16,6 +15,7 @@ void Controller::queryEvents(Window &window, Event &event){
     try{
         if(mouseButtons['l'].state.clicked){
         
+            auto size = CellSizeController::getCellSize();
             if(count == 1  ){
                 x = Mouse::getPosition(window).x/ size;
                 y = Mouse::getPosition(window).y/ size;
@@ -52,10 +52,12 @@ void Controller::queryEvents(Window &window, Event &event){
     catch(const std::exception& exception){
         std::cout << exception.what() << std::endl;
     }
+
+    return thereIsEvent;
 }
 
 void Controller::setModel(AbstractBoardModel *model_){
     model = model_;
 }
 
-void Controller::setFlags(Window &window, Event &event) { }
+bool Controller::setFlags(Window &window, Event &event) { return 1; }

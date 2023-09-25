@@ -11,7 +11,7 @@ public:
     SfmlController();
     
 private:
-    void setFlags(Window& window, Event& event) override;
+    bool setFlags(Window& window, Event& event) override;
     void initMouseButtons() override;
     void checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event& event);
     void checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event& event);

@@ -25,14 +25,14 @@ void LoadingScreen::start(Controller &controller, Window &window, Event &event){
         finish();
     });
 
+    sf::RectangleShape sh{{1600,900}};
     while(!isDone() && window.isOpen()){
         controller.queryEvents(window, event);
         
         window.clear();
         
-        // sf::RectangleShape sh{{1600,900}};
-        // sh.setPosition({0,0});
-        // window.draw(sh);
+        sh.setPosition({0,0});
+        window.draw(sh);
         
         animation->playAnimation(AnimationHandler::Mode::REPEAT);
         

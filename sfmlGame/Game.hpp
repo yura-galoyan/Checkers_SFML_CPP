@@ -31,6 +31,7 @@ private:
 
 private:
     int size;
+    bool onceFlag{true};
 
 private:
     std::unique_ptr<AbstractBoardView> boardView;

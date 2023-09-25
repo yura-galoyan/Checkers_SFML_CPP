@@ -32,11 +32,11 @@ public:
 
 public:
     //template method
-    void queryEvents(Window& window, Event& event);
+    bool queryEvents(Window& window, Event& event);
     void setModel(AbstractBoardModel* model);
 
 protected:
-    virtual void setFlags(Window& window, Event& event) = 0;
+    virtual bool setFlags(Window& window, Event& event) = 0;
     virtual void initMouseButtons() = 0;
     
 protected:

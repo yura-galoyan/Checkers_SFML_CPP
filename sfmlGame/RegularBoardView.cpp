@@ -47,6 +47,7 @@ void RegularBoardView::highlightValidMoves(int i, int j, Window &window){
     window.draw(movesHighlighter);
 }
 
+
 void RegularBoardView::highlightCheckedPiece(Window &window){
     if(model->getCheckedPiece()){
         checkHighlighter.setPosition( model->getCheckedPiece()->getXY().first * 110, model->getCheckedPiece()->getXY().second * 110);

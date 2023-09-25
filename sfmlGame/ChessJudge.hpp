@@ -27,8 +27,11 @@ public:
     void changeTurn();
     void checkForCheckedking(bool& checked);
     bool isTurnOf(c_Piece p);
-    bool checkMove(int i, int j, int p, int k);
-    std::pair<int,int> getCheckedKing(){ return checkedKing; }
+
+    void setIsChecked(bool state) { isChecked = state; };
+    bool getIsChecked() { return isChecked; };
+
+    std::pair<int,int> getCheckedKing();
 
 private:
     ValidMovesVector computeRookMoves(int, int);

@@ -5,18 +5,16 @@
 #include "CellSizeController.hpp"
 
 #include <iostream>
+#include <thread>
+
+using namespace std::chrono_literals;
 
 Game::Game(unsigned height, unsigned width, std::string title) 
 {
-    auto size = sf::VideoMode().getDesktopMode().height;
-    size -= 150;
-    size /= 8;
-    size *= 8;
-
-    auto cellRealSize = 110;
-    window.create(110 * 8,110 * 8, "MyChess");
+   
+    const auto cellRealSize = 110;  
+    window.create(cellRealSize * 8,cellRealSize * 8, "MyChess");
     backGround.initSprites(0, loadingScreen.getTexture("board"));
-    CellSizeController::changeCellSizeTo(size / 8);
 }
 
 // could use state pattern here
@@ -24,14 +22,15 @@ void Game::start(){
     loadingScreen.start(*controller,window,event);
 
     while(window.isOpen()){
-        controller->queryEvents(window,event);
-
-        window.clear();
-
-        backGround.draw(window);
-        boardView->draw(window);
-
-        window.display();
+        auto thereIsEvent = controller->queryEvents(window,event);
+        std::this_thread::sleep_for(1ms);
+        if(thereIsEvent || onceFlag){
+            onceFlag = false;
+            window.clear();
+            backGround.draw(window);
+            boardView->draw(window);
+            window.display();
+        }
     }
 }
 
@@ -88,8 +87,9 @@ void Game::createPieces(AbstractBoardModel* boardModel, std::unique_ptr<PieceAbs
 }
 
 void Game::initPiece(Piece *piece, int rectXpos, int sizeX, int sizeY){
+    const auto cellRealSize = 110;  
     auto& s = piece->getSprite();
-    int distanceY = CellSizeController::getCellSize() + 1;
+    int distanceY = cellRealSize + 1;
     s.setTexture(&loadingScreen.getTexture("board")); 
     if(piece->getColor() == Piece::Color::Black){
         s.setStartingRect({rectXpos,1}, {sizeX, sizeY});
