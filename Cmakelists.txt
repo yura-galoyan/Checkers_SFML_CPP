@@ -10,6 +10,7 @@ find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
 set(src sfmlGame)
 
+add_subdirectory(Server/Server)
 
 include_directories("SFML-2.5.1/include")
 
@@ -51,4 +52,5 @@ ${src}/Factories/SfmlSystemFactory.cpp
 add_executable(chessGame ${SOURCES})
 
 # Link SFML to your project
-target_link_libraries(chessGame sfml-graphics sfml-window sfml-system)
+target_link_libraries(chessGame sfml-window sfml-graphics sfml-system)
+

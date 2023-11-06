@@ -1,0 +1,7 @@
+build/
+build
+client.exe
+server.exe
+.vscode/
+.vscode
+myIp.txt

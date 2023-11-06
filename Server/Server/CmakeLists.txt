@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.15)
+project(server)
+
+include_directories(../include)
+
+set(SOURCES Source/main.cpp)
+
+add_executable(server ${SOURCES})
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+
+if(MINGW)
+  target_link_libraries(server ws2_32 wsock32)
+endif()

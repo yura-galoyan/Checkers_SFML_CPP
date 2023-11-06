@@ -1,0 +1,1 @@
+# for now build folders are in client and server forders

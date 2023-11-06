@@ -11,10 +11,14 @@
 #include "System/Controller.hpp"
 #include "System/Window.hpp"
 #include "BackGround.hpp"
+#include "Ynet/Client.hpp"
+#include "Common.hpp"
 
 #include <memory>
 
-class Game
+
+
+class Game : Ynet::ClientInterface<ChessMsgTypes>
 {
 public:
     Game() = default;
