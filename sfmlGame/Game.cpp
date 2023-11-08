@@ -15,13 +15,25 @@ Game::Game(unsigned height, unsigned width, std::string title)
     const auto cellRealSize = 110;  
     window.create(cellRealSize * 8,cellRealSize * 8, "MyChess");
     backGround.initSprites(0, loadingScreen.getTexture("board"));
+
+    if(connect("127.0.0.1", 60000)){
+        std::cout << "connected to server" << std::endl;
+    }
+    else{
+        std::cout << "could not connect to server" << std::endl;
+    }
 }
 
 // could use state pattern here
 void Game::start(){
     loadingScreen.start(*controller,window,event);
 
+    queryNetwork();
+
     while(window.isOpen()){
+
+        /// TODO: change this
+
         auto thereIsEvent = controller->queryEvents(window,event);
         std::this_thread::sleep_for(1ms);
         if(thereIsEvent || onceFlag){
@@ -32,6 +44,28 @@ void Game::start(){
             window.display();
         }
     }
+}
+
+void Game::queryNetwork(){
+    if(isConnected()){
+        while(!incoming().empty()){
+            auto msg = incoming().pop_back().msg;
+
+            switch(msg.header.id){
+                case ChessMsgTypes::Assign_id:
+                {
+                    msg >> player;
+                }
+                break;
+                default:
+                    std::cout << "unrecognized msg" << std::endl;
+                break;
+            }
+        }
+    }
+
+
+
 }
 
 void Game::createBoard(std::unique_ptr<PieceAbstractFactory> pieceFactory, std::unique_ptr<AbstractSystemFactory> systemFactory){

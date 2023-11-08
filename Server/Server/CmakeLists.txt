@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
 project(server)
 
-include_directories(../include)
+include_directories("../include")
 
-set(SOURCES Source/main.cpp)
+set(SOURCES Source/main.cpp
+Source/CustomServer.cpp)
 
 add_executable(server ${SOURCES})
 
