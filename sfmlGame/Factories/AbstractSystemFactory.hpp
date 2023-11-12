@@ -10,7 +10,6 @@
 class AbstractSystemFactory
 {
 public:
-    virtual std::unique_ptr<Controller> createController() = 0 ;
     virtual std::unique_ptr<AbstractBoardModel> createBoardModel() = 0 ;
     virtual std::unique_ptr<AbstractBoardView> createBoardView() = 0 ;
 };

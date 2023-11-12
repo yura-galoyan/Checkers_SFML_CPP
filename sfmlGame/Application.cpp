@@ -12,15 +12,11 @@ Application::Application(){
 
     std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>();
 
-    Game game;
-    game.createBoard(std::move(pieceFactory), std::move(systemFactory));
-
-    
-
-    
-
+    // game.createBoard(std::move(pieceFactory), std::move(systemFactory));
 }
 
-void Application::execute(){
+int Application::exec()
+{
+    loadingScreen.start();
     
 }

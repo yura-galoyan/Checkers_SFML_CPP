@@ -19,19 +19,7 @@ Game::Game(unsigned height, unsigned width, std::string title)
 
 // could use state pattern here
 void Game::start(){
-    loadingScreen.start(*controller,window,event);
 
-    while(window.isOpen()){
-        auto thereIsEvent = controller->queryEvents(window,event);
-        std::this_thread::sleep_for(1ms);
-        if(thereIsEvent || onceFlag){
-            onceFlag = false;
-            window.clear();
-            backGround.draw(window);
-            boardView->draw(window);
-            window.display();
-        }
-    }
 }
 
 void Game::createBoard(std::unique_ptr<PieceAbstractFactory> pieceFactory, std::unique_ptr<AbstractSystemFactory> systemFactory){

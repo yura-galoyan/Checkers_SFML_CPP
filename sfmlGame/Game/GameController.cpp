@@ -1,17 +1,14 @@
-#include "Controller.hpp"
-#include "../AbstractBoardModel.hpp"
 #include <iostream>
-
+#include "AbstractBoardModel.hpp"
+#include "CellSizeController.hpp"
+#include "GameController.hpp"
 #include "Mouse.hpp"
-#include "../CellSizeController.hpp"
 
-bool Controller::queryEvents(Window &window, Event &event){
-    auto thereIsEvent = setFlags(window, event);
-
-    
+void GameController::handleEvents(Window &window, Event &event){
     static int x{};
     static int y{};
     static int count = 1;
+    
     try{
         if(mouseButtons['l'].state.clicked){
         
@@ -52,12 +49,4 @@ bool Controller::queryEvents(Window &window, Event &event){
     catch(const std::exception& exception){
         std::cout << exception.what() << std::endl;
     }
-
-    return thereIsEvent;
 }
-
-void Controller::setModel(AbstractBoardModel *model_){
-    model = model_;
-}
-
-bool Controller::setFlags(Window &window, Event &event) { return 1; }

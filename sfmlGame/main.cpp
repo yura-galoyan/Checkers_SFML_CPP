@@ -17,6 +17,7 @@ int main(){
     std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>();
     std::unique_ptr<AbstractBoardView> view = std::make_unique<RegularBoardView>();
     std::unique_ptr<Controller> controller = std::make_unique<SfmlController>();
+    
     game.createBoard(std::move(pieceFactory), std::move(systemFactory));
     game.start();
 

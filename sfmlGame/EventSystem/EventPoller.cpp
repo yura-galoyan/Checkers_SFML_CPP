@@ -1,17 +1,13 @@
-#include "SfmlController.hpp"
+#include "EventPoller.hpp"
 
-#include "../CellSizeController.hpp"
+#include "CellSizeController.hpp"
 
-SfmlController::SfmlController(){
+EventPoller::EventPoller(){
     initMouseButtons();
     longReleasedTime = 0.05f;
 }
 
-#include <iostream>
-
-
-
-bool SfmlController::setFlags(Window &window, Event &event){
+bool EventPoller::setFlags(Window &window, Event &event){
     bool thereIsEvent{false};
     clearEvents();
     while(window.pollEvent(event)){
@@ -43,12 +39,12 @@ bool SfmlController::setFlags(Window &window, Event &event){
     return thereIsEvent;
 }
 
-void SfmlController::initMouseButtons(){
+void EventPoller::initMouseButtons(){
     mouseButtons['l'] = ButtonPair<char>{sf::Mouse::Button::Left,{}};
     mouseButtons['r'] = ButtonPair<char>{sf::Mouse::Button::Right,{}};
 }
 
-void SfmlController::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &event){
+void EventPoller::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &event){
     if(event.event().key.code == buttonPair.button){
         clockReleased.restart();
         buttonPair.state.clicked = true;
@@ -57,7 +53,7 @@ void SfmlController::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event
 
 }
 
-void SfmlController::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &event){
+void EventPoller::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &event){
     if(event.event().key.code == buttonPair.button){
         if(clockReleased.elapsed() > longReleasedTime){
             buttonPair.state.longReleased = true;    
@@ -70,7 +66,7 @@ void SfmlController::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Even
 
 }
 
-void SfmlController::clearEvents(){
+void EventPoller::clearEvents(){
     for(auto& [key, mapped] : mouseButtons ){
         mapped.state.clicked = false;
         mapped.state.shortReleased = false;
@@ -78,6 +74,6 @@ void SfmlController::clearEvents(){
     }
 }
 
-auto SfmlController::atMouseButton(char button) -> ButtonPair<char> {
+auto EventPoller::atMouseButton(char button) -> ButtonPair<char> {
     return mouseButtons[button];
 }

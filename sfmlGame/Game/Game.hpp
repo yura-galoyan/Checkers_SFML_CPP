@@ -7,9 +7,6 @@
 #include "Factories/PieceAbstractFactory.hpp"
 #include "AbstractBoardModel.hpp"
 #include "AbstractBoardView.hpp"
-#include "LoadingScreen.hpp"
-#include "System/Controller.hpp"
-#include "System/Window.hpp"
 #include "BackGround.hpp"
 #include "Ynet/Client.hpp"
 #include "Common.hpp"
@@ -39,11 +36,7 @@ private:
 
 private:
     std::unique_ptr<AbstractBoardView> boardView;
-    std::unique_ptr<Controller> controller;
-    LoadingScreen loadingScreen;
     BackGround backGround;
-    Window window;
-    Event event;
 };
 
 #endif //GAME_HPP
