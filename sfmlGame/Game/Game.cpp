@@ -27,25 +27,6 @@ Game::Game(unsigned height, unsigned width, std::string title)
 // could use state pattern here
 void Game::start(){
 
-<<<<<<< HEAD:sfmlGame/Game/Game.cpp
-=======
-    queryNetwork();
-
-    while(window.isOpen()){
-
-        /// TODO: change this
-
-        auto thereIsEvent = controller->queryEvents(window,event);
-        std::this_thread::sleep_for(1ms);
-        if(thereIsEvent || onceFlag){
-            onceFlag = false;
-            window.clear();
-            backGround.draw(window);
-            boardView->draw(window);
-            window.display();
-        }
-    }
->>>>>>> 714661d661900f7aaa589be6d14705666f356d8c:sfmlGame/Game.cpp
 }
 
 void Game::queryNetwork(){
