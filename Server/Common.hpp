@@ -13,7 +13,17 @@ enum class ChessMsgTypes : std::uint32_t
     Player1,
     Player2,
     PlayerMove1,
-    PlayerMove2
+    PlayerMove2,
+    Assign_id
+};
+
+enum class Color : std::uint32_t{
+    White,Black,None
+};
+
+struct Player{
+    std::size_t id;
+    Color color;
 };
 
 #endif //COMMON_HPP

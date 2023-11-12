@@ -29,10 +29,14 @@ public:
 private:
     void createPieces(AbstractBoardModel* model, std::unique_ptr<PieceAbstractFactory> factory);
     void initPiece(Piece* piece, int x, int sizeX = 58, int sizeY = 110 );
+    void queryNetwork();
 
 private:
     int size;
     bool onceFlag{true};
+
+private:
+    Player player{0,Color::None};
 
 private:
     std::unique_ptr<AbstractBoardView> boardView;

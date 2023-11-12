@@ -4,10 +4,10 @@
 #include <asio.hpp>
 #include <asio/ts/buffer.hpp>
 #include <asio/ts/internet.hpp>
-
+#include <atomic>
 #include <memory>
 #include <iostream>
-
+#include <stdexcept>
 #include "Message.hpp"
 #include "ThreadSafeQueue.hpp"
 
@@ -62,21 +62,27 @@ namespace Ynet{
 			}
 		}
 
-		void connectToServer(const asio::ip::tcp::resolver::results_type& endpoints)
+		void connectToServer(const asio::ip::tcp::resolver::results_type& endpoints, std::atomic<bool>& flag1, std::atomic<bool>& flag2)
 		{
 			// Only clients can connect to servers
 			if (m_nOwnerType == Owner::Client)
 			{
 				// Request asio attempts to connect to an endpoint
 				asio::async_connect(m_socket, endpoints,
-					[this](std::error_code ec, asio::ip::tcp::endpoint endpoint)
+					[this,&flag1, &flag2](std::error_code ec, asio::ip::tcp::endpoint endpoint)
 					{
 						if (!ec)
 						{
 							readValidation();
+							flag1 = true;
 						}
-					});
+						else{
+							flag2 = true;
+						}
+					}
+				);
 			}
+			
 		}
 
 		void disconnect()
@@ -260,7 +266,6 @@ namespace Ynet{
 					}
 				}
 			);
-
 		}
 
 

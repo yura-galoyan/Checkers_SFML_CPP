@@ -26,11 +26,24 @@ namespace Ynet{
 				asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, std::to_string(port));
 				// Create Connection
 				m_connection = std::make_unique<Connection<T>>(Connection<T>::Owner::Client, m_context, asio::ip::tcp::socket(m_context), m_qMessagesIn);
-				
 				// Tell the Connection object to connect to server
-				m_connection->connectToServer(endpoints);
+				std::atomic flag1{false};
+				std::atomic flag2{false};
+				m_connection->connectToServer(endpoints,flag1, flag2);
+
 				// Start Context Thread
 				thrContext = std::thread([this]() { m_context.run(); });
+
+				while(true){
+					std::cout << "waiting for response" << std::endl;
+					if(flag1){
+						return true;
+					}
+					if(flag2){
+						return false;
+					}
+				}
+			
 			}
 			catch (std::exception& e)
 			{
