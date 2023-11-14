@@ -2,8 +2,8 @@
 #define ANIMATION_HANDLER_HPP
 
 
-#include "System/Sprite.hpp"
-#include "System/Clock.hpp"
+#include "Sprite.hpp"
+#include "Clock.hpp"
 
 
 class AnimationHandler

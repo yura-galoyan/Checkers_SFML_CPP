@@ -3,23 +3,22 @@
 
 #include "EventPoller.hpp"
 
-#include "System/Controller.hpp"
-#include "LoadingScreen.hpp"
-#include "System/Window.hpp"
-#include "Game.hpp"
+class iGameState;
 
 class Application
 {
 public:
     Application();
     int exec();
+    void setState(std::unique_ptr<GameState> state);
 
 private:
-    LoadingScreen loadingScreen;
-    EventPoller poller;
+    std::unique_ptr<iGameState> m_gameState;
+    // LoadingScreen loadingScreen;
+    // EventPoller poller;
     Window window;
     Event event;
-    Game game;
+    // Game game;
 };
 
 #endif //APPLICATION_HPP

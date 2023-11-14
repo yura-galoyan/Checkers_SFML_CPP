@@ -3,6 +3,8 @@
 #include "Factories/PiecePrototypeFactory.hpp"
 #include "Factories/SfmlSystemFactory.hpp"
 
+#include "States/iGameState.hpp"
+
 Application::Application(){
 
     std::unique_ptr<PiecePrototypeFactory> pieceFactory = std::make_unique<PiecePrototypeFactory>(
@@ -17,6 +19,10 @@ Application::Application(){
 
 int Application::exec()
 {
-    loadingScreen.start();
-    
+   m_gameState->start(); 
+}
+
+void Application::setState(std::unique_ptr<iGameState> state)
+{
+    m_gameState = std::move(state);
 }
