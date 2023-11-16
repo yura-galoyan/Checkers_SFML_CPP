@@ -10,13 +10,11 @@ class AbstractBoardModel;
 class iController
 {
 public:
-    iController(Window& window, Event& event, AbstractBoardModel* model);
+    iController(Window& window, Event& event);
 
     virtual void handleEvents() = 0;
 
 protected:
-    AbstractBoardModel* m_model;
-    ChessJudge m_judge;
     Window& m_window;
     Event& m_event;
 };

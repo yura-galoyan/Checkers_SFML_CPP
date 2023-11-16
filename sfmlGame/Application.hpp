@@ -10,7 +10,7 @@ class Application
 public:
     Application();
     int exec();
-    void setState(std::unique_ptr<GameState> state);
+    void setState(std::unique_ptr<iGameState> state);
 
 private:
     std::unique_ptr<iGameState> m_gameState;

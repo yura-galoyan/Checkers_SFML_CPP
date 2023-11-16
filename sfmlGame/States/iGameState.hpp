@@ -6,6 +6,8 @@
 class iController;
 class Application;
 
+
+// LoadingScreenState, GameLobbyState, MainGameState... 
 class iGameState
 {
 public:

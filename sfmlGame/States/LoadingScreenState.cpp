@@ -42,7 +42,7 @@ void LoadingScreenState::start( ){
 
     tMan.join();
     // Add Game Controller.
-    m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(m_controller),m_window,m_eventx));
+    m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(m_controller),m_window,m_event));
 }
 
 void LoadingScreenState::draw(Window& window){

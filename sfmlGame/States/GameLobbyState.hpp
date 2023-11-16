@@ -15,10 +15,16 @@ public:
     void start() override;
 
 private:
-    BackGround m_background;
-    Ynet::C
+    // some connection
+    BackGround m_background; // this is rendering part
+    // view
+    // model
+    Application* m_app;
+    Event& m_event;
+    Window& m_window;
+   // Ynet::C
 
 
-}
+};
 
 #endif //STATES_GAME_LOBBY_STATE_HPP
