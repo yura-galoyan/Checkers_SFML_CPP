@@ -28,9 +28,9 @@ private:
     std::unique_ptr<AnimationHandler> animation;
     std::atomic<bool> done{false};
     TextureManager texManager;
+    Application* m_app;
     Window& m_window;
     Event& m_event;
-    Application* m_app;
     Sprite sprite;
 };
 
