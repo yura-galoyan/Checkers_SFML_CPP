@@ -14,11 +14,10 @@ public:
 
 private:
     std::unique_ptr<iGameState> m_gameState;
-    // LoadingScreen loadingScreen;
     // EventPoller poller;
     Window window;
     Event event;
-    // Game game;
+
 };
 
 #endif //APPLICATION_HPP
