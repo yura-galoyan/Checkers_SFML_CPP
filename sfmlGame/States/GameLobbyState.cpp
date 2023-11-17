@@ -1,11 +1,12 @@
 #include "GameLobbyState.hpp"
 
-GameLobbyState::GameLobbyState(Application* app, Window& window, Event& event)
+GameLobbyState::GameLobbyState(Application* app,TextureHolder textures, Window& window, EventPoller& eventPoller)
     : m_app{app},
     iGameState(
-            std::make_unique<GameLobbyController>(window,event),
-            std::make_unique<GameLobbyView>()), 
-            m_event{event}, m_window{window} 
+            std::make_unique<GameLobbyController>(),
+            std::make_unique<GameLobbyView>(std::move(textures)),
+            &window
+        )
         {
             
         };

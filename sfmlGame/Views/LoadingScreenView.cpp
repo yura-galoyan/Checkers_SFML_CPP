@@ -1,29 +1,37 @@
 #include "LoadingScreenView.hpp"
 
+LoadingScreenView::LoadingScreenView(TextureHolder textures)
+    : iView{std::move(textures)}
+{
+}
+
 void LoadingScreenView::render(Window &window)
 {
-    background.draw(window);
+    
+    title.draw(window);
     loadingIconSprite.draw(window);
 }
 
 void LoadingScreenView::init()
 {
-    // initializing title
-    background.setPosition(0,0);
-    background.setTexture(&texManager["loading_screen_title"]);
+    const std::string loadingScreenPath = "../assets/LoadingScreen/";
+    m_textures->load(TextureId::checkers_title_curve, loadingScreenPath + "checkers_title_curve.png");
+    m_textures->load(TextureId::loading_icon_sheet, loadingScreenPath + "loading_icon_sheet.png");
 
-    /// TODO: "Magic numbers" are EVIL, need to do something about this!!! 
+
+
+    // initializing title
+    title.setPosition(0,0);
+    title.setTexture(&m_textures->get(TextureId::checkers_title_curve));
+
+    
+    /// TODO: "Magic numbers" are EVIL, need to do something about this!!! what is even this 58 thing
     loadingIconSprite.setStartingRect({1,1},{58,58});
-    loadingIconSprite.setTexture(&texManager["loading_screen_icon_sheet"]);
+    loadingIconSprite.setTexture(&m_textures->get(TextureId::loading_icon_sheet));
     loadingIconSprite.setPosition(0,0);
 
     loadingIconAnimation = AnimationHandler{&loadingIconSprite,loadingIconSprite.getSize().x,loadingIconSprite.getSize().y};
     loadingIconAnimation.setDesiredFps(30);
     loadingIconAnimation.setFrameCount(6);
     loadingIconAnimation.setDelayBetweenFrames(0.1f);
-}
-
-void LoadingScreenView::initLoadingTextures(){
-    texManager.addTexture("loading_screen_title","../assets/LoadingScreen/checkers_title_curve.png" );
-    texManager.addTexture("loading_screen_icon_sheet", "../assets/LoadingScreen/loading_icon_sheet.png" );
 }

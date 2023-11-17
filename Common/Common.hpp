@@ -22,7 +22,7 @@ enum class Color : std::uint32_t{
 };
 
 struct Player{
-    std::size_t id;
+    size_t id;
     Color color;
 };
 

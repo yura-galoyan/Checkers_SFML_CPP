@@ -6,9 +6,9 @@
 class GameLobbyController : public iController
 {
 public:
-    GameLobbyController(Window& window, Event& event);
+    GameLobbyController(EventPoller* eventPoller);
 
-    void handleEvents() override;
+    void handleEvents(Window& window) override;
         
 
 };

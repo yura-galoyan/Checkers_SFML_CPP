@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(chessGame)
+project(checkers)
 
 set(CMAKE_CXX_STANDARD 17) 
 
@@ -40,12 +40,12 @@ ${src}/main.cpp
 )
 
 # Create the executable
-add_executable(chessGame ${SOURCES})
+add_executable(checkers ${SOURCES})
 
 # Link SFML to your project
-target_link_libraries(chessGame sfml-window sfml-graphics sfml-system)
+target_link_libraries(checkers sfml-window sfml-graphics sfml-system)
 
 if(MINGW)
-  target_link_libraries(chessGame ws2_32 wsock32)
+  target_link_libraries(checkers ws2_32 wsock32)
 endif()
 

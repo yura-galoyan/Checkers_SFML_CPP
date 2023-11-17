@@ -1,8 +1,8 @@
 #include "GameLobbyView.hpp"
 
-GameLobbyView::GameLobbyView(Texture* texture)
+GameLobbyView::GameLobbyView(TextureHolder textures)
+    : iView{std::move(textures)}
 {
-    
 }
 
 void GameLobbyView::render(Window &window)

@@ -1,6 +1,16 @@
 #include "LoadingScreenController.hpp"
 
-LoadingScreenController::LoadingScreenController(Window &window, Event &event)
-    :iController(window,event)
+
+
+LoadingScreenController::LoadingScreenController( EventPoller* eventPoller)
+    :iController(eventPoller)
 {
+}
+
+void LoadingScreenController::handleEvents(Window& window)
+{
+    m_eventPoller->setFlags(window);
+
+
+
 }

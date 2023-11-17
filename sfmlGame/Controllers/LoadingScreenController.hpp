@@ -6,9 +6,9 @@
 class LoadingScreenController : public iController
 {
 public:
-    LoadingScreenController(Window& window, Event& event);
+    LoadingScreenController(EventPoller* eventPoller);
 
-    void handleEvents() override ;
+    void handleEvents(Window& window) override ;
 
 };
 

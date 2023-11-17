@@ -13,11 +13,10 @@ public:
     void setState(std::unique_ptr<iGameState> state);
 
 private:
-    std::unique_ptr<iGameState> m_gameState;
+    std::unique_ptr<iGameState> m_gameState;    
     // EventPoller poller;
-    Window window;
-    Event event;
-
+    Window m_window;
+    EventPoller m_eventPoller;
 };
 
 #endif //APPLICATION_HPP

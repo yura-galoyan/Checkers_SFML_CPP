@@ -10,22 +10,17 @@
 class LoadingScreenView : public iView
 {
 public:
+    LoadingScreenView(TextureHolder textures); 
     void render(Window& window) override;
 
 public:
     void init() override;
 
-private:
-    void initLoadingTextures();
-    
 
 private:
-    AnimationHandler loadingIconAnimation;
-    TextureManager texManager;
+    AnimationHandler loadingIconAnimation; 
     Sprite loadingIconSprite;
-    TextureLoader loader;
-    Sprite background;
-    
+    Sprite title;
 };
 
 

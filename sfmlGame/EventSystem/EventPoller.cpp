@@ -7,28 +7,25 @@ EventPoller::EventPoller(){
     longReleasedTime = 0.05f;
 }
 
-bool EventPoller::setFlags(Window &window, Event &event){
+void EventPoller::setFlags(Window &window){
+    Event event;
     bool thereIsEvent{false};
     clearEvents();
     while(window.pollEvent(event)){
         switch (event.event().type)
         {
             case sf::Event::MouseButtonPressed:
-                checkMouseButtonPressed(mouseButtons['l'], event);
-                checkMouseButtonPressed(mouseButtons['r'], event);
-                thereIsEvent = true;
+                checkMouseButtonPressed(m_mouseButtons['l'], event);
+                checkMouseButtonPressed(m_mouseButtons['r'], event);
                 break;
             case sf::Event::MouseButtonReleased:
-                checkMouseButtonReleased(mouseButtons['l'], event);
-                checkMouseButtonReleased(mouseButtons['r'], event);
-                thereIsEvent = true;
+                checkMouseButtonReleased(m_mouseButtons['l'], event);
+                checkMouseButtonReleased(m_mouseButtons['r'], event);
                 break;
             case sf::Event::Closed:
-                thereIsEvent = true;
                 window.close();
                 break;
             case sf::Event::Resized:
-                thereIsEvent = true;
                 CellSizeController::changeCellSizeTo(static_cast<int>(window.getSize().first / 8));
                 window.setSize({window.getSize().first, window.getSize().first});
                 break;
@@ -36,12 +33,11 @@ bool EventPoller::setFlags(Window &window, Event &event){
                 break;
         }
     }
-    return thereIsEvent;
 }
 
 void EventPoller::initMouseButtons(){
-    mouseButtons['l'] = ButtonPair<char>{sf::Mouse::Button::Left,{}};
-    mouseButtons['r'] = ButtonPair<char>{sf::Mouse::Button::Right,{}};
+    m_mouseButtons['l'] = ButtonPair<char>{sf::Mouse::Button::Left,{}};
+    m_mouseButtons['r'] = ButtonPair<char>{sf::Mouse::Button::Right,{}};
 }
 
 void EventPoller::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &event){
@@ -67,7 +63,7 @@ void EventPoller::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &
 }
 
 void EventPoller::clearEvents(){
-    for(auto& [key, mapped] : mouseButtons ){
+    for(auto& [key, mapped] : m_mouseButtons ){
         mapped.state.clicked = false;
         mapped.state.shortReleased = false;
         mapped.state.longReleased = false;
@@ -75,5 +71,5 @@ void EventPoller::clearEvents(){
 }
 
 auto EventPoller::atMouseButton(char button) -> ButtonPair<char> {
-    return mouseButtons[button];
+    return m_mouseButtons[button];
 }

@@ -12,7 +12,7 @@
 class GameLobbyState : public iGameState
 {
 public:
-    GameLobbyState(Application* app, Window& window, Event& event);
+    GameLobbyState(Application* app, TextureHolder textures, Window& window, EventPoller& eventPoller);
 
     void start() override;
 
@@ -21,8 +21,6 @@ private:
     BackGround m_background; // this is rendering part
     // model
     Application* m_app;
-    Window& m_window;
-    Event& m_event;
    // Ynet::C
 
 

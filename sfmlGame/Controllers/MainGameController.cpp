@@ -1,6 +1,10 @@
 #include "MainGameController.hpp"
 
-MainGameController::MainGameController(Window &window, Event &event)
-    :iController(window,event)
+MainGameController::MainGameController(EventPoller* eventPoller)
+    :iController(eventPoller)
+{
+}
+
+void MainGameController::handleEvents(Window &window)
 {
 }

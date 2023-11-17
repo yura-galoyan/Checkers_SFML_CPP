@@ -33,17 +33,19 @@ public:
         Key state;
     };
 
+public:
+    void setFlags(Window& window);
+
 private:
-    void setFlags(Window& window, Event& event);
-    void initMouseButtddons();
+    void initMouseButtons();
     void checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event& event);
     void checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event& event);
     void clearEvents();
     ButtonPair<char> atMouseButton(char button);
-    auto& getMouseButtons() { return mouseButtons; }
+    auto& mouseButtons() { return m_mouseButtons;  }
 
 private:
-    std::unordered_map<char, ButtonPair<char> > mouseButtons;
+    std::unordered_map<char, ButtonPair<char> > m_mouseButtons;
     float longReleasedTime;
     Clock<float> clockReleased;
 };

@@ -9,7 +9,7 @@
 class LoadingScreenState : public iGameState
 {
 public:
-    LoadingScreenState(Application* app, Window& window, Event& event);
+    LoadingScreenState(Application* app, TextureHolder textures, Window& window, EventPoller& eventPoller);
 
     void start() override;
 

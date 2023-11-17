@@ -1,6 +1,10 @@
 #include "GameLobbyController.hpp"
 
-GameLobbyController::GameLobbyController(Window &window, Event &event)
-    :iController(window,event)
+GameLobbyController::GameLobbyController(EventPoller* eventPoller)
+    :iController(eventPoller)
+{
+}
+
+void GameLobbyController::handleEvents(Window &window)
 {
 }

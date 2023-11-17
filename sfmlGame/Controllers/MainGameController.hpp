@@ -6,9 +6,9 @@
 class MainGameController : public iController
 {
 public:
-    MainGameController(Window& window, Event& event);
+    MainGameController(EventPoller* eventPoller);
 
-    void handleEvents() override;
+    void handleEvents(Window& window) override;
 };
 
 

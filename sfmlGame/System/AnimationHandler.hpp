@@ -12,6 +12,7 @@ public:
     enum class Mode{ REPEAT, SINGLE };
 
 public:
+    AnimationHandler() = default;
     AnimationHandler( Sprite* sprite, unsigned height, unsigned width  );
     void setFrameCount(unsigned count);
     void setBlockingAnimation(bool state);
@@ -28,7 +29,7 @@ private:
     bool isStarted;
 
 private:
-    Sprite* sprite;
+    Sprite* sprite{nullptr};
 
 private:
     unsigned fps;
