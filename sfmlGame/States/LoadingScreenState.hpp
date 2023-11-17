@@ -12,8 +12,7 @@
 class LoadingScreenState : public iGameState
 {
 public:
-    LoadingScreenState(Application* app, std::unique_ptr<iController> controller, Window& window, Event& event)
-        : m_app{app},iGameState(std::move(controller)), m_event{event}, m_window{window} {};
+    LoadingScreenState(Application* app, Window& window, Event& event);
 
     void start() override;
 
@@ -29,8 +28,6 @@ private:
     std::atomic<bool> done{false};
     TextureManager texManager;
     Application* m_app;
-    Window& m_window;
-    Event& m_event;
     Sprite sprite;
 };
 

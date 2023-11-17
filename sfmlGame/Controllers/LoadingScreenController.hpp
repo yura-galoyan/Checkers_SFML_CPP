@@ -8,6 +8,8 @@ class LoadingScreenController : public iController
 public:
     LoadingScreenController(Window& window, Event& event);
 
+    void handleEvents() override ;
+
 };
 
 

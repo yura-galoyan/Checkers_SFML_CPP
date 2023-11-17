@@ -3,6 +3,8 @@
 
 #include "iGameState.hpp"
 
+#include "../Controllers/GameLobbyController.hpp"
+#include "../Views/GameLobbyView.hpp"
 #include "../Board/BackGround.hpp"
 #include "../Ynet/Client.hpp"
 
@@ -10,18 +12,17 @@
 class GameLobbyState : public iGameState
 {
 public:
-    GameLobbyState(Application* app, std::unique_ptr<iController> controller, Window& window, Event& event)
-        : m_app{app},iGameState(std::move(controller)), m_event{event}, m_window{window} {};
+    GameLobbyState(Application* app, Window& window, Event& event);
+
     void start() override;
 
 private:
     // some connection
     BackGround m_background; // this is rendering part
-    // view
     // model
     Application* m_app;
-    Event& m_event;
     Window& m_window;
+    Event& m_event;
    // Ynet::C
 
 

@@ -6,13 +6,14 @@
 class MainGameState : public iGameState
 {
 public:
-    MainGameState(Application* app, std::unique_ptr<iController> controller, Window& window, Event& event);
-        : m_app{app},iGameState(std::move(controller)), m_event{event}, m_window{window} {};
+    MainGameState(Application* app, Window& window, Event& event);
+
     
     void start() override;
 
 
-
+private:
+    Application* m_app;
 };
 
 

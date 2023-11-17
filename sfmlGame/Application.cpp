@@ -3,8 +3,8 @@
 #include "Factories/PiecePrototypeFactory.hpp"
 // #include "Factories/SfmlSystemFactory.hpp"
 
+#include "Controllers/LoadingScreenController.hpp"
 #include "States/LoadingScreenState.hpp"
-
 
 #include "States/iGameState.hpp"
 
@@ -19,8 +19,8 @@ Application::Application(){
     // );
 
     // std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>();
-
-    m_gameState = std::make_unique<LoadingScreenState>(this,)
+    auto m_controller = std::make_unique<LoadingScreenController>(window,event);
+    m_gameState = std::make_unique<LoadingScreenState>(this,std::move(m_controller),window,event);
 
 
 

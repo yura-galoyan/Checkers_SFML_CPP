@@ -2,10 +2,29 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameLobbyState.hpp"
+
+
+#include "../Controllers/GameLobbyController.hpp"
+
+#include "../Controllers/iController.hpp"
+
+#include "../Controllers/LoadingScreenController.hpp"
+#include "../Views/LoadingScreenView.hpp"
+
+
+#include "../Views/iView.hpp"
+
+
 #include <thread>
 #include <iostream>
 
-LoadingScreenState::LoadingScreenState(){
+LoadingScreenState::LoadingScreenState(Application* app, Window& window, Event& event)
+    : m_app{app},
+    iGameState(
+        std::make_unique<LoadingScreenController>(window,event),
+        std::make_unique<LoadingScreenView>()
+        )
+{
     texManager.initLoadingScreenState();
     initSprite();
     animation = std::make_unique<AnimationHandler>(&sprite,sprite.getSize().x,sprite.getSize().y);
@@ -26,8 +45,8 @@ void LoadingScreenState::start( ){
 
     sf::RectangleShape sh{{1600,900}};
     sh.setPosition({0,0});
-    while(!isDone() && m_window.isOpen()){
-        m_controller.queryEvents(m_window, m_event);
+    while(!isDone() && m_controller->getWindow().isOpen()){
+        m_controller->queryEvents(m_window, m_event);
         
         m_window.clear();
         
@@ -42,7 +61,7 @@ void LoadingScreenState::start( ){
 
     tMan.join();
     // Add Game Controller.
-    m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(m_controller),m_window,m_event));
+    m_app->setState(std::make_unique<GameLobbyState>(m_controller->getWindow(), m_controller->getEvent()));
 }
 
 void LoadingScreenState::draw(Window& window){
