@@ -9,18 +9,21 @@
 class TextureManager
 {
 public:
-    void initLoadingScreen();    
-    void initGame();
+    void addTexture(std::string name, std::string path);
     Texture& operator[](std::string key);
 
+    // void initLoadingScreen();    
+    // void initGame();
+    
+
 private:
-    void initPieces();
-    void initMenu();
+    // void initPieces();
+    // void initMenu();
 
 
 
 private:
     std::unordered_map<std::string, Texture> textures;
-    Texture pieces;
-    Texture loadingScreen;
+    // Texture pieces;
+    // Texture loadingScreen;
 };

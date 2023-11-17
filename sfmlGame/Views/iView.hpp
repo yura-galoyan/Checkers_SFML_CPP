@@ -7,6 +7,7 @@ class iView
 {
 public:
     virtual void render(Window& window) = 0;
+    virtual void init() = 0;
 };
 
 

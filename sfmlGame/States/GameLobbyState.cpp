@@ -7,7 +7,7 @@ GameLobbyState::GameLobbyState(Application* app, Window& window, Event& event)
             std::make_unique<GameLobbyView>()), 
             m_event{event}, m_window{window} 
         {
-
+            
         };
 
 

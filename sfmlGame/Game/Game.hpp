@@ -1,3 +1,5 @@
+#if FALSE
+
 #ifndef GAME_HPP
 #define GAME_HPP
 
@@ -44,3 +46,5 @@ private:
 };
 
 #endif //GAME_HPP
+
+#endif

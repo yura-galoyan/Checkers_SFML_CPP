@@ -18,9 +18,12 @@ Application::Application(){
     //     std::make_unique<Knight>(), std::make_unique<Bishop>(),std::make_unique<King>()
     // );
 
-    // std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>();
-    auto m_controller = std::make_unique<LoadingScreenController>(window,event);
-    m_gameState = std::make_unique<LoadingScreenState>(this,std::move(m_controller),window,event);
+    // std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>(); 
+    /// TODO: Maybe use factory here
+    m_gameState = std::make_unique<LoadingScreenState>(this, window, event);
+    
+
+
 
 
 

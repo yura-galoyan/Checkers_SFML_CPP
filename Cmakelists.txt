@@ -11,32 +11,32 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
 set(src sfmlGame)
 
 include_directories("dependencies/SFML/include")
-include_directories("Server/include")
+include_directories("dependencies/AsioInclude")
 set(SOURCES
 ${src}/main.cpp
 
-${src}/Game/AbstractBoardModel.cpp
-${src}/Game/RegularBoardModel.cpp
-${src}/Game/AbstractBoardView.cpp
-${src}/Game/RegularBoardView.cpp
-${src}/Game/ChessJudge.cpp
+# ${src}/Game/AbstractBoardModel.cpp
+# ${src}/Game/RegularBoardModel.cpp
+# ${src}/Game/AbstractBoardView.cpp
+# ${src}/Game/RegularBoardView.cpp
+# ${src}/Game/ChessJudge.cpp
 
-${src}/System/Sprite.cpp
-${src}/System/Texture.cpp
-${src}/System/Window.cpp
-${src}/System/TextureManager.cpp
-${src}/System/AnimationHandler.cpp
+# ${src}/System/Sprite.cpp
+# ${src}/System/Texture.cpp
+# ${src}/System/Window.cpp
+# ${src}/System/TextureManager.cpp
+# ${src}/System/AnimationHandler.cpp
 
-${src}/Pieces/Bishop.cpp
-${src}/Pieces/King.cpp
-${src}/Pieces/Knight.cpp
-${src}/Pieces/Pawn.cpp
-${src}/Pieces/Piece.cpp
-${src}/Pieces/Queen.cpp
-${src}/Pieces/Rook.cpp
+# ${src}/Pieces/Bishop.cpp
+# ${src}/Pieces/King.cpp
+# ${src}/Pieces/Knight.cpp
+# ${src}/Pieces/Pawn.cpp
+# ${src}/Pieces/Piece.cpp
+# ${src}/Pieces/Queen.cpp
+# ${src}/Pieces/Rook.cpp
 
-${src}/Factories/PiecePrototypeFactory.cpp
-${src}/Factories/SfmlSystemFactory.cpp
+# ${src}/Factories/PiecePrototypeFactory.cpp
+# ${src}/Factories/SfmlSystemFactory.cpp
 )
 
 # Create the executable

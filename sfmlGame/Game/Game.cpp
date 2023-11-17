@@ -1,3 +1,5 @@
+#if FALSE
+
 #include "Game.hpp"
 
 
@@ -115,3 +117,5 @@ void Game::initPiece(Piece *piece, int rectXpos, int sizeX, int sizeY){
         s.setStartingRect({rectXpos,1 + distanceY},{sizeX, sizeY});
     }
 }
+
+#endif

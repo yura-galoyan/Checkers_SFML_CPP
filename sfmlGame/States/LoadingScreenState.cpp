@@ -21,56 +21,37 @@
 LoadingScreenState::LoadingScreenState(Application* app, Window& window, Event& event)
     : m_app{app},
     iGameState(
-        std::make_unique<LoadingScreenController>(window,event),
-        std::make_unique<LoadingScreenView>()
+            std::make_unique<LoadingScreenController>(window,event),
+            std::make_unique<LoadingScreenView>()
         )
 {
-    texManager.initLoadingScreenState();
-    initSprite();
-    animation = std::make_unique<AnimationHandler>(&sprite,sprite.getSize().x,sprite.getSize().y);
-    animation->setDesiredFps(30);
-    animation->setFrameCount(6);
-    animation->setDelayBetweenFrames(0.1f);
-
+    m_view->init();
 }
+
 
 void LoadingScreenState::start( ){
 
 
+
     std::thread tMan([this]{ 
-        texManager.initGame();
-        std::this_thread::sleep_for(std::chrono::duration<std::chrono::seconds>(1));
-        finish();
+        std::this_thread::sleep_for(std::chrono::seconds{2});
+
+
+
     });
 
-    sf::RectangleShape sh{{1600,900}};
-    sh.setPosition({0,0});
-    while(!isDone() && m_controller->getWindow().isOpen()){
-        m_controller->queryEvents(m_window, m_event);
+    while(m_controller->getWindow().isOpen()){
         
-        m_window.clear();
-        
-        m_window.draw(sh);
-        
-        animation->playAnimation(AnimationHandler::Mode::REPEAT);
-        
-        draw(m_window);
+        m_controller->handleEvents();
 
-        m_window.display();
+        m_controller->getWindow().clear();
+
+        m_view->render(m_controller->getWindow());
+
+        m_controller->getWindow().display();
     }
 
     tMan.join();
     // Add Game Controller.
     m_app->setState(std::make_unique<GameLobbyState>(m_controller->getWindow(), m_controller->getEvent()));
-}
-
-void LoadingScreenState::draw(Window& window){
-    sprite.draw(window);
-}
-
-void LoadingScreenState::initSprite(){
-    std::cout<<"Sprite initialized" <<std::endl;
-    sprite.setStartingRect({1,1},{58,58});
-    sprite.setTexture(&texManager["loading_screen"]);
-    sprite.setPosition(0,0);
 }
