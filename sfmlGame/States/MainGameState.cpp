@@ -3,7 +3,7 @@
 #include "../Controllers/MainGameController.hpp"
 #include "../Views/MainGameView.hpp"
 
-MainGameState::MainGameState(Application* app,  TextureHolder textures, Window& window, EventPoller& eventPoller)
+MainGameState::MainGameState(Application* app,  TextureHolderPtr textures, Window& window, EventPoller* eventPoller)
     : m_app{app},
     iGameState(
         std::make_unique<MainGameController>(eventPoller),

@@ -1,6 +1,6 @@
 #include "LoadingScreenView.hpp"
 
-LoadingScreenView::LoadingScreenView(TextureHolder textures)
+LoadingScreenView::LoadingScreenView(TextureHolderPtr textures)
     : iView{std::move(textures)}
 {
 }
@@ -25,7 +25,7 @@ void LoadingScreenView::init()
     title.setTexture(&m_textures->get(TextureId::checkers_title_curve));
 
     
-    /// TODO: "Magic numbers" are EVIL, need to do something about this!!! what is even this 58 thing
+    /// TODO: "Magic numbers" are EVIL, need to do something about this!!! what is even this "58" thing
     loadingIconSprite.setStartingRect({1,1},{58,58});
     loadingIconSprite.setTexture(&m_textures->get(TextureId::loading_icon_sheet));
     loadingIconSprite.setPosition(0,0);

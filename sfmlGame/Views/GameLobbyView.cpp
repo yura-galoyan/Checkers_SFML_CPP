@@ -1,6 +1,6 @@
 #include "GameLobbyView.hpp"
 
-GameLobbyView::GameLobbyView(TextureHolder textures)
+GameLobbyView::GameLobbyView(TextureHolderPtr textures)
     : iView{std::move(textures)}
 {
 }
@@ -8,4 +8,9 @@ GameLobbyView::GameLobbyView(TextureHolder textures)
 void GameLobbyView::render(Window &window)
 {
     m_background.draw(window);
+}
+
+void GameLobbyView::init()
+{
+    /// implement
 }

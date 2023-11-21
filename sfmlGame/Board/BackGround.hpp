@@ -1,7 +1,7 @@
 #ifndef BACKGROUND_HPP
 #define BACKGROUND_HPP
 
-#include "System/Sprite.hpp"
+#include "../System/Sprite.hpp"
 
 #include <vector>
 

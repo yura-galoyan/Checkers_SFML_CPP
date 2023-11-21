@@ -8,7 +8,7 @@
 class Texture
 {
 public:
-    void loadFromFile(std::string path);
+    bool loadFromFile(std::string path);
 
     sf::Texture& getTexture();
 

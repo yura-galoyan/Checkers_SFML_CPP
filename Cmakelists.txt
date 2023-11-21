@@ -15,28 +15,32 @@ include_directories("dependencies/AsioInclude")
 set(SOURCES
 ${src}/main.cpp
 
-# ${src}/Game/AbstractBoardModel.cpp
-# ${src}/Game/RegularBoardModel.cpp
-# ${src}/Game/AbstractBoardView.cpp
-# ${src}/Game/RegularBoardView.cpp
-# ${src}/Game/ChessJudge.cpp
+${src}/Controllers/iController.cpp
+${src}/Controllers/GameLobbyController.cpp
+${src}/Controllers/LoadingScreenController.cpp
+${src}/Controllers/MainGameController.cpp
 
-# ${src}/System/Sprite.cpp
-# ${src}/System/Texture.cpp
-# ${src}/System/Window.cpp
-# ${src}/System/TextureManager.cpp
-# ${src}/System/AnimationHandler.cpp
+${src}/EventSystem/EventPoller.cpp
 
-# ${src}/Pieces/Bishop.cpp
-# ${src}/Pieces/King.cpp
-# ${src}/Pieces/Knight.cpp
-# ${src}/Pieces/Pawn.cpp
-# ${src}/Pieces/Piece.cpp
-# ${src}/Pieces/Queen.cpp
-# ${src}/Pieces/Rook.cpp
+${src}/states/iGameState.cpp
+${src}/States/GameLobbyState.cpp
+${src}/States/LoadingScreenState.cpp
+${src}/States/MainGameState.cpp
 
-# ${src}/Factories/PiecePrototypeFactory.cpp
-# ${src}/Factories/SfmlSystemFactory.cpp
+${src}/System/AnimationHandler.cpp
+${src}/System/Sprite.cpp
+${src}/System/Texture.cpp
+${src}/System/TextureManager.cpp
+${src}/System/Window.cpp
+
+${src}/Views/GameLobbyView.cpp
+${src}/Views/LoadingScreenView.cpp
+${src}/Views/MainGameView.cpp
+
+${src}/Application.cpp
+${src}/Board/BackGround.cpp
+${src}/main.cpp
+
 )
 
 # Create the executable

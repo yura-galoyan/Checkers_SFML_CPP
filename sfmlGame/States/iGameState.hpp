@@ -15,15 +15,10 @@ class iView;
 class iGameState
 {
 public:
-    iGameState(std::unique_ptr<iController> controller, std::unique_ptr<iView> view, Window* window) : 
-        m_controller(std::move(controller)),
-        m_view{std::move(view)},
-        m_window{window}
-        { }
-        
+    iGameState(std::unique_ptr<iController> controller, std::unique_ptr<iView> view, Window* window);
     virtual void start() = 0;
     virtual void init(){};
-    void changeState(Application* app, std::unique_ptr<iGameState> state) { app->setState(std::move(state)); };
+    void changeState(Application* app, std::unique_ptr<iGameState> state);
 
 protected:
     std::unique_ptr<iController> m_controller;

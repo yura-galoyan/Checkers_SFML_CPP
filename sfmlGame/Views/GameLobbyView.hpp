@@ -7,8 +7,9 @@
 class GameLobbyView : public iView
 {
 public:
-    GameLobbyView(TextureHolder textures); 
+    GameLobbyView(TextureHolderPtr textures); 
     void render(Window& window) override ;
+    void init() override;
 
 private:
     BackGround m_background;

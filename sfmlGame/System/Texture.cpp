@@ -1,7 +1,7 @@
 #include "Texture.hpp"
 
-void Texture::loadFromFile(std::string path){
-    tex.loadFromFile(path);
+bool Texture::loadFromFile(std::string path){
+    return tex.loadFromFile(path);
 }
 
 sf::Texture& Texture::getTexture(){

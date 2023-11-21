@@ -7,23 +7,23 @@
 #include "../Resources/ResourceIds.hpp"
 #include "../System/Texture.hpp"
 
-using TextureHolder = std::unique_ptr<ResourceHolder<Texture,TextureId>>; 
+using TextureHolder = ResourceHolder<Texture,TextureId>;
+using TextureHolderPtr = std::unique_ptr<TextureHolder>;
 
 class iView
 {
 public:
-    iView(TextureHolder textures)
+    iView(TextureHolderPtr textures)
         : m_textures{std::move(textures)}
         {}
 
-    TextureHolder stealTextures() { return std::move(m_textures); }
+    TextureHolderPtr stealTextures() { return std::move(m_textures); }
 
     virtual void render(Window& window) = 0;
     virtual void init() = 0;
 
 protected:
-    TextureHolder m_textures;
+    TextureHolderPtr m_textures;
 };
-
 
 #endif //VIEW_I_VIEW_HPP

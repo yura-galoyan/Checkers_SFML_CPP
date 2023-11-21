@@ -10,12 +10,12 @@
 
 #include "../Views/LoadingScreenView.hpp"
 
-
+#include "../Application.hpp"
 
 #include <thread>
 #include <iostream>
 
-LoadingScreenState::LoadingScreenState(Application* app, TextureHolder textures, Window& window, EventPoller& eventPoller)
+LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textures, Window& window, EventPoller* eventPoller)
     : m_app{app},
     iGameState(
             std::make_unique<LoadingScreenController>(eventPoller),
@@ -24,14 +24,13 @@ LoadingScreenState::LoadingScreenState(Application* app, TextureHolder textures,
         )
 {
     m_view->init();
+    window.create(640,640,"checkers");
 }
 
-
-
-void LoadingScreenState::start( ){
+void LoadingScreenState::start(){
     
     std::thread tMan([this]{ 
-        std::this_thread::sleep_for(std::chrono::seconds{2});
+        std::this_thread::sleep_for(std::chrono::seconds{10});
 
         // load checkers textures
 
@@ -39,7 +38,7 @@ void LoadingScreenState::start( ){
 
     while(m_window->isOpen()){
         
-        m_controller->handleEvents();
+        m_controller->handleEvents(*m_window);
 
         m_window->clear();
 
@@ -51,5 +50,5 @@ void LoadingScreenState::start( ){
 
     tMan.join();
     // Add Game Controller.
-    m_app->setState(std::make_unique<GameLobbyState>(m_app,m_view->stealTextures(),m_window,m_controller->getEventPoller()));
+    m_app->setState(std::make_unique<GameLobbyState>(m_app,m_view->stealTextures(),*m_window,m_controller->getEventPoller()));
 }

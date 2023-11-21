@@ -10,7 +10,7 @@
 class LoadingScreenView : public iView
 {
 public:
-    LoadingScreenView(TextureHolder textures); 
+    LoadingScreenView(TextureHolderPtr textures); 
     void render(Window& window) override;
 
 public:

@@ -13,27 +13,29 @@ public:
     ResourceHolder() = default;
     void load(const Id& id, const std::string& filepath ){
         auto resource = std::make_unique<Resource>();
-        if(!resource.loadFromFile(filepath)){
+        if(!resource->loadFromFile(filepath)){
             throw std::runtime_error{"could not load resource" + filepath};
         }
-        auto inserted = resources.insert(std::make_pair(id,std::move(filepath)));
-        assert(inserted.second);
+
+        auto inserted = resources.insert({id,std::move(resource)});
+        // assert((*inserted).second);
     }
 
     Resource& get(const Id& id){
-        auto found = mTextureMap.find(id);
-        assert(found != mTextureMap.end());
+        auto found = resources.find(id);
+        assert(found != resources.end());
         return *found->second;
     }
 
     const Resource& get(const Id& id) const{
-        auto found = mTextureMap.find(id);
-        assert(found != mTextureMap.end());
+        auto found = resources.find(id);
+        assert(found != resources.end());
         return *found->second;
     }
 
 private:
     std::map<Id, std::unique_ptr<Resource>> resources;
+
     
 };
 

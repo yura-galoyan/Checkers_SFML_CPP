@@ -1,10 +1,15 @@
 #include "MainGameView.hpp"
 
-MainGameView::MainGameView(TextureHolder textures)
+MainGameView::MainGameView(TextureHolderPtr textures)
     : iView{std::move(textures)}
 {
 }
 
 void MainGameView::render(Window &Window)
 {
+}
+
+void MainGameView::init()
+{
+    /// implement
 }

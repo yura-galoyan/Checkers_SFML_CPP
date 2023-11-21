@@ -7,8 +7,10 @@
 #include "../System/Event.hpp"
 
 
+
 #include <unordered_map>
 
+class iController;
 
 class EventPoller
 {
@@ -35,6 +37,7 @@ public:
 
 public:
     void setFlags(Window& window);
+    void setController(iController* controller) { m_controller = controller; };
 
 private:
     void initMouseButtons();
@@ -44,8 +47,12 @@ private:
     ButtonPair<char> atMouseButton(char button);
     auto& mouseButtons() { return m_mouseButtons;  }
 
+    void leftMouseButtonClick();
+
+
 private:
     std::unordered_map<char, ButtonPair<char> > m_mouseButtons;
+    iController* m_controller;
     float longReleasedTime;
     Clock<float> clockReleased;
 };

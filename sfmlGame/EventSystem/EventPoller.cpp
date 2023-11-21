@@ -1,6 +1,6 @@
 #include "EventPoller.hpp"
 
-#include "CellSizeController.hpp"
+#include "../Controllers/iController.hpp"
 
 EventPoller::EventPoller(){
     initMouseButtons();
@@ -26,7 +26,7 @@ void EventPoller::setFlags(Window &window){
                 window.close();
                 break;
             case sf::Event::Resized:
-                CellSizeController::changeCellSizeTo(static_cast<int>(window.getSize().first / 8));
+                // CellSizeController::changeCellSizeTo(static_cast<int>(window.getSize().first / 8));
                 window.setSize({window.getSize().first, window.getSize().first});
                 break;
             default:
@@ -44,9 +44,15 @@ void EventPoller::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &e
     if(event.event().key.code == buttonPair.button){
         clockReleased.restart();
         buttonPair.state.clicked = true;
+        leftMouseButtonClick();
+
         buttonPair.state.onHold = true;
     }
 
+}
+
+void EventPoller::leftMouseButtonClick(){
+    m_controller->onLeftClickEvent();
 }
 
 void EventPoller::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &event){

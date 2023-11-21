@@ -6,9 +6,9 @@
 class MainGameView : public iView
 {
 public:
-    MainGameView(TextureHolder textures); 
+    MainGameView(TextureHolderPtr textures); 
     void render(Window& Window) override;
-
+    void init() override;
 private:
     
 };
