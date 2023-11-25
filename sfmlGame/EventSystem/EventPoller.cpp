@@ -9,18 +9,17 @@ EventPoller::EventPoller(){
 
 void EventPoller::setFlags(Window &window){
     Event event;
-    bool thereIsEvent{false};
     clearEvents();
     while(window.pollEvent(event)){
         switch (event.event().type)
         {
             case sf::Event::MouseButtonPressed:
-                checkMouseButtonPressed(m_mouseButtons['l'], event);
-                checkMouseButtonPressed(m_mouseButtons['r'], event);
+                checkMouseButtonPressed(m_mouseButtons[Left], event);
+                checkMouseButtonPressed(m_mouseButtons[Right], event);
                 break;
             case sf::Event::MouseButtonReleased:
-                checkMouseButtonReleased(m_mouseButtons['l'], event);
-                checkMouseButtonReleased(m_mouseButtons['r'], event);
+                checkMouseButtonReleased(m_mouseButtons[Left], event);
+                checkMouseButtonReleased(m_mouseButtons[Right], event);
                 break;
             case sf::Event::Closed:
                 window.close();
@@ -36,46 +35,53 @@ void EventPoller::setFlags(Window &window){
 }
 
 void EventPoller::initMouseButtons(){
-    m_mouseButtons['l'] = ButtonPair<char>{sf::Mouse::Button::Left,{}};
-    m_mouseButtons['r'] = ButtonPair<char>{sf::Mouse::Button::Right,{}};
+    m_mouseButtons[Left] = MouseButton(Left);
+    m_mouseButtons[Right] = MouseButton(Right); 
 }
 
-void EventPoller::checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event &event){
-    if(event.event().key.code == buttonPair.button){
+void EventPoller::checkMouseButtonPressed(MouseButton& button, Event &event){
+    if(event.event().key.code == button.data){
         clockReleased.restart();
-        buttonPair.state.clicked = true;
-        leftMouseButtonClick();
+        button.state.clicked = true;
+        mouseButtonClick(button.data);
 
-        buttonPair.state.onHold = true;
+        button.state.onHold = true;
     }
 
 }
 
-void EventPoller::leftMouseButtonClick(){
-    m_controller->onLeftClickEvent();
-}
-
-void EventPoller::checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event &event){
-    if(event.event().key.code == buttonPair.button){
+void EventPoller::checkMouseButtonReleased(MouseButton& button, Event &event){
+    if(event.event().key.code == button.data){
         if(clockReleased.elapsed() > longReleasedTime){
-            buttonPair.state.longReleased = true;    
+            button.state.longReleased = true;    
         }
         else{
-            buttonPair.state.shortReleased = true;
+            button.state.shortReleased = true;
         }
-        buttonPair.state.onHold = false;
+        button.state.onHold = false;
     }
 
 }
 
+
+void EventPoller::mouseButtonClick(MouseInput input){
+    switch (input)
+    {
+    case Left:
+        m_controller->onLeftClickEvent();
+        break;
+    case Right:
+        m_controller->onRightClickEvent();
+        break;
+    default:
+        break;
+    }
+    
+}
 void EventPoller::clearEvents(){
     for(auto& [key, mapped] : m_mouseButtons ){
         mapped.state.clicked = false;
         mapped.state.shortReleased = false;
         mapped.state.longReleased = false;
     }
-}
-
-auto EventPoller::atMouseButton(char button) -> ButtonPair<char> {
-    return m_mouseButtons[button];
 }

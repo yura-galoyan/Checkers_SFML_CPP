@@ -18,8 +18,27 @@ public:
     EventPoller();
 
 private:
-    struct Key{
-        Key() = default;
+
+    template<typename KeyType, typename KeyStateType>
+    struct InputControl{
+        InputControl(KeyType data_, KeyStateType state_ = KeyStateType{}){
+            data = data_;
+            state = state_;
+        }
+        InputControl() = default;
+        KeyType data;
+        KeyStateType state;
+    };
+
+    enum MouseInput{
+        Left = sf::Mouse::Button::Left,
+        Right = sf::Mouse::Button::Right
+    };
+    
+
+
+    struct MouseButtonState{
+        MouseButtonState() = default;
         bool doubleClicked{false};
         bool notTouched{true};
         bool clicked{false};
@@ -28,12 +47,7 @@ private:
         bool longReleased{true};    
     };
 
-public:
-    template<typename MouseButton>
-    struct ButtonPair{
-        MouseButton button;
-        Key state;
-    };
+    using MouseButton = InputControl<MouseInput, MouseButtonState>;
 
 public:
     void setFlags(Window& window);
@@ -41,17 +55,17 @@ public:
 
 private:
     void initMouseButtons();
-    void checkMouseButtonPressed(ButtonPair<char>& buttonPair, Event& event);
-    void checkMouseButtonReleased(ButtonPair<char>& buttonPair, Event& event);
+    void checkMouseButtonPressed(MouseButton& button, Event& event);
+    void checkMouseButtonReleased(MouseButton& button, Event& event);
+
     void clearEvents();
-    ButtonPair<char> atMouseButton(char button);
+    void mouseButtonClick(MouseInput button);
+
+public:
     auto& mouseButtons() { return m_mouseButtons;  }
 
-    void leftMouseButtonClick();
-
-
 private:
-    std::unordered_map<char, ButtonPair<char> > m_mouseButtons;
+    std::unordered_map<MouseInput, MouseButton > m_mouseButtons;
     iController* m_controller;
     float longReleasedTime;
     Clock<float> clockReleased;
