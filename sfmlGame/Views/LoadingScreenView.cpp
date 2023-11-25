@@ -1,5 +1,7 @@
 #include "LoadingScreenView.hpp"
 
+#include "../Resources/PathStrings.hpp"
+
 LoadingScreenView::LoadingScreenView(TextureHolderPtr textures)
     : iView{std::move(textures)}
 {
@@ -14,9 +16,8 @@ void LoadingScreenView::render(Window &window)
 
 void LoadingScreenView::init()
 {
-    const std::string loadingScreenPath = "../assets/LoadingScreen/";
-    m_textures->load(TextureId::checkers_title_curve, loadingScreenPath + "checkers_title_curve.png");
-    m_textures->load(TextureId::loading_icon_sheet, loadingScreenPath + "loading_icon_sheet.png");
+    m_textures->load(TextureId::checkers_title_curve, sLoadingScreenPath + sCheckersTitleCurve);
+    m_textures->load(TextureId::loading_icon_sheet, sLoadingScreenPath + sLoadingIconSheet);
 
 
 

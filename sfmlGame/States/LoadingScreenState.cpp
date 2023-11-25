@@ -24,19 +24,20 @@ LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textur
         )
 {
     m_view->init();
-    window.create(640,640,"checkers");
 }
 
 void LoadingScreenState::start(){
+    TextureHolderPtr textureHolderPtr = std::make_unique<TextureHolder>();
     
-    std::thread tMan([this]{ 
-        std::this_thread::sleep_for(std::chrono::seconds{10});
-
+    std::atomic<bool> flag{false};
+    std::thread tMan( [this, &flag, &textureHolderPtr]{ 
         // load checkers textures
-
+        initGameTextures(*textureHolderPtr);
+        std::this_thread::sleep_for(std::chrono::seconds{1});
+        flag = true;
     });
 
-    while(m_window->isOpen()){
+    while(m_window->isOpen() && flag == true){
         
         m_controller->handleEvents(*m_window);
 
@@ -51,4 +52,8 @@ void LoadingScreenState::start(){
     tMan.join();
     // Add Game Controller.
     m_app->setState(std::make_unique<GameLobbyState>(m_app,m_view->stealTextures(),*m_window,m_controller->getEventPoller()));
+}
+
+void LoadingScreenState::initGameTextures(TextureHolder& textureHolder){
+    textureHolder.load(TextureId::checkers_board,)
 }

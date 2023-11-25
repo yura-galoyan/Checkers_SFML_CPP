@@ -14,6 +14,9 @@ public:
     void start() override;
 
 
+public:
+    void initGameTextures(TextureHolder& textureHolder);
+
 private:
     Application* m_app;
 };

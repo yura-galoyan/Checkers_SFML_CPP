@@ -15,7 +15,7 @@ public:
 
 public:
     void init() override;
-
+    void initGameTextures();
 
 private:
     AnimationHandler loadingIconAnimation; 
