@@ -42,8 +42,11 @@ namespace Ynet{
 		friend Message<T>& operator >> (Message<T>& msg, DataType& data)
 		{
 			static_assert(std::is_standard_layout<DataType>::value, "Data is too complex to be pulled from vector");
+
 			size_t i = msg.body.size() - sizeof(DataType);
+
 			std::memcpy(&data, msg.body.data() + i, sizeof(DataType));
+
 			msg.body.resize(i);
 			msg.header.size = msg.size();
 			return msg;

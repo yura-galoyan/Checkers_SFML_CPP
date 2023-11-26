@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum class ChessMsgTypes : std::uint32_t
+enum class CheckersMsgTypes : std::uint32_t
 {
     ServerAccept,
     ServerDeny,

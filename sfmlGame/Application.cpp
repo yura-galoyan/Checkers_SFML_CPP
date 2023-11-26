@@ -20,7 +20,7 @@ Application::Application(){
 
     // std::unique_ptr<SfmlSystemFactory> systemFactory = std::make_unique<SfmlSystemFactory>(); 
     /// TODO: Maybe use factory here
-    m_window.create(900,900,"checkers");
+    m_window.create(1000,1000,"checkers");
     m_gameState = std::make_unique<LoadingScreenState>(this,std::make_unique<TextureHolder>(),m_window, &m_eventPoller);
 
     // game.createBoard(std::move(pieceFactory), std::move(systemFactory));

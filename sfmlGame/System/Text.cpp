@@ -1,8 +1,12 @@
 #include "Text.hpp"
 
+Text::Text(){
+    m_data.setOutlineColor(sf::Color::Black);
+    m_data.setFillColor(sf::Color::White);
+}
+
 Text::Text(const std::string& context){
     m_data.setString(context);
-
     m_data.setOutlineColor(sf::Color::Black);
     m_data.setFillColor(sf::Color::White);
 

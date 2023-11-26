@@ -8,11 +8,11 @@
 #include "Texture.hpp"
 #include "Window.hpp"
 
+    using Vector2i = sf::Vector2i;
+    using Vector2f = sf::Vector2f;
 class Sprite
 {
 public:
-    using Vector2i = sf::Vector2i;
-    using Vector2f = sf::Vector2f;
 
 public:
     Sprite() = default;

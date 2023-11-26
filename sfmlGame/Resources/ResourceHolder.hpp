@@ -2,9 +2,11 @@
 #define RESORCES_RESOURCE_HOLDER_HPP
 
 #include <stdexcept>
+#include <iostream>
 #include <cassert>
 #include <memory>
 #include <map>
+
 
 template<typename Resource, typename Id>
 class ResourceHolder
@@ -13,8 +15,12 @@ public:
     ResourceHolder() = default;
     void load(const Id& id, const std::string& filepath ){
         auto resource = std::make_unique<Resource>();
-        if(!resource->loadFromFile(filepath)){
-            throw std::runtime_error{"could not load resource" + filepath};
+        try{
+            resource->loadFromFile(filepath);
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << e.what() + filepath + " | Path is: "<< std::endl;
         }
 
         auto inserted = resources.insert({id,std::move(resource)});

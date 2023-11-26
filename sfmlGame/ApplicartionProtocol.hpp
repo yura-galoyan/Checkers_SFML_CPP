@@ -3,7 +3,10 @@
 
 #include "Ynet/Client.hpp"
 
-class ApplicartionProtocol : public Ynet::ClientInterface
+#include "../Common/Common.hpp"
+
+
+class ApplicartionProtocol : public Ynet::ClientInterface<CheckersMsgType>
 {
 };
 

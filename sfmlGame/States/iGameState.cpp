@@ -9,6 +9,8 @@ iGameState::iGameState(std::unique_ptr<iController> controller, std::unique_ptr<
 {
 }
 
+iGameState::~iGameState(){ }
+
 void iGameState::changeState(Application *app, std::unique_ptr<iGameState> state)
 {
     app->setState(std::move(state));

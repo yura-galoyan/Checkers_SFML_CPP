@@ -9,7 +9,7 @@ class iController
 {
 public:
     iController(EventPoller* eventPoller); 
-    
+    ~iController() { } 
     auto getEventPoller(){ return m_eventPoller; }
 
     virtual void handleEvents(Window& window) = 0;

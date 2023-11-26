@@ -22,7 +22,7 @@ public:
         : m_textures{std::move(textures)},
           m_fonts{std::move(fonts)}
         {}
-
+    ~iView() { };
     TextureHolderPtr stealTextures() { return std::move(m_textures); }
 
     virtual void render(Window& window) = 0;

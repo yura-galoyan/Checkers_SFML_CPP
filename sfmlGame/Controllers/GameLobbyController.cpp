@@ -1,5 +1,7 @@
 #include "GameLobbyController.hpp"
 
+#include "../EventSystem/EventPoller.hpp"
+
 GameLobbyController::GameLobbyController(EventPoller* eventPoller)
     :iController(eventPoller)
 {
@@ -7,4 +9,5 @@ GameLobbyController::GameLobbyController(EventPoller* eventPoller)
 
 void GameLobbyController::handleEvents(Window &window)
 {
+    m_eventPoller->setFlags(window);
 }

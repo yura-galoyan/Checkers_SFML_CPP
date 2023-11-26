@@ -17,7 +17,7 @@
 
 
 
-class Game : Ynet::ClientInterface<ChessMsgTypes>
+class Game : Ynet::ClientInterface<CheckersMsgTypes>
 {
 public:
     Game() = default;

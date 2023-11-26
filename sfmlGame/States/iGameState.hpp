@@ -16,6 +16,7 @@ class iGameState
 {
 public:
     iGameState(std::unique_ptr<iController> controller, std::unique_ptr<iView> view, Window* window);
+    ~iGameState();
     virtual void start() = 0;
     virtual void init(){};
     void changeState(Application* app, std::unique_ptr<iGameState> state);

@@ -3,7 +3,7 @@
 
 #include "iView.hpp"
 #include "../Board/BackGround.hpp"
-#include "System/Text.hpp"
+#include "../System/Text.hpp"
 
 
 class GameLobbyView : public iView

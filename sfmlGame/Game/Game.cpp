@@ -37,7 +37,7 @@ void Game::queryNetwork(){
             auto msg = incoming().pop_back().msg;
 
             switch(msg.header.id){
-                case ChessMsgTypes::Assign_id:
+                case CheckersMsgTypes::Assign_id:
                 {
                     msg >> player;
                 }

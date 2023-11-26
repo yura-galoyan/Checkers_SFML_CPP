@@ -9,10 +9,16 @@ class BackGround
 {
 public:
     void draw(Window& window);
-    void initSprites(float , Texture& texture);
+    void initSprites();
+    void setTexture(Texture* texture);
+    void setPosition(float x, float y) { m_pos = Vector2i(x,y); };
+private:
+    Sprite m_whiteCell;
+    Sprite m_blackCell;
+    Texture* m_texture;
 
 private:
-    std::vector<Sprite> sprites;
+    Vector2i m_pos{0,0};
 };
 
 

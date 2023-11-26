@@ -13,7 +13,7 @@
 class Text
 {
 public:
-    Text() = default;
+    Text();
     Text(const std::string& content);
     void draw(Window& window);
     void setFont(Font* font);

@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum class ChessMsgType : std::uint32_t
+enum class CheckersMsgType : std::uint32_t
 {
     ServerAccept,
     ServerDeny,
@@ -22,7 +22,7 @@ enum class Color : std::uint32_t{
 };
 
 struct Player{
-    size_t id;
+    std::uint16_t id;
     Color color;
 };
 

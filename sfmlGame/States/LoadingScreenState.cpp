@@ -15,6 +15,7 @@
 #include "../Application.hpp"
 #include <thread>
 #include <iostream>
+#include <iostream>
 
 LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textures, Window& window, EventPoller* eventPoller)
     : m_app{app},
@@ -34,13 +35,14 @@ void LoadingScreenState::start(){
     std::atomic<bool> flag{false};
 
     std::thread tMan([&]{ 
-        std::this_thread::sleep_for(std::chrono::seconds{1});
+        std::this_thread::sleep_for(std::chrono::milliseconds{500});
 
         // load checkers textures
         textures->load(TextureId::checkers_black_white_cells, sBlackWhiteCellsPath);
         fonts->load(FontId::player_hud, sPlayerHudFont);
         flag = true;
     });
+
 
     while(m_window->isOpen() && flag == false){
         
@@ -56,5 +58,8 @@ void LoadingScreenState::start(){
 
     tMan.join();
     // call nextState
+    std::cout << "here" << std::endl;
     m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(textures), std::move(fonts), *m_window,m_controller->getEventPoller()));
+    m_app->exec();
+
 }

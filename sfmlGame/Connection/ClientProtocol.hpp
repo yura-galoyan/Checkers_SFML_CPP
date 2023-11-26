@@ -6,7 +6,7 @@
 #include "../../Common/Common.hpp"
 
 
-class ClientProtocol : public Ynet::ClientInterface<ChessMsgType>
+class ClientProtocol : public Ynet::ClientInterface<CheckersMsgType>
 {
     
 };
