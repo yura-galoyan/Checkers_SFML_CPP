@@ -9,13 +9,13 @@
 class GameLobbyView : public iView
 {
 public:
-    GameLobbyView(TextureHolderPtr textures, FontHolderPtr fonts); 
+    GameLobbyView(TextureHolderPtr textures, FontsHolderPtr fonts); 
     void render(Window& window) override ;
     void init() override;
-
+    
 private:
-    Text PlayerHud1;
-    Text PlayerHud2;
+    Text m_playerHud1;
+    Text m_playerHud2;
     BackGround m_background;
 };
 

@@ -10,8 +10,9 @@
 
 #include "../Views/LoadingScreenView.hpp"
 
-#include "../Application.hpp"
+#include "../Resources/PathStrings.hpp"
 
+#include "../Application.hpp"
 #include <thread>
 #include <iostream>
 
@@ -24,19 +25,24 @@ LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textur
         )
 {
     m_view->init();
-    window.create(640,640,"checkers");
 }
 
 void LoadingScreenState::start(){
-    TextureHolderPtr = std::make_unique<
-    std::thread tMan([this]{ 
+    TextureHolderPtr textures = std::make_unique<TextureHolder>();
+    FontsHolderPtr fonts = std::make_unique<FontsHolder>();
+
+    std::atomic<bool> flag{false};
+
+    std::thread tMan([&]{ 
         std::this_thread::sleep_for(std::chrono::seconds{1});
 
         // load checkers textures
-
+        textures->load(TextureId::checkers_black_white_cells, sBlackWhiteCellsPath);
+        fonts->load(FontId::player_hud, sPlayerHudFont);
+        flag = true;
     });
 
-    while(m_window->isOpen()){
+    while(m_window->isOpen() && flag == false){
         
         m_controller->handleEvents(*m_window);
 
@@ -49,6 +55,6 @@ void LoadingScreenState::start(){
     }
 
     tMan.join();
-    // Add Game Controller.
-    m_app->setState(std::make_unique<GameLobbyState>(m_app,m_view->stealTextures(),*m_window,m_controller->getEventPoller()));
+    // call nextState
+    m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(textures), std::move(fonts), *m_window,m_controller->getEventPoller()));
 }

@@ -18,7 +18,6 @@ public:
     void draw(Window& window);
     void setFont(Font* font);
     void setText(const std::string& content);
-
     void setPosition(sf::Vector2f pos) { m_data.setPosition(pos); };
     void setCharacterSize(unsigned int size_) { m_data.setCharacterSize(size_); };
 

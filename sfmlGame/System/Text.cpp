@@ -2,6 +2,10 @@
 
 Text::Text(const std::string& context){
     m_data.setString(context);
+
+    m_data.setOutlineColor(sf::Color::Black);
+    m_data.setFillColor(sf::Color::White);
+
 }
 
 void Text::draw(Window &window)

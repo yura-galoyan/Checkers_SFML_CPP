@@ -12,7 +12,7 @@
 class GameLobbyState : public iGameState
 {
 public:
-    GameLobbyState(Application* app, TextureHolderPtr textures, FontHolderPtr fonts, Window& window, EventPoller* eventPoller);
+    GameLobbyState(Application* app, TextureHolderPtr textures, FontsHolderPtr fonts, Window& window, EventPoller* eventPoller);
 
     void start() override;
 

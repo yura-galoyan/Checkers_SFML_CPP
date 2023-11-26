@@ -8,6 +8,7 @@ enum class TextureId
     checkers_board,
     checkers_white_piece,
     checkers_black_piece,
+    checkers_black_white_cells,
     empty
 };
 

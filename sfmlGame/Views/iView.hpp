@@ -12,13 +12,13 @@ using TextureHolder = ResourceHolder<Texture,TextureId>;
 using TextureHolderPtr = std::unique_ptr<TextureHolder>;
 
 
-using FontHolder = ResourceHolder<Font, FontId>;
-using FontHolderPtr = std::unique_ptr<FontHolder>;
+using FontsHolder = ResourceHolder<Font, FontId>;
+using FontsHolderPtr = std::unique_ptr<FontsHolder>;
 
 class iView
 {
 public:
-    iView(TextureHolderPtr textures, FontHolderPtr fonts)
+    iView(TextureHolderPtr textures, FontsHolderPtr fonts)
         : m_textures{std::move(textures)},
           m_fonts{std::move(fonts)}
         {}
@@ -30,7 +30,7 @@ public:
 
 protected:
     TextureHolderPtr m_textures;
-    FontHolderPtr m_fonts;
+    FontsHolderPtr m_fonts;
 };
 
 #endif //VIEW_I_VIEW_HPP

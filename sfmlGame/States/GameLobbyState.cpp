@@ -1,6 +1,6 @@
 #include "GameLobbyState.hpp"
 
-GameLobbyState::GameLobbyState(Application* app,TextureHolderPtr textures, FontHolderPtr fonts, Window& window, EventPoller* eventPoller)
+GameLobbyState::GameLobbyState(Application* app,TextureHolderPtr textures, FontsHolderPtr fonts, Window& window, EventPoller* eventPoller)
     : m_app{app},
     iGameState(
             std::make_unique<GameLobbyController>(eventPoller),
