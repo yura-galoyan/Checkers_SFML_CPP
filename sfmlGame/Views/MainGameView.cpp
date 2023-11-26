@@ -1,7 +1,7 @@
 #include "MainGameView.hpp"
 
 MainGameView::MainGameView(TextureHolderPtr textures)
-    : iView{std::move(textures)}
+    : iView{std::move(textures), nullptr}
 {
 }
 

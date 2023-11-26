@@ -29,7 +29,6 @@ ${src}/States/MainGameState.cpp
 
 ${src}/System/AnimationHandler.cpp
 ${src}/System/Sprite.cpp
-${src}/System/Texture.cpp
 ${src}/System/TextureManager.cpp
 ${src}/System/Window.cpp
 

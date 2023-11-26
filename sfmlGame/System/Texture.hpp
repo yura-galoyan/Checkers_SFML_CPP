@@ -8,9 +8,13 @@
 class Texture
 {
 public:
-    bool loadFromFile(std::string path);
+    bool loadFromFile(std::string path){
+        return tex.loadFromFile(path);
+    }
 
-    sf::Texture& getTexture();
+    sf::Texture& getTexture(){
+        return tex;
+    }
 
 private:
     sf::Texture tex;

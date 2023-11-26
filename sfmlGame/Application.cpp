@@ -28,6 +28,7 @@ Application::Application(){
 int Application::exec()
 {
    m_gameState->start(); 
+   return 0;
 }
 
 void Application::setState(std::unique_ptr<iGameState> state)

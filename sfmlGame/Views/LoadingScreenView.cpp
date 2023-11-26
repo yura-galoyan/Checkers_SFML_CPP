@@ -1,7 +1,7 @@
 #include "LoadingScreenView.hpp"
 
 LoadingScreenView::LoadingScreenView(TextureHolderPtr textures)
-    : iView{std::move(textures)}
+    : iView{std::move(textures), nullptr}
 {
 }
 
@@ -30,7 +30,7 @@ void LoadingScreenView::init()
     loadingIconSprite.setTexture(&m_textures->get(TextureId::loading_icon_sheet));
     loadingIconSprite.setPosition(0,0);
 
-    loadingIconAnimation = AnimationHandler{&loadingIconSprite,loadingIconSprite.getSize().x,loadingIconSprite.getSize().y};
+    loadingIconAnimation = AnimationHandler(& loadingIconSprite, loadingIconSprite.getSize().x, loadingIconSprite.getSize().y );
     loadingIconAnimation.setDesiredFps(30);
     loadingIconAnimation.setFrameCount(6);
     loadingIconAnimation.setDelayBetweenFrames(0.1f);

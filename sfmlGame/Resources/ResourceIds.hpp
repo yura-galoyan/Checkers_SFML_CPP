@@ -11,5 +11,10 @@ enum class TextureId
     empty
 };
 
+enum class FontId
+{
+    player_hud
+};
+
 
 #endif //RESOURCES_RESOURCE_IDS_HPP

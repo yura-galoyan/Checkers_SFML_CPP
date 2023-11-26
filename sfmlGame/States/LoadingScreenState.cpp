@@ -28,9 +28,9 @@ LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textur
 }
 
 void LoadingScreenState::start(){
-    
+    TextureHolderPtr = std::make_unique<
     std::thread tMan([this]{ 
-        std::this_thread::sleep_for(std::chrono::seconds{10});
+        std::this_thread::sleep_for(std::chrono::seconds{1});
 
         // load checkers textures
 

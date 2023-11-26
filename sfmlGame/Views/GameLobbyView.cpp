@@ -1,7 +1,7 @@
 #include "GameLobbyView.hpp"
 
-GameLobbyView::GameLobbyView(TextureHolderPtr textures)
-    : iView{std::move(textures)}
+GameLobbyView::GameLobbyView(TextureHolderPtr textures, FontHolderPtr fonts)
+    : iView{std::move(textures), std::move(fonts)}
 {
 }
 
