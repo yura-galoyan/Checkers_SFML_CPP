@@ -24,7 +24,7 @@ public:
         {}
     ~iView() { };
     TextureHolderPtr stealTextures() { return std::move(m_textures); }
-
+    FontsHolderPtr stealFonts() { return std::move(m_fonts); }
     virtual void render(Window& window) = 0;
     virtual void init() = 0;
 

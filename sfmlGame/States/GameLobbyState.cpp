@@ -1,6 +1,8 @@
 #include "GameLobbyState.hpp"
-#include <iostream>
+#include "MainGameState.hpp"
 
+
+#include <iostream>
 
 GameLobbyState::GameLobbyState(Application* app,TextureHolderPtr textures, FontsHolderPtr fonts, Window& window, EventPoller* eventPoller)
     : m_app{app},
@@ -31,7 +33,7 @@ void GameLobbyState::start()
             );
 
         if(GLController.isGameReady()){
-            // flag = true;
+            flag = true;
             std::cout << "second is also ready" << std::endl;
             GLView.setReady(GLController.getSecondPlayerId(), true);
 
@@ -44,5 +46,7 @@ void GameLobbyState::start()
     }
 
     std::cout << "LETS GOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!" << std::endl;
-    
+    auto nextState = std::make_unique<MainGameState>(m_app, m_view->stealTextures(),m_view->stealFonts(),*m_window, m_controller->getEventPoller() );
+    m_app->setState(std::move(nextState));
+    m_app->exec();
 }

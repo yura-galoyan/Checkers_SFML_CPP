@@ -6,7 +6,7 @@
 class MainGameState : public iGameState
 {
 public:
-    MainGameState(Application* app,  TextureHolderPtr textures, Window& window, EventPoller* eventPoller);
+    MainGameState(Application* app,  TextureHolderPtr textures, FontsHolderPtr fonts, Window& window, EventPoller* eventPoller);
 
     
     void start() override;
