@@ -25,9 +25,15 @@ void Text::setFont(Font *font)
     }
 }
 
-void Text::setText(const std::string &content)
+void Text::setText(const std::string &content, std::string color)
 {
-    m_data.setString(content);
+    if(color == "white"){
+        m_data.setColor(sf::Color::White);
+    }
+    if(color == "green"){
+        m_data.setColor(sf::Color::Green);
+    }
+        m_data.setString(content);
 }
 
 

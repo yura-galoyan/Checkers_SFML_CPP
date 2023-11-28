@@ -13,6 +13,8 @@ public:
     auto getEventPoller(){ return m_eventPoller; }
 
     virtual void handleEvents(Window& window) = 0;
+    virtual void onLoad(){};
+
 
     auto* eventPoller() { return m_eventPoller; }
 

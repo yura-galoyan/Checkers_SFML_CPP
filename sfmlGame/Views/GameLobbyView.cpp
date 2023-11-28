@@ -32,3 +32,14 @@ void GameLobbyView::init()
 
 
 }
+
+void GameLobbyView::setReady(std::uint16_t id, bool state)
+{
+    if(id == 1 && state == true){
+        m_playerHud1.setText("Player 1 is Ready","green");
+    }
+    if(id == 2 && state == true){
+        m_playerHud2.setText("Player 2 is Ready","green");
+    }
+    
+}

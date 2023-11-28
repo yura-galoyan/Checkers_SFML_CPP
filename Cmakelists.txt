@@ -7,6 +7,7 @@ set(SFML_DIR "SFML-2.5.1/build")
 
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
+set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
 set(src sfmlGame)
 
@@ -21,13 +22,14 @@ ${src}/Controllers/LoadingScreenController.cpp
 ${src}/Controllers/MainGameController.cpp
 
 ${src}/EventSystem/EventPoller.cpp
-
+${src}/Constants/BoardConstants.cpp
 ${src}/states/iGameState.cpp
 ${src}/States/GameLobbyState.cpp
 ${src}/States/LoadingScreenState.cpp
 ${src}/States/MainGameState.cpp
 
 ${src}/System/AnimationHandler.cpp
+${src}/System/Text.cpp
 ${src}/System/Sprite.cpp
 ${src}/System/TextureManager.cpp
 ${src}/System/Window.cpp
@@ -36,10 +38,10 @@ ${src}/Views/GameLobbyView.cpp
 ${src}/Views/LoadingScreenView.cpp
 ${src}/Views/MainGameView.cpp
 
+
+${src}/Resources/PathStrings.cpp
 ${src}/Application.cpp
 ${src}/Board/BackGround.cpp
-${src}/main.cpp
-
 )
 
 # Create the executable

@@ -28,6 +28,8 @@ LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textur
     m_view->init();
 }
 
+
+
 void LoadingScreenState::start(){
     TextureHolderPtr textures = std::make_unique<TextureHolder>();
     FontsHolderPtr fonts = std::make_unique<FontsHolder>();
@@ -61,5 +63,4 @@ void LoadingScreenState::start(){
     std::cout << "here" << std::endl;
     m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(textures), std::move(fonts), *m_window,m_controller->getEventPoller()));
     m_app->exec();
-
 }

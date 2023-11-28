@@ -3,10 +3,14 @@
 #include "Factories/PiecePrototypeFactory.hpp"
 // #include "Factories/SfmlSystemFactory.hpp"
 
+#include <iostream>
+
 #include "Controllers/LoadingScreenController.hpp"
 #include "States/LoadingScreenState.hpp"
 #include "States/iGameState.hpp"
 #include "Views/iView.hpp"
+
+
 
 Application::Application(){
 
@@ -28,8 +32,9 @@ Application::Application(){
 
 int Application::exec()
 {
-   m_gameState->start(); 
-   return 0;
+    
+    m_gameState->start(); 
+    return 0;
 }
 
 void Application::setState(std::unique_ptr<iGameState> state)

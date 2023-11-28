@@ -10,6 +10,7 @@ enum class CheckersMsgType : std::uint32_t
     ServerPing,
     MessageAll,
     ServerMessage,
+    OtherPlayer,
     Player1,
     Player2,
     PlayerMove1,

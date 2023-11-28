@@ -4,7 +4,7 @@
 #include "iView.hpp"
 #include "../Board/BackGround.hpp"
 #include "../System/Text.hpp"
-
+#include <cstdint>
 
 class GameLobbyView : public iView
 {
@@ -12,7 +12,7 @@ public:
     GameLobbyView(TextureHolderPtr textures, FontsHolderPtr fonts); 
     void render(Window& window) override ;
     void init() override;
-    
+    void setReady(std::uint16_t id, bool state);
 private:
     Text m_playerHud1;
     Text m_playerHud2;

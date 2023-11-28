@@ -3,7 +3,6 @@
 
 #include "iGameState.hpp"
 
-#include "../ApplicartionProtocol.hpp"
 #include "../Board/BackGround.hpp"
 #include "../Ynet/Client.hpp"
 #include "../Controllers/GameLobbyController.hpp"
@@ -21,11 +20,6 @@ private:
     // backward connect to m_app for changing the state
     Application* m_app;
    
-   Player player1{0,Color::None};
-   Player player2{0,Color::None};
-   // client server stuff
-
-    std::unique_ptr<ApplicartionProtocol> clientServer;
 
     
 
