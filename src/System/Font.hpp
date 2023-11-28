@@ -4,12 +4,17 @@
 #include <SFML/Graphics/Font.hpp>
 
 #include <string>
+#include <stdexcept>
 
 class Font
 {
 public:
     bool loadFromFile(std::string path){
-        return font.loadFromFile(path);
+
+        if (!font.loadFromFile(path))
+        {
+            throw std::runtime_error{ "can not open file" };
+        };
     }
     sf::Font& getFont(){ return font; }
 

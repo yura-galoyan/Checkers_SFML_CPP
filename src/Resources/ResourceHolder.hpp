@@ -18,9 +18,16 @@ public:
         try{
             resource->loadFromFile(filepath);
         }
-        catch(const std::exception& e)
+        catch(...)
         {
-            std::cout << e.what() + filepath + " | Path is: "<< std::endl;
+            try
+            {
+                resource->loadFromFile("../" + filepath);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
         }
 
         auto inserted = resources.insert({id,std::move(resource)});
