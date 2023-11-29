@@ -3,14 +3,20 @@
 
 #include "iView.hpp"
 
+#include "../Board/BackGround.hpp"
+#include "../System/Text.hpp"
 class MainGameView : public iView
 {
 public:
     MainGameView(TextureHolderPtr textures, FontsHolderPtr fonts); 
-    void render(Window& Window) override;
+    void render(Window& window) override;
     void init() override;
-private:
     
+private:
+    BackGround m_background;
+    Text m_playerHud1;
+    Text m_playerHud2;
+
 };
 
 

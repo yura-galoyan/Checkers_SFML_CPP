@@ -9,40 +9,36 @@ find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
-set(src sfmlGame)
+set(srcDir src)
 
 include_directories("dependencies/SFML/include")
 include_directories("dependencies/AsioInclude")
 set(SOURCES
-${src}/main.cpp
+${srcDir}/main.cpp
 
-${src}/Controllers/iController.cpp
-${src}/Controllers/GameLobbyController.cpp
-${src}/Controllers/LoadingScreenController.cpp
-${src}/Controllers/MainGameController.cpp
+${srcDir}/Controllers/iController.cpp
+${srcDir}/Controllers/GameLobbyController.cpp
+${srcDir}/Controllers/LoadingScreenController.cpp
+${srcDir}/Controllers/MainGameController.cpp
 
-${src}/EventSystem/EventPoller.cpp
-${src}/Constants/BoardConstants.cpp
-${src}/states/iGameState.cpp
-${src}/States/GameLobbyState.cpp
-${src}/States/LoadingScreenState.cpp
-${src}/States/MainGameState.cpp
+${srcDir}/EventSystem/EventPoller.cpp
+${srcDir}/Constants/BoardConstants.cpp
 
-${src}/System/AnimationHandler.cpp
-${src}/System/Text.cpp
-${src}/System/Sprite.cpp
-${src}/System/TextureManager.cpp
-${src}/System/Window.cpp
+${srcDir}/states/iGameState.cpp
+${srcDir}/States/GameLobbyState.cpp
+${srcDir}/States/LoadingScreenState.cpp
+${srcDir}/States/MainGameState.cpp
 
-${src}/Views/GameLobbyView.cpp
-${src}/Views/LoadingScreenView.cpp
-${src}/Views/MainGameView.cpp
+${srcDir}/Views/GameLobbyView.cpp
+${srcDir}/Views/LoadingScreenView.cpp
+${srcDir}/Views/MainGameView.cpp
 
-
-${src}/Resources/PathStrings.cpp
-${src}/Application.cpp
-${src}/Board/BackGround.cpp
+${srcDir}/Resources/PathStrings.cpp
+${srcDir}/Application.cpp
+${srcDir}/Board/BackGround.cpp
 )
+
+add_subdirectory(src/System system)
 
 # Create the executable
 add_executable(checkers ${SOURCES})
@@ -51,6 +47,6 @@ add_executable(checkers ${SOURCES})
 target_link_libraries(checkers sfml-window sfml-graphics sfml-system)
 
 if(MINGW)
-  target_link_libraries(checkers ws2_32 wsock32)
+  target_link_libraries(checkers system ws2_32 wsock32)
 endif()
 

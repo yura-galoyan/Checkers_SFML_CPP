@@ -6,16 +6,22 @@
 #include <string>
 #include <stdexcept>
 
+/// TODO: maybe turn this into template "Resource<typename ResourceType>"
+
 class Font
 {
 public:
-    bool loadFromFile(std::string path){
 
-        if (!font.loadFromFile(path))
-        {
-            throw std::runtime_error{ "can not open file" };
-        };
-    }
+#ifdef GCC_COMPILER
+    bool loadFromFile(std::string path){
+            return font.loadFromFile(path);
+        }
+#elif defined(_MSC_VER)
+    bool loadFromFile(std::string path){
+            return font.loadFromFile(path);
+        }
+#endif
+
     sf::Font& getFont(){ return font; }
 
 private:

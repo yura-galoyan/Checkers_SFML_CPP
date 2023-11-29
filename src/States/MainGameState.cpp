@@ -11,7 +11,7 @@ MainGameState::MainGameState(Application* app,  TextureHolderPtr textures,FontsH
         &window
         )
 {
-    
+    m_view->init();
 }
 
 

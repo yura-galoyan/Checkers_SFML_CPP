@@ -1,11 +1,3 @@
-//#include "Factories/PiecePrototypeFactory.hpp"
-//#include "Factories/SfmlSystemFactory.hpp"
-//#include "RegularBoardModel.hpp"
-//#include "RegularBoardView.hpp"
-//#include "Game.hpp"
-//
-// #include <iostream>
-
 #include "Application.hpp"
 
 int main(){
