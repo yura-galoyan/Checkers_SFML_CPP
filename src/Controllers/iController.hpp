@@ -1,9 +1,12 @@
 #ifndef I_CONTROLLER_HPP
 #define I_CONTROLLER_HPP
 
+#include "../ApplicationProtocol.hpp"
+
 class EventPoller;
 class Window;
 
+#include <memory>
 
 class iController
 {
@@ -15,6 +18,9 @@ public:
     virtual void handleEvents(Window& window) = 0;
     virtual void onLoad(){};
 
+    virtual Player getPlayer1(){ return Player{}; };
+    virtual Player getPlayer2(){ return Player{}; };
+    virtual std::unique_ptr<ApplicationProtocol> stealApplicationProtocol(){ return nullptr; };
 
     auto* eventPoller() { return m_eventPoller; }
 

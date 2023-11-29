@@ -6,13 +6,10 @@
 #include <string>
 #include <stdexcept>
 
-#define GCC_COMPILER (defined(__GNUC__) && !defined(__clang__))
-
-
 class Texture
 {
 public:
-#ifdef GCC_COMPILER
+#ifdef defined(__GNUC__)
     bool loadFromFile(std::string path){
             return tex.loadFromFile(path);
         }

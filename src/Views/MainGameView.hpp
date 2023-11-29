@@ -10,7 +10,7 @@ class MainGameView : public iView
 public:
     MainGameView(TextureHolderPtr textures, FontsHolderPtr fonts); 
     void render(Window& window) override;
-    void init() override;
+    void init(int id) override;
     
 private:
     BackGround m_background;

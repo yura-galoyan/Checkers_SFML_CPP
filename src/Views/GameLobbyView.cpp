@@ -14,7 +14,7 @@ void GameLobbyView::render(Window &window)
     m_playerHud2.draw(window);
 }
 
-void GameLobbyView::init()
+void GameLobbyView::init(int id)
 {
     m_playerHud1.setFont(&m_fonts->get(FontId::player_hud));
     m_playerHud1.setText("Player 1 waiting connection...");

@@ -16,13 +16,13 @@ public:
     void load(const Id& id, const std::string& filepath ){
         auto resource = std::make_unique<Resource>();
         try{
-            resource->loadFromFile(filepath);
+            resource->loadFromFile("../" + filepath);
         }
         catch(...)
         {
             try
             {
-                resource->loadFromFile("../" + filepath);
+                resource->loadFromFile(filepath);
             }
             catch(const std::exception& e)
             {

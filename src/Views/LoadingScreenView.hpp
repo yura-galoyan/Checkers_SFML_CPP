@@ -14,7 +14,7 @@ public:
     void render(Window& window) override;
 
 public:
-    void init() override;
+    void init(int id) override;
 
 
 private:

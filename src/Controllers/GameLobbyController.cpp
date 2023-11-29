@@ -10,7 +10,7 @@ GameLobbyController::GameLobbyController(EventPoller* eventPoller)
 void GameLobbyController::onLoad()
 {
     std::cout << "Starting Game Lobby!!!" << std::endl;
-    clientServer = std::make_unique<ApplicartionProtocol>();
+    clientServer = std::make_unique<ApplicationProtocol>();
 
     if( clientServer->connect("127.0.0.1", 60000)){
         std::cout << "Server is found!!" << std::endl;

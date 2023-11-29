@@ -14,7 +14,6 @@ public:
     GameLobbyState(Application* app, TextureHolderPtr textures, FontsHolderPtr fonts, Window& window, EventPoller* eventPoller);
 
     void start() override;
-    void registerToServer();
     
 private:
     // backward connect to m_app for changing the state

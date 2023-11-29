@@ -11,7 +11,7 @@ class GameLobbyView : public iView
 public:
     GameLobbyView(TextureHolderPtr textures, FontsHolderPtr fonts); 
     void render(Window& window) override ;
-    void init() override;
+    void init(int id) override;
     void setReady(std::uint16_t id, bool state);
 private:
     Text m_playerHud1;

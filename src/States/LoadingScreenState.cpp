@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <thread>
 
 #include "../Controllers/iController.hpp"
 #include "../Controllers/LoadingScreenController.hpp"
@@ -13,9 +14,6 @@
 #include "../Resources/PathStrings.hpp"
 
 #include "../Application.hpp"
-#include <thread>
-#include <iostream>
-#include <iostream>
 
 LoadingScreenState::LoadingScreenState(Application* app, TextureHolderPtr textures, Window& window, EventPoller* eventPoller)
     : m_app{app},

@@ -14,7 +14,7 @@ void LoadingScreenView::render(Window &window)
     loadingIconSprite.draw(window);
 }
 
-void LoadingScreenView::init()
+void LoadingScreenView::init(int id)
 {
     
     m_textures->load(TextureId::checkers_title_curve, sLoadingScreenPath+ sCheckersTitleCurve);
