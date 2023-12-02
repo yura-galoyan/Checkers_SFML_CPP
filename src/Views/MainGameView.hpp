@@ -2,7 +2,7 @@
 #define VIEWS_MAIN_GAME_VIEW_HPP
 
 #include "iView.hpp"
-
+#include "../Board/RegularBoardView.hpp"
 #include "../Board/BackGround.hpp"
 #include "../System/Text.hpp"
 class MainGameView : public iView
@@ -17,6 +17,9 @@ private:
     Text m_playerHud1;
     Text m_playerHud2;
 
+
+private:
+    std::unique_ptr<RegularBoardView> m_boardView;
 };
 
 

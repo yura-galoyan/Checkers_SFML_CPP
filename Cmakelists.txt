@@ -7,7 +7,7 @@ set(SFML_DIR "SFML-2.5.1/build")
 
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
-set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
 set(srcDir src)
 

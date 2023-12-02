@@ -15,7 +15,6 @@ set(SOURCES
 AnimationHandler.cpp
 Sprite.cpp
 Text.cpp
-TextureManager.cpp
 Window.cpp
 )
 

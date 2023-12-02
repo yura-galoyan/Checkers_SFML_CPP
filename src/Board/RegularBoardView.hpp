@@ -1,29 +1,34 @@
 #ifndef REGULAR_BOARD_VIEW_HPP
 #define REGULAR_BOARD_VIEW_HPP
 
-#include "AbstractBoardView.hpp"
-#include "AbstractBoardModel.hpp"
-
 #include <SFML/Graphics/RectangleShape.hpp>
 
-class RegularBoardView : public AbstractBoardView
+#include "RegularBoardModel.hpp"
+
+class RegularBoardView
 {
 public:
     RegularBoardView();
-    RegularBoardView(std::unique_ptr<AbstractBoardModel> model);
+    RegularBoardView(std::unique_ptr<RegularBoardModel> model);
 
 public:
-    void draw(Window& window) override ;
+    void draw(Window& window)  ;
 
 private:
-    void highlightCurrPiece(Window& window) override;
-    void highlightValidMoves(int i, int j, Window& window) override;
-    void highlightCheckedPiece(Window& window) override;
+    void highlightCurrPiece(Window& window);
+    void highlightValidMoves(int i, int j, Window& window);
+    void highlightCheckedPiece(Window& window);
+    void setModel(std::unique_ptr<RegularBoardModel> model_);
 
 private:
+    /// @brief FIXME: ????
     sf::RectangleShape highlighter;
     sf::RectangleShape movesHighlighter;
     sf::RectangleShape checkHighlighter;
+
+private:
+    std::unique_ptr<RegularBoardModel> m_model;
+
 };
 
 

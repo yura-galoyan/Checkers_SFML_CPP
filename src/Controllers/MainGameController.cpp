@@ -12,9 +12,8 @@ void MainGameController::handleEvents(Window &window)
 {
     m_eventPoller->setFlags(window);
     handleMessages();
-    std::cout << "this order\n";
-    std::cout << player1.id << "\n";
-    std::cout << player2.id << std::endl;
+
+
     
 }
 
@@ -32,6 +31,17 @@ void MainGameController::handleMessages(){
             
                 break;
             case CheckersMsgType::OtherPlayer:
+                break;
+
+            case CheckersMsgType::PlayerMove1:
+            {
+
+            }
+                break;
+            case CheckersMsgType::PlayerMove2:
+            {
+                
+            }
                 break;
             default:
                 std::cout << "Undefined message type" << std::endl;

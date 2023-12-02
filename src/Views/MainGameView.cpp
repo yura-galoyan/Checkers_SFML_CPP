@@ -14,12 +14,19 @@ void MainGameView::render(Window &window)
 
 void MainGameView::init(int id)
 {
-if(id == 1){
+    if(id == 1){
+        std::cout << "creating view 1" << std::endl;
+        
 
-}
-else if(id == 2){
-    
-}
+
+
+    }
+    else if(id == 2){
+        std::cout << "creating view 2" << std::endl;
+
+
+
+    }
     m_background.setPosition(BOARD_POS_X, BOARD_POS_Y);
     m_background.setTexture(&m_textures->get(TextureId::checkers_black_white_cells));
     m_background.initSprites();

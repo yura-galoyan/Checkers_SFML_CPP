@@ -12,7 +12,7 @@ MainGameState::MainGameState(Application* app,  TextureHolderPtr textures,FontsH
         &window
         )
 {
-    m_view->init();
+    m_view->init(player1.id);
 }
 
 

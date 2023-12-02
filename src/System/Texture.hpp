@@ -9,10 +9,13 @@
 class Texture
 {
 public:
-#ifdef defined(__GNUC__)
+#ifdef __GNUC__
     bool loadFromFile(std::string path){
-            return tex.loadFromFile(path);
+        if(!tex.loadFromFile(path)){
+            throw std::runtime_error{""};
         }
+        return true;
+    }
 #elif defined(_MSC_VER)
     bool loadFromFile(std::string path){
             return tex.loadFromFile(path);

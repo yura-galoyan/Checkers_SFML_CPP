@@ -13,16 +13,21 @@ RegularBoardView::RegularBoardView(){
     checkHighlighter.setOutlineColor(sf::Color::Green);
 }
 
-RegularBoardView::RegularBoardView(std::unique_ptr<AbstractBoardModel> model){
+RegularBoardView::RegularBoardView(std::unique_ptr<RegularBoardModel> model){
     setModel(std::move(model));
 }
 
+
+void RegularBoardView::setModel(std::unique_ptr<RegularBoardModel> model_){
+    this->m_model = std::move(model_);
+}
+
 void RegularBoardView::draw(Window& window){
-    for(auto& move : model->getValidMoves()){
+    for(auto& move : m_model->getValidMoves()){
         highlightValidMoves(move.first, move.second,window);
     }
     
-    for(auto& objects : *model){
+    for(auto& objects : *m_model){
         for(auto& object : objects ){
             if(object){
                 object->draw(window);
@@ -35,8 +40,9 @@ void RegularBoardView::draw(Window& window){
 }
 
 void RegularBoardView::highlightCurrPiece(Window& window){
-    if(model->getCurrPiece() && model->isValidCoordinate( model->getCurrPiece()->getXY().first, model->getCurrPiece()->getXY().second )){
-        highlighter.setPosition( model->getCurrPiece()->getXY().first * 110, model->getCurrPiece()->getXY().second * 110  );
+    auto currPiece = m_model->getCurrPiece();
+    if(currPiece && m_model->isValidCoordinate( currPiece->getXY().first, currPiece->getXY().second )){
+        highlighter.setPosition( currPiece->getXY().first * 110, currPiece->getXY().second * 110  );
         window.draw(highlighter);
     }
 }
@@ -49,8 +55,8 @@ void RegularBoardView::highlightValidMoves(int i, int j, Window &window){
 
 
 void RegularBoardView::highlightCheckedPiece(Window &window){
-    if(model->getCheckedPiece()){
-        checkHighlighter.setPosition( model->getCheckedPiece()->getXY().first * 110, model->getCheckedPiece()->getXY().second * 110);
+    if(m_model->getCheckedPiece()){
+        checkHighlighter.setPosition( m_model->getCheckedPiece()->getXY().first * 110, m_model->getCheckedPiece()->getXY().second * 110);
         window.draw(checkHighlighter);
     }
 }

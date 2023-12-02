@@ -1,6 +1,6 @@
 #include "Application.hpp"
 
-#include "Factories/PiecePrototypeFactory.hpp"
+// #include "Factories/PiecePrototypeFactory.hpp"
 // #include "Factories/SfmlSystemFactory.hpp"
 
 #include <iostream>

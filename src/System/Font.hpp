@@ -12,10 +12,13 @@ class Font
 {
 public:
 
-#ifdef GCC_COMPILER
+#ifdef __GNUC__
     bool loadFromFile(std::string path){
-            return font.loadFromFile(path);
+        if(!font.loadFromFile(path)){
+            throw std::runtime_error{""};
         }
+        return true;
+    }
 #elif defined(_MSC_VER)
     bool loadFromFile(std::string path){
             return font.loadFromFile(path);
