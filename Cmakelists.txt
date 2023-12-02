@@ -16,18 +16,8 @@ include_directories("dependencies/AsioInclude")
 set(SOURCES
 ${srcDir}/main.cpp
 
-${srcDir}/Controllers/iController.cpp
-${srcDir}/Controllers/GameLobbyController.cpp
-${srcDir}/Controllers/LoadingScreenController.cpp
-${srcDir}/Controllers/MainGameController.cpp
-
 ${srcDir}/EventSystem/EventPoller.cpp
 ${srcDir}/Constants/BoardConstants.cpp
-
-${srcDir}/states/iGameState.cpp
-${srcDir}/States/GameLobbyState.cpp
-${srcDir}/States/LoadingScreenState.cpp
-${srcDir}/States/MainGameState.cpp
 
 ${srcDir}/Views/GameLobbyView.cpp
 ${srcDir}/Views/LoadingScreenView.cpp
@@ -38,15 +28,17 @@ ${srcDir}/Application.cpp
 ${srcDir}/Board/BackGround.cpp
 )
 
-add_subdirectory(src/System system)
+add_subdirectory(${srcDir}/System system)
+add_subdirectory(${srcDir}/States states)
+add_subdirectory(${srcDir}/Controllers controllers)
 
 # Create the executable
 add_executable(checkers ${SOURCES})
 
 # Link SFML to your project
-target_link_libraries(checkers sfml-window sfml-graphics sfml-system)
+target_link_libraries(checkers system states controllers sfml-window sfml-graphics sfml-system)
 
 if(MINGW)
-  target_link_libraries(checkers system ws2_32 wsock32)
+  target_link_libraries(checkers  ws2_32 wsock32)
 endif()
 

@@ -5,29 +5,16 @@
 
 #include "RegularBoardModel.hpp"
 
-class RegularBoardView
+#include "iBoardView.hpp"
+
+class RegularBoardView : public iBoardView
 {
 public:
-    RegularBoardView();
-    RegularBoardView(std::unique_ptr<RegularBoardModel> model);
+    RegularBoardView() = default;
+    RegularBoardView(std::shared_ptr<RegularBoardModel> model);
 
 public:
-    void draw(Window& window)  ;
-
-private:
-    void highlightCurrPiece(Window& window);
-    void highlightValidMoves(int i, int j, Window& window);
-    void highlightCheckedPiece(Window& window);
-    void setModel(std::unique_ptr<RegularBoardModel> model_);
-
-private:
-    /// @brief FIXME: ????
-    sf::RectangleShape highlighter;
-    sf::RectangleShape movesHighlighter;
-    sf::RectangleShape checkHighlighter;
-
-private:
-    std::unique_ptr<RegularBoardModel> m_model;
+    void draw(Window& window) override;
 
 };
 

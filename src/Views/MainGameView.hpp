@@ -19,7 +19,7 @@ private:
 
 
 private:
-    std::unique_ptr<RegularBoardView> m_boardView;
+    std::unique_ptr<iBoardView> m_boardView;
 };
 
 
