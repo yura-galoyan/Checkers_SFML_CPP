@@ -25,6 +25,9 @@ void MainGameView::render(Window &window)
 void MainGameView::init(int id)
 {
 
+    if(m_spModel){
+        std::cout << "model is allocated" << std::endl;
+    }
     fillModel();
     if(id == 1){
         std::cout << "creating view 1" << std::endl;
@@ -58,7 +61,6 @@ void MainGameView::init(int id)
 void MainGameView::fillModel()
 {
 
-    std::vector<RegularBoardModel::PiecePtr<>> pieces;
 
 
     for(int i = 0; i < 3; i+=2)

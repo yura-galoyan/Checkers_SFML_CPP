@@ -4,7 +4,9 @@ int main(){
 
     Application app;
     
-    return app.exec();
+    int rValue =  app.exec();
+
+    return rValue;
 
     //Game game(900, 900, "Chess Game");
     //std::unique_ptr<PiecePrototypeFactory> pieceFactory = std::make_unique<PiecePrototypeFactory>(

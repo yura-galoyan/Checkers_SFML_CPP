@@ -13,10 +13,6 @@
 
 
 Application::Application(){
-
-
-
-
     // std::unique_ptr<PiecePrototypeFactory> pieceFactory = std::make_unique<PiecePrototypeFactory>(
     //     std::make_unique<Pawn>(),std::make_unique<Queen>(), std::make_unique<Rook>(),
     //     std::make_unique<Knight>(), std::make_unique<Bishop>(),std::make_unique<King>()
@@ -32,8 +28,8 @@ Application::Application(){
 
 int Application::exec()
 {
-    
     m_gameState->start(); 
+    std::cout << "-----------------i am here--------------" << std::endl;
     return 0;
 }
 

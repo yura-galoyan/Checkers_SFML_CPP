@@ -60,6 +60,7 @@ void LoadingScreenState::start(){
     }
 
     tMan.join();
-    m_app->setState(std::make_unique<GameLobbyState>(m_app,std::move(textures), std::move(fonts), *m_window,m_controller->getEventPoller()));
-    m_app->exec();
+    auto app = m_app;
+    app->setState(std::make_unique<GameLobbyState>(m_app,std::move(textures), std::move(fonts), *m_window,m_controller->getEventPoller()));
+    app->exec();
 }

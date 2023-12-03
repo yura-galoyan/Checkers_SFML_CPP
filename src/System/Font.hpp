@@ -14,10 +14,8 @@ public:
 
 #ifdef __GNUC__
     bool loadFromFile(std::string path){
-        if(!font.loadFromFile(path)){
-            throw std::runtime_error{""};
-        }
-        return true;
+        return font.loadFromFile(path);
+
     }
 #elif defined(_MSC_VER)
     bool loadFromFile(std::string path){

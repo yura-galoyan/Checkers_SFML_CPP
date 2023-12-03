@@ -31,12 +31,14 @@ ${srcDir}/Board/BackGround.cpp
 add_subdirectory(${srcDir}/System system)
 add_subdirectory(${srcDir}/States states)
 add_subdirectory(${srcDir}/Controllers controllers)
+add_subdirectory(${srcDir}/Board board)
+add_subdirectory(${srcDir}/Pieces pieces)
 
 # Create the executable
 add_executable(checkers ${SOURCES})
 
 # Link SFML to your project
-target_link_libraries(checkers system states controllers sfml-window sfml-graphics sfml-system)
+target_link_libraries(checkers system states controllers board pieces sfml-window sfml-graphics sfml-system)
 
 if(MINGW)
   target_link_libraries(checkers  ws2_32 wsock32)
