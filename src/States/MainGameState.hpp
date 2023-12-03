@@ -5,6 +5,7 @@
 
 #include "iGameState.hpp"
 #include "../ApplicationProtocol.hpp"
+#include "../Board/RegularBoardModel.hpp"
 class MainGameState : public iGameState
 {
 public:
@@ -19,6 +20,7 @@ public:
 
 private:
     Application* m_app;
+    std::shared_ptr<RegularBoardModel> m_spModel;
 };
 
 

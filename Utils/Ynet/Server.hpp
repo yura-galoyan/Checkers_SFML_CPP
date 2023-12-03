@@ -115,6 +115,7 @@ namespace Ynet{
 				// If we cant communicate with client then we may as 
 				// well remove the client - let the server know, it may
 				// be tracking it somehow
+				std::cout << "client disconnected HEEEELP!!!!" << std::endl;
 				onClientDisconnect(client);
 				// Off you go now, bye bye!
 				client.reset();
@@ -142,6 +143,7 @@ namespace Ynet{
 				{
 					// The client couldnt be contacted, so assume it has
 					// disconnected.
+					std::cout << "client disconnected HEEEELP!!!!" << std::endl;
 					onClientDisconnect(client);
 					client.reset();
 					// Set this flag to then remove dead clients from container
@@ -157,8 +159,11 @@ namespace Ynet{
 		// Force server to respond to incoming messages
 		void update(size_t nMaxMessages = -1, bool bWait = false)
 		{
-			if (bWait) m_qMessagesIn.wait();
+			// if (bWait) m_qMessagesIn.wait();
 			size_t nMessageCount = 0;
+
+
+
 			while (nMessageCount < nMaxMessages && !m_qMessagesIn.empty())
 			{
 				// Grab the front message
@@ -179,6 +184,7 @@ namespace Ynet{
 		// Called when a client appears to have disconnected
 		virtual void onClientDisconnect(std::shared_ptr<Connection<T>> client)
 		{
+			std::cout << "this one" << std::endl;
 		}
 		// Called when a message arrives
 		virtual void onMessage(std::shared_ptr<Connection<T>> client, Message<T>& msg)

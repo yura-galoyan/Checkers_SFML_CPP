@@ -56,6 +56,14 @@ public:
    auto end() const { return piecePtrVec.end();  }
    auto cend() const { return piecePtrVec.cend(); }
 
+public:
+   auto rbegin() { return piecePtrVec.rbegin();  }
+   auto rbegin() const  { return piecePtrVec.rbegin();  }
+   auto crbegin() const { return piecePtrVec.crbegin(); }
+   auto rend() { return piecePtrVec.rend();  }
+   auto rend() const { return piecePtrVec.rend();  }
+   auto crend() const { return piecePtrVec.crend(); }
+
    
 
 private:

@@ -39,6 +39,9 @@ void LoadingScreenState::start(){
 
         // load checkers textures
         textures->load(TextureId::checkers_black_white_cells, sBlackWhiteCellsPath);
+        textures->load(TextureId::checkers_white_piece, sCheckersWhitePiece);
+        textures->load(TextureId::checkers_black_piece, sCheckersBlackPiece);
+
         fonts->load(FontId::player_hud, sPlayerHudFont);
         flag = true;
     });

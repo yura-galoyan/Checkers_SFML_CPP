@@ -1,7 +1,7 @@
 #ifndef CUSTOM_SERVER_HPP
 #define CUSTOM_SERVER_HPP
 
-#include "../../Utils/Ynet/Server.hpp"
+#include "../../../Utils/Ynet/Server.hpp" 
 #include "../../../Common/Common.hpp"
 #include <array>
 using CheckersServer = Ynet::ServerInterface<CheckersMsgType>;

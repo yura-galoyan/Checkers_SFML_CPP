@@ -10,7 +10,7 @@ class Piece
 {
 public:
     using Coords = std::pair<std::size_t, std::size_t>;
-    enum class Color{ White, Black};
+    enum class Color{ White, Black, None};
 
 public:
     Piece() = default;
@@ -32,6 +32,7 @@ public:
     void moveTo(Coords xy);
     virtual bool isValid(Coords from, Coords to) const = 0;
     virtual void draw(Window& window) = 0;
+    virtual void draw(Window& window, Vector2f position) = 0;
 
 protected:
     Coords xy;

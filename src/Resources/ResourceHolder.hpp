@@ -7,6 +7,8 @@
 #include <memory>
 #include <map>
 
+#include <filesystem>
+namespace fs = std::filesystem;
 
 template<typename Resource, typename Id>
 class ResourceHolder
@@ -15,19 +17,14 @@ public:
     ResourceHolder() = default;
     void load(const Id& id, const std::string& filepath ){
         auto resource = std::make_unique<Resource>();
-        try{
-            resource->loadFromFile("../" + filepath);
-        }
-        catch(...)
-        {
-            try
-            {
-                resource->loadFromFile(filepath);
-            }
-            catch(const std::exception& e)
-            {
-                std::cerr << e.what() << '\n';
-            }
+
+        if (!resource->loadFromFile(filepath)) {
+            if (!resource->loadFromFile("../" + filepath)) {
+                if (!resource->loadFromFile("../../" + filepath)) {
+                    std::cout << "could not load from: " << "../../" + filepath <<"or " << "../" + filepath << " or " << filepath << std::endl;
+                };
+         
+            };
         }
 
         auto inserted = resources.insert({id,std::move(resource)});

@@ -277,8 +277,8 @@ namespace Ynet{
 		std::uint64_t m_nHandshakeIn = 0;
 		std::uint64_t m_nHandshakeCheck = 0;
 	};
-}
+};
 
 #include "Server.hpp"
 
-#endif //YNET_CONNECTION_HPP
+#endif //CONNECTION

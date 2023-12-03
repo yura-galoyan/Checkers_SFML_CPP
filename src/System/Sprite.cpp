@@ -16,6 +16,14 @@ void Sprite::draw(Window &window){
     window.draw(sprite);
 }
 
+void Sprite::draw(Window &window, Vector2f pos)
+{
+    auto oldPos= sprite.getPosition();
+    sprite.setPosition(pos);
+    window.draw(sprite);
+    sprite.setPosition(oldPos);
+}
+
 void Sprite::setScale(std::pair<float, float> scale){
     sprite.setScale(scale.first, scale.second);
 }

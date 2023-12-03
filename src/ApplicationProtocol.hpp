@@ -1,7 +1,7 @@
 #ifndef APPLICATION_PROTOCOL
 #define APPLICATION_PROTOCOL
 
-#include "Ynet/Client.hpp"
+#include "../Utils/Ynet/Client.hpp"
 
 #include "../Common/Common.hpp"
 

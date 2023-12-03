@@ -142,6 +142,9 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Board\BackGround.cpp" />
+    <ClCompile Include="Board\RegularBoardModel.cpp" />
+    <ClCompile Include="Board\RegularBoardView.cpp" />
+    <ClCompile Include="Board\UpsideDownBoardView.cpp" />
     <ClCompile Include="Constants\BoardConstants.cpp" />
     <ClCompile Include="Controllers\GameLobbyController.cpp" />
     <ClCompile Include="Controllers\iController.cpp" />
@@ -149,13 +152,9 @@
     <ClCompile Include="Controllers\MainGameController.cpp" />
     <ClCompile Include="EventSystem\EventPoller.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Pieces\Bishop.cpp" />
-    <ClCompile Include="Pieces\King.cpp" />
-    <ClCompile Include="Pieces\Knight.cpp" />
     <ClCompile Include="Pieces\Pawn.cpp" />
     <ClCompile Include="Pieces\Piece.cpp" />
     <ClCompile Include="Pieces\Queen.cpp" />
-    <ClCompile Include="Pieces\Rook.cpp" />
     <ClCompile Include="Resources\PathStrings.cpp" />
     <ClCompile Include="States\GameLobbyState.cpp" />
     <ClCompile Include="States\iGameState.cpp" />
@@ -173,6 +172,10 @@
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="Board\BackGround.hpp" />
+    <ClInclude Include="Board\iBoardView.hpp" />
+    <ClInclude Include="Board\RegularBoardModel.hpp" />
+    <ClInclude Include="Board\RegularBoardView.hpp" />
+    <ClInclude Include="Board\UpsideDownBoardView.hpp" />
     <ClInclude Include="ChangeManager.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Connection\ClientProtocol.hpp" />
@@ -182,13 +185,9 @@
     <ClInclude Include="Controllers\LoadingScreenController.hpp" />
     <ClInclude Include="Controllers\MainGameController.hpp" />
     <ClInclude Include="EventSystem\EventPoller.hpp" />
-    <ClInclude Include="Pieces\Bishop.hpp" />
-    <ClInclude Include="Pieces\King.hpp" />
-    <ClInclude Include="Pieces\Knight.hpp" />
     <ClInclude Include="Pieces\Pawn.hpp" />
     <ClInclude Include="Pieces\Piece.hpp" />
     <ClInclude Include="Pieces\Queen.hpp" />
-    <ClInclude Include="Pieces\Rook.hpp" />
     <ClInclude Include="PlayerInput.hpp" />
     <ClInclude Include="Resources\PathStrings.hpp" />
     <ClInclude Include="Resources\ResourceHolder.hpp" />

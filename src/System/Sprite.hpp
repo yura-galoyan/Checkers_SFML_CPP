@@ -22,6 +22,7 @@ public:
     
     void setTexture(Texture* texture);
     void draw(Window& window);
+    void draw(Window& window, Vector2f pos);
     void setScale(std::pair<float,float> scale);
     void setStartingRect(Vector2i pos, Vector2i size);
     void setCurrRectPosY(int y);

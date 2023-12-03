@@ -18,8 +18,8 @@ public:
     }
 #elif defined(_MSC_VER)
     bool loadFromFile(std::string path){
-            return tex.loadFromFile(path);
-        }
+        return tex.loadFromFile(path);
+    }
 #endif
     sf::Texture& getTexture(){
         return tex;

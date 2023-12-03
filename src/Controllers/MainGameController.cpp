@@ -12,9 +12,6 @@ void MainGameController::handleEvents(Window &window)
 {
     m_eventPoller->setFlags(window);
     handleMessages();
-
-
-    
 }
 
 void MainGameController::handleMessages(){
@@ -50,5 +47,38 @@ void MainGameController::handleMessages(){
         }
     }
 }
+
+
+void MainGameController::onLeftClickEvent(){
+    
+};
+
+void MainGameController::onLeftDoubleClickEvent(){
+
+};
+
+void MainGameController::onRightClickEvent(){
+
+};
+
+void MainGameController::onRightDoubleClickEvent(){
+
+};
+
+void MainGameController::onLeftHoldEvent(){
+
+};
+
+void MainGameController::onRightHoldEvent(){
+
+};
+
+void MainGameController::onLeftMoveEvent(){
+
+};
+
+void MainGameController::onRightMoveEvent(){
+
+};
 
 

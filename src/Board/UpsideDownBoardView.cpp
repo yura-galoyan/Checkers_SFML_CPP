@@ -1,5 +1,8 @@
 #include "UpsideDownBoardView.hpp"
 
+#include <vector>
+
+#include "../Constants/BoardConstants.hpp"
 
 template <typename T>
 struct reversion_wrapper { T& iterable; };
@@ -19,12 +22,15 @@ UpsideDownBoardView::UpsideDownBoardView(std::shared_ptr<RegularBoardModel> mode
 {
 }
 
+#include <iostream>
+
 void UpsideDownBoardView::draw(Window &window)
 {
     for(auto& objects : reverse(*m_model)){
         for(auto& object : reverse(objects)){
             if(object){
-                object->draw(window);
+                auto pos = object->getSprite().getPosition();
+                object->draw(window,{ 7 * CELL_SIZE - ( pos.x - BOARD_POS_X) + BOARD_POS_X, 7 * CELL_SIZE - ( pos.y - BOARD_POS_Y) + BOARD_POS_Y });
             }
         }
     }

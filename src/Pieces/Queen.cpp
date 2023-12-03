@@ -12,3 +12,8 @@ bool Queen::isValid(Coords from, Coords to) const {
 void Queen::draw(Window& window){
     sprite.draw(window);   
 }
+
+void Queen::draw(Window &window, Vector2f position)
+{
+    sprite.draw(window, position);
+}

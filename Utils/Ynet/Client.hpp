@@ -46,6 +46,7 @@ namespace Ynet{
 			if(isConnected())
 			{
 				// ...disconnect from server gracefully
+
 				m_connection->disconnect();
 			}
 			// Either way, we're also done with the asio context...				

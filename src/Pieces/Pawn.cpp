@@ -15,3 +15,8 @@ bool Pawn::isValid(Coords from, Coords to) const{
 void Pawn::draw(Window& window){
     sprite.draw(window); 
 }
+
+void Pawn::draw(Window &window, Vector2f position)
+{
+    sprite.draw(window,position);
+}

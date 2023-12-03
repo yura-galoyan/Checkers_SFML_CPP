@@ -12,7 +12,11 @@ MainGameState::MainGameState(Application* app,  TextureHolderPtr textures,FontsH
         &window
         )
 {
+
     m_view->init(player1.id);
+    m_spModel = std::make_shared<RegularBoardModel>();
+    static_cast<MainGameView*>(m_view.get())->setModel(m_spModel);
+    static_cast<MainGameController*>(m_controller.get())->setModel(m_spModel);
 }
 
 
@@ -24,4 +28,6 @@ void MainGameState::start()
         m_view->render(*m_window);
         m_window->display();
     }
+
+    static_cast<MainGameController*>(m_controller.get())->closeConnection();
 }
