@@ -1,7 +1,7 @@
 #include "BackGround.hpp"
 // #include "CellSizeController.hpp"
 #include "../Constants/BoardConstants.hpp"
-
+#include <iostream>
 void BackGround::draw(Window& window){
 
     for(short int i = 0; i < 8; ++i){

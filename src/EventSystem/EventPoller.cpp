@@ -26,7 +26,7 @@ void EventPoller::setFlags(Window &window){
                 break;
             case sf::Event::Resized:
                 // CellSizeController::changeCellSizeTo(static_cast<int>(window.getSize().first / 8));
-                window.setSize({window.getSize().first, window.getSize().first});
+                // window.setSize({window.getSize().first, window.getSize().first});
                 break;
             default:
                 break;

@@ -4,6 +4,7 @@
 #include "../ApplicationProtocol.hpp"
 #include "../Board/RegularBoardModel.hpp"
 #include "../../Common/Common.hpp"
+#include "../System/Window.hpp"
 #include "iController.hpp"
 class MainGameController : public iController
 {
@@ -39,9 +40,11 @@ public:
 private:
     std::unique_ptr<ApplicationProtocol> m_clientServer;
     std::shared_ptr<RegularBoardModel> m_spModel;
-
+    Window* m_pWindow;
     Player player1;
     Player player2;
+
+    int dynCellSize{110};
 
 };
 

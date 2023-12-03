@@ -1,5 +1,8 @@
 #include "MainGameController.hpp"
 #include "../EventSystem/EventPoller.hpp"
+#include "../System/Mouse.hpp"
+#include "../Constants/BoardConstants.hpp"
+
 
 MainGameController::MainGameController(EventPoller* eventPoller, std::unique_ptr<ApplicationProtocol> clientServer,
                                         Player player1, Player player2)
@@ -11,6 +14,7 @@ MainGameController::MainGameController(EventPoller* eventPoller, std::unique_ptr
 void MainGameController::handleEvents(Window &window)
 {
     m_eventPoller->setFlags(window);
+    m_pWindow = &window;
     handleMessages();
 }
 
@@ -50,7 +54,22 @@ void MainGameController::handleMessages(){
 
 
 void MainGameController::onLeftClickEvent(){
-    
+    auto pos = Mouse::getPosition(*m_pWindow);
+
+    int i{-1},j{-1};
+    std::cout << "x: " << pos.x << " y: " << pos.y << std::endl;
+    std::cout<< "window: " << m_pWindow->getSize().first << " " << m_pWindow->getSize().second << std::endl; 
+// adjust for window size
+    if(player1.id == 1){
+        i = (pos.x - BOARD_POS_X) / dynCellSize;
+        j = (pos.y - BOARD_POS_Y) / dynCellSize;
+    }
+    else if(player1.id == 2){
+        i = 7 - ((pos.x - BOARD_POS_X )/ dynCellSize);
+        j = 7 - ((pos.y - BOARD_POS_Y )/ dynCellSize);
+    }
+
+    std::cout << "i: " << i << " j: " << j << std::endl; 
 };
 
 void MainGameController::onLeftDoubleClickEvent(){
