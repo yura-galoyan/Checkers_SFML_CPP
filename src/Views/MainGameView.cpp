@@ -33,10 +33,16 @@ void MainGameView::init(int id)
         std::cout << "creating view 1" << std::endl;
         m_boardView = std::make_unique<RegularBoardView>();
 
+        m_playerHud1.setPosition({ 10.f,10.f });
+        m_playerHud2.setPosition({ 10.f, static_cast<float>(BOARD_POS_Y + CELL_SIZE * 8 + 10) });
     }
     else if(id == 2){
         std::cout << "creating view 2" << std::endl;
         m_boardView = std::make_unique<UpsideDownBoardView>();
+
+        m_playerHud2.setPosition({ 10.f,10.f });
+        m_playerHud1.setPosition({ 10.f, static_cast<float>(BOARD_POS_Y + CELL_SIZE * 8 + 10) });
+
     }
     
     m_boardView->setModel(m_spModel);
@@ -47,12 +53,10 @@ void MainGameView::init(int id)
 
     m_playerHud1.setFont(&m_fonts->get(FontId::player_hud));
     m_playerHud1.setText("Player 1");
-    m_playerHud1.setPosition({10.f,10.f});
     m_playerHud1.setCharacterSize(20);
 
     m_playerHud2.setFont(&m_fonts->get(FontId::player_hud));
     m_playerHud2.setText("Player 2");
-    m_playerHud2.setPosition({10.f, static_cast<float>(BOARD_POS_Y + CELL_SIZE * 8 + 10)});
     m_playerHud2.setCharacterSize(20);
 
     // board->render
