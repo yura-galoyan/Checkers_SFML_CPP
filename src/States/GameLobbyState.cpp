@@ -44,9 +44,8 @@ void GameLobbyState::start()
         m_window->display();
     }
 
-    std::cout << "LETS GOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!" << std::endl;
     auto nextState = std::make_unique<MainGameState>(m_app, m_view->stealTextures(),m_view->stealFonts(),*m_window, m_controller->getEventPoller(),m_controller->stealApplicationProtocol(), m_controller->getPlayer1(), m_controller->getPlayer2() );
-    std::cout << "after next state" << std::endl;
+  
    
     auto app = m_app;
     app->setState(std::move(nextState));

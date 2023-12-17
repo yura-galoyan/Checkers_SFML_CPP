@@ -1,4 +1,5 @@
 #include "RegularBoardModel.hpp"
+#include <iostream>
 
 RegularBoardModel::RegularBoardModel()
     :currPiece{nullptr}
@@ -12,9 +13,43 @@ RegularBoardModel::RegularBoardModel()
 
 
 void RegularBoardModel::movePiece(int oldX, int oldY, int newX, int newY){
-
     piecePtrVec[oldX][oldY]->moveTo({newX, newY});
     piecePtrVec[newX][newY] = std::move(piecePtrVec[oldX][oldY]);
+}
+
+
+bool RegularBoardModel::tryToMove(Vector2i from, Vector2i to)
+{
+    std::cout << "IN CONSTRUCTON!!!" << std::endl;
+
+    if(!isEmpty(from)){
+        std::cout << "from is empty" << std::endl;
+        if(isEmpty(to)){
+            std::cout << "to is empty" << std::endl;
+            if( from.x < 8 && from.x < 8 && to.x < 8 && to.y < 8 &&
+                from.x >= 0 && from.x >= 0 && to.x >= 0 && to.y >= 0
+              ){
+                // Still needs validating
+                std::cout  << "final step of moving a step" << std::endl;
+                movePiece(from.x,from.y,to.x,to.y);
+
+                std::cout << "from"   << from.x << " " << from.y 
+                          << "| to"   << to.x << " " << to.y << std::endl;
+
+
+                return true;
+            }
+            else {
+                std::cout << "out of range" << std::endl;
+                std::cout << "from"   << from.x << " " << from.y 
+                          << "| to"   << to.x << " " << to.y << std::endl;
+                
+            }
+        }
+    }
+
+
+    return false;
 }
 
 void RegularBoardModel::addPiece(PiecePtr<> piece){
@@ -59,7 +94,13 @@ bool RegularBoardModel::isColor(Piece::Color color, int x, int y)
     return false;
 }
 
-bool RegularBoardModel::isTurnOf(Piece::Color color){
+bool RegularBoardModel::isEmpty(Vector2i pos)
+{
+    return !static_cast<bool>(piecePtrVec[pos.x][pos.y]);
+}
+
+bool RegularBoardModel::isTurnOf(Piece::Color color)
+{
     return color == turn;
 }
 

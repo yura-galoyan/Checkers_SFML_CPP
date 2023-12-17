@@ -1,5 +1,5 @@
 start server/server/build/server.exe
-timeout 5
+timeout 1
 start app/checkers.exe
-timeout 5
+timeout 1
 start app/checkers.exe

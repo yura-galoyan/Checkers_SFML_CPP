@@ -14,12 +14,7 @@ public:
 
     void handleEvents(Window& window) override;
     void handleMessages();
-    void closeConnection() {
-        m_clientServer->disconnect();
-        Ynet::Message<CheckersMsgType> msg;
-        msg.header.id = CheckersMsgType::MessageAll;
-        msg << 5;
-        m_clientServer->send(msg);
+    void closeConnection() { 
     };
 
 
@@ -38,13 +33,22 @@ public:
     void onRightMoveEvent() override;
 
 private:
+    void sendMoveMessage(Vector2i from, Vector2i to);
+
+private:
     std::unique_ptr<ApplicationProtocol> m_clientServer;
     std::shared_ptr<RegularBoardModel> m_spModel;
     Window* m_pWindow;
     Player player1;
     Player player2;
 
+
+private:
     int dynCellSize{110};
+    int count{};
+    Vector2i from;
+    Vector2i to;
+
 
 };
 

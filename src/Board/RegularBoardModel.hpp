@@ -20,14 +20,15 @@ public:
 public:
    void addPiece(PiecePtr<> piece) ;
    void movePiece(int oldX, int oldY, int newX, int newY);
-   
+   bool tryToMove(Vector2i from, Vector2i to);
+
 public:
    bool isValidMove(std::pair<int,int> from, std::pair<int, int> to);
    bool isValidCoordinate(int x, int y);
    bool isColor(Piece::Color color, int x, int y   );
    bool isSameColor(std::pair<int,int> from, std::pair<int, int> to);
 
-
+   bool isEmpty(Vector2i pos);
    bool isTurnOf(Piece::Color color);
    void changeTurn();
 

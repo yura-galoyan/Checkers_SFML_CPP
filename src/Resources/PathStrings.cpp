@@ -10,4 +10,4 @@ const std::string sBlackWhiteCellsPath = "assets/Board/checkers_black_white_cell
 const std::string sPlayerHudFont = "Font/Mythical_Prince.ttf";
 
 const std::string sCheckersWhitePiece = "assets/Board/white_piece.png";
-const std::string sCheckersBlackPiece = "assets/Board/black_piece.png";;
+const std::string sCheckersBlackPiece = "assets/Board/black_piece.png";

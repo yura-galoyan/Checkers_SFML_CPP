@@ -90,7 +90,7 @@ void MainGameView::fillModel()
     }   
 }
 
-void MainGameView::initPiece(Piece *piecePtr, int i, int j,Piece::Color color)
+void MainGameView::initPiece(Piece *piecePtr, int j, int i,Piece::Color color)
 {
         piecePtr->setXY({i,j});
         piecePtr->setColor(color);
@@ -101,6 +101,6 @@ void MainGameView::initPiece(Piece *piecePtr, int i, int j,Piece::Color color)
         if(color == Piece::Color::White){
             sprite.setTexture(&m_textures->get(TextureId::checkers_white_piece));
         }
-        sprite.setPosition(j*CELL_SIZE + BOARD_POS_X, i* CELL_SIZE + BOARD_POS_Y);
+        sprite.setPosition(i*CELL_SIZE + BOARD_POS_X, j* CELL_SIZE + BOARD_POS_Y);
         piecePtr->setSprite(sprite);
 }

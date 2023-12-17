@@ -1,8 +1,5 @@
 #include "CustomServer.hpp"
 
-
-
-
 int main(){
     CustomServer server(60000);
     server.start();

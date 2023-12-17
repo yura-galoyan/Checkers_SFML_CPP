@@ -13,6 +13,7 @@ enum class CheckersMsgType : std::uint32_t
     OtherPlayer,
     Player1,
     Player2,
+    PlayerMove,
     PlayerMove1,
     PlayerMove2,
     Assign_id

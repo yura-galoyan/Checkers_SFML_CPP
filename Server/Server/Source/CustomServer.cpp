@@ -54,7 +54,7 @@ void CustomServer::onClientValidated(std::shared_ptr<CheckersConnection> client)
         messageAllClients(msg2,client);
         std::cout << "notifying first player that second player is ready" << std::endl;
 
-
+        
         return;
     }
     
@@ -83,19 +83,25 @@ void CustomServer::onMessage(std::shared_ptr<Ynet::Connection<CheckersMsgType>> 
         client->send(msg);
         break;
     case CheckersMsgType::MessageAll:
-    {
-        std::cout << "[" << client->getId() << "]: Message All\n";
-		// Construct a new message and send it to all clients
-		Ynet::Message<CheckersMsgType> msg;
-		msg.header.id = CheckersMsgType::ServerMessage;
-		msg << client->getId();
-		messageAllClients(msg, client);
-    }
+        {
+            std::cout << "[" << client->getId() << "]: Message All\n";
+		    // Construct a new message and send it to all clients
+		    Ynet::Message<CheckersMsgType> msg;
+		    msg.header.id = CheckersMsgType::ServerMessage;
+		    msg << client->getId();
+		    messageAllClients(msg, client);
+        }
         break;
     case CheckersMsgType::Player1:
-    {
-        std::cout << "[" << client->getId() << "]: is Readey\n";
-    }
+        {
+            std::cout << "[" << client->getId() << "]: is Readey\n";
+        }
+        break;
+    case CheckersMsgType::PlayerMove:
+        {
+            std::cout << "telling other to move" << std::endl;
+            messageAllClients(msg,client);
+        }
         break;
     default:
         break;

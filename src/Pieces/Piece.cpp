@@ -1,5 +1,7 @@
 #include "Piece.hpp"
 
+#include "../Constants/BoardConstants.hpp"
+
 void Piece::setPosition(std::size_t x){
     static bool b{true};
 
@@ -18,7 +20,7 @@ void Piece::setPosition(std::size_t x){
 
 void Piece::moveTo(Coords xy){
     setXY(xy);
-    sprite.setPosition(xy.first * 110 + offsetX, xy.second * 110);
+    sprite.setPosition(xy.first * 110  + BOARD_POS_X, xy.second * 110 + BOARD_POS_Y);
 }
 
 

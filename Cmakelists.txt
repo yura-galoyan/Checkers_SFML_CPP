@@ -40,6 +40,8 @@ add_executable(checkers ${SOURCES})
 # Link SFML to your project
 target_link_libraries(checkers system states controllers board pieces sfml-window sfml-graphics sfml-system)
 
+add_compile_options(checkers -static-libgcc -static-libstdc++)
+
 if(MINGW)
   target_link_libraries(checkers  ws2_32 wsock32)
 endif()
