@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.15)
+project(controllers)
+
+set(CMAKE_CXX_STANDARD 17) 
+
+set(SFML_DIR "../../SFML-2.5.1/build")
+
+find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
+
+
+include_directories("../../dependencies/SFML/include")
+include_directories("../../dependencies/AsioInclude")
+
+set(SOURCES
+GameLobbyController.cpp
+iController.cpp
+LoadingScreenController.cpp
+MainGameController.cpp
+)
+
+add_library(controllers ${SOURCES})
+
+target_link_libraries(controllers sfml-window sfml-graphics sfml-system)

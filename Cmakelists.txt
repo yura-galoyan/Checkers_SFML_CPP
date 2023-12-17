@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(chessGame)
+project(checkers)
 
 set(CMAKE_CXX_STANDARD 17) 
 
@@ -7,52 +7,40 @@ set(SFML_DIR "SFML-2.5.1/build")
 
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
+# set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../app")
-set(src sfmlGame)
+set(srcDir src)
 
-include_directories("SFML-2.5.1/include")
-include_directories("Server/include")
+include_directories("dependencies/SFML/include")
+include_directories("dependencies/AsioInclude")
 set(SOURCES
-${src}/main.cpp
-${src}/Game.cpp
+${srcDir}/main.cpp
 
-${src}/AnimationHandler.cpp
+${srcDir}/EventSystem/EventPoller.cpp
+${srcDir}/Constants/BoardConstants.cpp
 
-${src}/LoadingScreen.cpp
-${src}/BackGround.cpp
+${srcDir}/Views/GameLobbyView.cpp
+${srcDir}/Views/LoadingScreenView.cpp
+${srcDir}/Views/MainGameView.cpp
 
-${src}/AbstractBoardModel.cpp
-${src}/RegularBoardModel.cpp
-${src}/AbstractBoardView.cpp
-${src}/RegularBoardView.cpp
-${src}/SfmlController.cpp
-${src}/ChessJudge.cpp
-
-${src}/System/Sprite.cpp
-${src}/System/Texture.cpp
-${src}/System/Window.cpp
-${src}/System/Controller.cpp
-${src}/System/TextureManager.cpp
-
-${src}/Pieces/Bishop.cpp
-${src}/Pieces/King.cpp
-${src}/Pieces/Knight.cpp
-${src}/Pieces/Pawn.cpp
-${src}/Pieces/Piece.cpp
-${src}/Pieces/Queen.cpp
-${src}/Pieces/Rook.cpp
-
-${src}/Factories/PiecePrototypeFactory.cpp
-${src}/Factories/SfmlSystemFactory.cpp
+${srcDir}/Resources/PathStrings.cpp
+${srcDir}/Application.cpp
+${srcDir}/Board/BackGround.cpp
 )
 
+add_subdirectory(${srcDir}/System system)
+add_subdirectory(${srcDir}/States states)
+add_subdirectory(${srcDir}/Controllers controllers)
+add_subdirectory(${srcDir}/Board board)
+add_subdirectory(${srcDir}/Pieces pieces)
+
 # Create the executable
-add_executable(chessGame ${SOURCES})
+add_executable(checkers ${SOURCES})
 
 # Link SFML to your project
-target_link_libraries(chessGame sfml-window sfml-graphics sfml-system)
+target_link_libraries(checkers system states controllers board pieces sfml-window sfml-graphics sfml-system)
 
 if(MINGW)
-  target_link_libraries(chessGame ws2_32 wsock32)
+  target_link_libraries(checkers  ws2_32 wsock32)
 endif()
 

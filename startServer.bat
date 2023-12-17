@@ -1,0 +1,1 @@
+start server/server/build/server.exe

@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.15)
+project(pieces)
+
+set(CMAKE_CXX_STANDARD 17) 
+
+set(SFML_DIR "../../SFML-2.5.1/build")
+
+find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
+
+
+include_directories("../../dependencies/SFML/include")
+include_directories("../../dependencies/AsioInclude")
+
+set(SOURCES
+Pawn.cpp
+Piece.cpp
+Queen.cpp
+)
+
+add_library(pieces ${SOURCES})
+
+target_link_libraries(pieces sfml-window sfml-graphics sfml-system)
