@@ -4,6 +4,8 @@
 #include "../Constants/BoardConstants.hpp"
 #include <iostream>
 
+#include "../CellSizeController.hpp"
+
 MainGameController::MainGameController(EventPoller* eventPoller, std::unique_ptr<ApplicationProtocol> clientServer,
                                         Player player1, Player player2)
     :iController(eventPoller), m_clientServer{std::move(clientServer)},player1{player1}, player2{player2}
@@ -84,6 +86,11 @@ void MainGameController::onLeftClickEvent(){
     auto pos = Mouse::getPosition(*m_pWindow);
     int i{-1},j{-1};
         // adjust for window size
+
+        dynCellSize = CellSizeController::getCellSize();
+        std::cout << "cell size: " << dynCellSize << std::endl;
+
+
     if(player1.id == 1){
         j = (pos.x - BOARD_POS_X) / dynCellSize;
         i = (pos.y - BOARD_POS_Y) / dynCellSize;
@@ -92,7 +99,8 @@ void MainGameController::onLeftClickEvent(){
         j = 7 - ((pos.x - BOARD_POS_X )/ dynCellSize);
         i = 7 - ((pos.y - BOARD_POS_Y )/ dynCellSize);
     }
-    std::cout << "count = " << count << std::endl;
+
+    
     if(count == 0){
         from = {j,i};
         ++count;
@@ -101,7 +109,7 @@ void MainGameController::onLeftClickEvent(){
             std::cout << "is empty because --- ";
             std::cout << "i: "  << i 
                       << " j: " << j << std::endl;
-            count == 0;
+            count = 0;
         }
         else{
             std::cout << "picked a piece" << std::endl;

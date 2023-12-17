@@ -47,6 +47,9 @@ bool RegularBoardModel::tryToMove(Vector2i from, Vector2i to)
             }
         }
     }
+    else{
+        std::cout << "Empty [x y]" << from.x << " " << from.y << std::endl;
+    }
 
 
     return false;

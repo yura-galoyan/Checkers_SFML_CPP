@@ -35,18 +35,13 @@ void Window::create(unsigned height_, unsigned width_, std::string title){
 /// FIXME:
 /// FIXME:
 
-    /// FIXME:
-/// FIXME:
-/// FIXME:
 
     width = width_;
     height = height_;
     window.create(sf::VideoMode{height, width}, title);
-    // auto size = sf::VideoMode().getDesktopMode().height;
-    auto size = 1000;
+    auto size = sf::VideoMode().getDesktopMode().height - 150;
 
-    std::cout <<size << std::endl;
-
+    CellSizeController::changeCellSizeTo(size/8);
     setSize({size,size});
 }
 

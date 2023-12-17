@@ -1,5 +1,6 @@
 #include "EventPoller.hpp"
 
+#include "../CellSizeController.hpp"
 #include "../Controllers/iController.hpp"
 
 EventPoller::EventPoller(){
@@ -25,8 +26,18 @@ void EventPoller::setFlags(Window &window){
                 window.close();
                 break;
             case sf::Event::Resized:
-                // CellSizeController::changeCellSizeTo(static_cast<int>(window.getSize().first / 8));
-                // window.setSize({window.getSize().first, window.getSize().first});
+            {
+
+                auto size = window.getSize();
+                std::cout << "initial width: " <<  window.getStartWidth() << std::endl;
+                std::cout << "now width: " <<  window.getSize().first << std::endl;
+                auto initSize = std::make_pair(window.getStartWidth(),window.getStartWidth());
+
+
+
+                CellSizeController::changeCellSizeTo(static_cast<int>(       110 / (static_cast<double>(initSize.first) / static_cast<double>(size.first)  )      ));
+                window.setSize({window.getSize().first, window.getSize().first});
+            }
                 break;
             default:
                 break;
